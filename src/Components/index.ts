@@ -1,1 +1,1 @@
-export { Gallery } from '@Components/Gallery';
+export { GalleryComponent } from '@Components/GalleryComponent';

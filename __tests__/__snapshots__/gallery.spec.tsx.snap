@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gallery Component should Gallery Component is render correctly 1`] = `
+<react-native-mock>
+  <react-native-mock>
+     textInComponent 
+  </react-native-mock>
+</react-native-mock>
+`;
