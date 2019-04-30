@@ -1,2 +1,2 @@
-import { Gallery } from './Components/Gallery';
-export default Gallery;
+import { GalleryComponent as RNGallery } from './Components/GalleryComponent';
+export default RNGallery;

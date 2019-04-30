@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Gallery_1 = require("./Components/Gallery");
-exports.default = Gallery_1.Gallery;
+import { GalleryComponent as RNGallery } from './Components/GalleryComponent';
+export default RNGallery;
 //# sourceMappingURL=index.js.map

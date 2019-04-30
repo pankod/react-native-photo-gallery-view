@@ -1,5 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Gallery_1 = require("./Gallery");
-exports.Gallery = Gallery_1.Gallery;
+export { GalleryComponent } from './GalleryComponent';
+export { TopBarComponent } from './TopBarComponent';
+export { FooterComponent } from './FooterComponent';
+export { AlbumComponent } from './AlbumComponent';
 //# sourceMappingURL=index.js.map

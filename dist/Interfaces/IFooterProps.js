@@ -1,0 +1,1 @@
+//# sourceMappingURL=IFooterProps.js.map

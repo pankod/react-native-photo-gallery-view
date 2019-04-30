@@ -1,15 +1,24 @@
 // Global Imports
 import React, { Component } from "react"
-import { Text, View } from "react-native"
+import { View } from "react-native"
 
 // Local Imports
+import { TopBarComponent, AlbumComponent } from "@Components";
 import { IGalleryProps, IGalleryState } from "@Interfaces";
+import { GalleryStyle } from "@Styles";
 
 export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
-	render() {
+	public render(): JSX.Element {
+		const {
+			customFooterStyle,
+			customTopBarStyle
+		} = this.props;
 		return (
-			<View>
-				<Text> textInComponent </Text>
+			<View style={GalleryStyle.container}>
+				<TopBarComponent customTopBarStyle={{ ...customTopBarStyle }} />
+				<AlbumComponent
+					customFooterStyle={{ ...customFooterStyle }}
+				/>
 			</View>
 		)
 	}

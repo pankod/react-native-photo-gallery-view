@@ -9,9 +9,11 @@ import { GalleryComponent } from "../src/Components/GalleryComponent";
 describe("Gallery Component", () => {
 	let wrapper: ShallowWrapper;
 	let mounting;
-
+	const props = {
+		mediaList: []
+	}
 	let component = (
-		<GalleryComponent />
+		<GalleryComponent {...props} />
 	);
 
 	beforeEach(() => {
