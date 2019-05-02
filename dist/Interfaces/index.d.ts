@@ -4,3 +4,4 @@ export { IMediaItem } from "./IMediaItem";
 export { IFooterProps } from "./IFooterProps";
 export { ITopBarProps } from "./ITopBarProps";
 export { IAlbumProps } from "./IAlbumProps";
+export { IBlurImageProps } from "./IBlurImageProps";

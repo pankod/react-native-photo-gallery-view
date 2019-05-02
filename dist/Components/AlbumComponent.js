@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Text, View, Image, TouchableOpacity, Dimensions, FlatList, Modal, SafeAreaView } from 'react-native';
 import { AlbumStyle } from "../Assets/Styles";
 import Common from '../Provider';
-import { TopBarComponent, FooterComponent } from './';
+import { TopBarComponent, FooterComponent, BlurImage } from './';
 const { width, height } = Dimensions.get('window');
 export class AlbumComponent extends PureComponent {
     render() {
@@ -17,7 +17,7 @@ export class AlbumComponent extends PureComponent {
                 React.createElement(TopBarComponent, null),
                 React.createElement(View, { style: { flex: 1, flexDirection: "column" } },
                     showingImage.caption.length > 0 && React.createElement(Text, { numberOfLines: 2, style: AlbumStyle.captionText }, showingImage.caption),
-                    React.createElement(Image, { resizeMethod: "resize", resizeMode: "contain", style: { flex: 1 }, source: { uri: showingImage.photo } })),
+                    React.createElement(BlurImage, { resizeMethod: "resize", resizeMode: "contain", source: { uri: showingImage.photo }, thumbnail: { uri: showingImage.thumb } })),
                 React.createElement(FooterComponent, null))));
     }
     renderItem(item, index) {

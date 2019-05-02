@@ -6,7 +6,7 @@ import { Text, View, Image, TouchableOpacity, Dimensions, ScrollView, FlatList, 
 import { AlbumStyle } from "@Styles";
 import { IAlbumProps, IMediaItem, IGalleryProps, IGalleryState } from "@Interfaces";
 import Common from '@Provider';
-import { TopBarComponent, FooterComponent } from '@Components';
+import { TopBarComponent, FooterComponent, BlurImage } from '@Components';
 
 const { width, height } = Dimensions.get('window');
 
@@ -36,12 +36,21 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 	public renderModal(): JSX.Element {
 		const { isModalOpen, showingImage } = this.context;
 		return (
-			<Modal supportedOrientations={['portrait', 'landscape']} transparent={false} visible={isModalOpen} animationType={"slide"}>
+			<Modal
+				supportedOrientations={['portrait', 'landscape']}
+				transparent={false}
+				visible={isModalOpen}
+				animationType={"slide"}>
 				<SafeAreaView style={{ flex: 1 }}>
 					<TopBarComponent />
 					<View style={{ flex: 1, flexDirection: "column" }}>
 						{showingImage.caption.length > 0 && <Text numberOfLines={2} style={AlbumStyle.captionText}>{showingImage.caption}</Text>}
-						<Image resizeMethod={"resize"} resizeMode={"contain"} style={{ flex: 1 }} source={{ uri: showingImage.photo }} />
+						<BlurImage
+							resizeMethod={"resize"}
+							resizeMode={"contain"}
+							source={{ uri: showingImage.photo }}
+							thumbnail={{ uri: showingImage.thumb }}
+						/>
 					</View>
 					<FooterComponent />
 				</SafeAreaView>
