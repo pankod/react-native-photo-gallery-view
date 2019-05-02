@@ -33,7 +33,10 @@ export default class App extends Component<Props> {
 					}}
 					gridSize={2}
 					renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
+					renderCustomButtons={(media: object) => this.renderCustomButtons(media)}
 					onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
+					displaySelectionButtons={true}
+					stickyFooter={false}
 				/>
 			</SafeAreaView>
 		);
@@ -45,12 +48,20 @@ export default class App extends Component<Props> {
 
 	renderStickyFooter(height: number): JSX.Element {
 		return (
+			<TouchableOpacity style={[styles.btn, styles.yellow]} onPress={() => console.warn("render stick footer 1. element", height)}>
+				<Text>Upload Chosen Images</Text>
+			</TouchableOpacity>
+		)
+	}
+
+	renderCustomButtons(media: object): JSX.Element {
+		return (
 			<React.Fragment>
-				<TouchableOpacity key={1} style={[styles.btn, styles.green]} onPress={() => console.warn("render stick footer 1. element", height)}>
-					<Text>Button 1</Text>
+				<TouchableOpacity key={1} style={[styles.btn, styles.green]} onPress={() => console.warn(media)}>
+					<Text>Delete</Text>
 				</TouchableOpacity>
-				<TouchableOpacity key={2} style={[styles.btn, styles.yellow]} onPress={() => console.warn("render stick footer 2. element", height)}>
-					<Text>Button 2</Text>
+				<TouchableOpacity key={2} style={[styles.btn, styles.yellow]} onPress={() => console.warn(media)}>
+					<Text>Set as default</Text>
 				</TouchableOpacity>
 			</React.Fragment>
 		)

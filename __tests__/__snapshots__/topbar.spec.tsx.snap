@@ -5,5 +5,6 @@ exports[`Topbar Component should Topbar Component is render correctly 1`] = `
   <react-native-mock>
     <react-native-mock />
   </react-native-mock>
+  <react-native-mock />
 </react-native-mock>
 `;

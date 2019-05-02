@@ -18,7 +18,11 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 					(context: IGalleryProps & IGalleryState) => (
 						<View style={[TopBarStyle.container, context.customTopBarStyle]}>
 							{this.backButtonRender()}
-							{context.title && <Text>{context.title}</Text>}
+							{
+								context.isModalOpen ?
+									<Text>{context.detailTitle}</Text> :
+									<Text>{context.title}</Text>
+							}
 						</View>
 					)
 				}
@@ -30,14 +34,14 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 		const { customTopBarBackIcon } = this.context;
 		if (customTopBarBackIcon) {
 			return (
-				<TouchableWithoutFeedback style={TopBarStyle.backBtnStyle}>
+				<TouchableWithoutFeedback style={TopBarStyle.backBtnStyle} onPress={() => this.context.onBackRequest()}>
 					<Image source={customTopBarBackIcon} />
 				</TouchableWithoutFeedback>
 			)
 		}
 
 		return (
-			<TouchableWithoutFeedback style={TopBarStyle.backBtnStyle} onPress={() => this.context.onBack && this.context.onBack()}>
+			<TouchableWithoutFeedback style={TopBarStyle.backBtnStyle} onPress={() => this.context.onBackRequest()}>
 				<Image source={require('../Assets/Images/back.png')} style={TopBarStyle.backBtnImageStyle} />
 			</TouchableWithoutFeedback>
 		)

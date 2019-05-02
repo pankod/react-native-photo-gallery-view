@@ -6,5 +6,6 @@ export declare class FooterComponent extends PureComponent<IFooterProps, {}> {
         gridSize: number;
     }>;
     render(): JSX.Element;
-    private renderStickyFooter;
+    renderCustomButtons(): JSX.Element;
+    renderStickyFooter(): JSX.Element;
 }

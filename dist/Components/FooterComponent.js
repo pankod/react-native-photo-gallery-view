@@ -5,10 +5,21 @@ import Common from '../Provider';
 import { Const } from '../Constants';
 export class FooterComponent extends PureComponent {
     render() {
-        return (React.createElement(Common.Consumer, null, (context) => (React.createElement(View, { style: [FooterStyle.container, context.customFooterStyle] }, context.renderStickyFooter && this.renderStickyFooter()))));
+        return (React.createElement(Common.Consumer, null, (context) => [this.renderCustomButtons(), this.renderStickyFooter()]));
+    }
+    renderCustomButtons() {
+        const { renderCustomButtons, stickyFooter, isModalOpen } = this.context;
+        if (renderCustomButtons && !stickyFooter && isModalOpen) {
+            return (React.createElement(View, { key: "custom", style: [FooterStyle.container, this.context.customFooterStyle] }, this.context.renderCustomButtons(this.context.showingImage)));
+        }
+        return null;
     }
     renderStickyFooter() {
-        return (this.context.renderStickyFooter(Const.HEIGHT));
+        const { renderStickyFooter, stickyFooter, isModalOpen } = this.context;
+        if (renderStickyFooter && stickyFooter && !isModalOpen) {
+            return (React.createElement(View, { key: "sticky", style: [FooterStyle.container, this.context.customFooterStyle] }, this.context.renderStickyFooter(Const.HEIGHT)));
+        }
+        return null;
     }
 }
 FooterComponent.contextType = Common;

@@ -7,21 +7,48 @@ export class GalleryComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: `${props.mediaList.length} Photos`
+            title: `${props.mediaList.length} Photos`,
+            detailTitle: null,
+            showingImage: {},
+            isModalOpen: false,
+            showImageModal: this.showImageModal.bind(this),
+            onBackRequest: this.onBackRequest.bind(this)
         };
     }
     render() {
-        const { style, stickyFooter } = this.props;
+        const { style } = this.props;
         return (React.createElement(Common.Provider, { value: Object.assign({}, this.state, this.props) },
             React.createElement(View, { style: [GalleryStyle.container, style] },
                 React.createElement(TopBarComponent, null),
                 React.createElement(AlbumComponent, null),
-                stickyFooter &&
-                    React.createElement(FooterComponent, null))));
+                React.createElement(FooterComponent, null))));
+    }
+    showImageModal(media, index) {
+        const { mediaList } = this.props;
+        this.setState({
+            detailTitle: `${index + 1} of ${mediaList.length}`,
+            showingImage: media,
+            isModalOpen: true
+        });
+    }
+    onBackRequest() {
+        const { onBack } = this.props;
+        const { isModalOpen } = this.state;
+        if (onBack && !isModalOpen) {
+            onBack();
+        }
+        if (isModalOpen) {
+            this.setState({
+                detailTitle: null,
+                showingImage: null,
+                isModalOpen: false
+            });
+        }
     }
 }
 GalleryComponent.defaultProps = {
-    stickyFooter: true,
     gridSize: 3,
+    stickyFooter: true,
+    displaySelectionButtons: false
 };
 //# sourceMappingURL=GalleryComponent.js.map

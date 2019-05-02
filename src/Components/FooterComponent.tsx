@@ -16,19 +16,34 @@ export class FooterComponent extends PureComponent<IFooterProps, {}> {
 		return (
 			<Common.Consumer>
 				{
-					(context: IGalleryProps & IGalleryState) => (
-						<View style={[FooterStyle.container, context.customFooterStyle]}>
-							{context.renderStickyFooter && this.renderStickyFooter()}
-						</View>
-					)
+					(context: IGalleryProps & IGalleryState) => [this.renderCustomButtons(), this.renderStickyFooter()]
+
 				}
 			</Common.Consumer>
 		)
 	}
 
-	private renderStickyFooter(): JSX.Element {
-		return (
-			this.context.renderStickyFooter(Const.HEIGHT)
-		)
+	public renderCustomButtons(): JSX.Element {
+		const { renderCustomButtons, stickyFooter, isModalOpen } = this.context;
+		if (renderCustomButtons && !stickyFooter && isModalOpen) {
+			return (
+				<View key={"custom"} style={[FooterStyle.container, this.context.customFooterStyle]}>
+					{this.context.renderCustomButtons(this.context.showingImage)}
+				</View>
+			)
+		}
+		return null;
+	}
+
+	public renderStickyFooter(): JSX.Element {
+		const { renderStickyFooter, stickyFooter, isModalOpen } = this.context;
+		if (renderStickyFooter && stickyFooter && !isModalOpen) {
+			return (
+				<View key={"sticky"} style={[FooterStyle.container, this.context.customFooterStyle]}>
+					{this.context.renderStickyFooter(Const.HEIGHT)}
+				</View>
+			)
+		}
+		return null;
 	}
 }
