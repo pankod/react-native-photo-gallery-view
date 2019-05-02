@@ -3,23 +3,41 @@ import React, { Component } from "react"
 import { View } from "react-native"
 
 // Local Imports
-import { TopBarComponent, AlbumComponent } from "@Components";
-import { IGalleryProps, IGalleryState } from "@Interfaces";
+import { TopBarComponent, AlbumComponent, FooterComponent } from "@Components";
+import { IGalleryProps, IGalleryState, IMediaItem } from "@Interfaces";
 import { GalleryStyle } from "@Styles";
+import { Const } from '@Constants';
+import Common from '@Provider';
 
 export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
+
+	constructor(props: IGalleryProps) {
+		super(props);
+		this.state = {
+			title: `${props.mediaList.length} Photos`
+		}
+	}
+
+	static defaultProps = {
+		stickyFooter: true,
+		gridSize: 3,
+	}
+
 	public render(): JSX.Element {
 		const {
-			customFooterStyle,
-			customTopBarStyle
+			style,
+			stickyFooter
 		} = this.props;
 		return (
-			<View style={GalleryStyle.container}>
-				<TopBarComponent customTopBarStyle={{ ...customTopBarStyle }} />
-				<AlbumComponent
-					customFooterStyle={{ ...customFooterStyle }}
-				/>
-			</View>
+			<Common.Provider value={{ ...this.state, ...this.props }}>
+				<View style={[GalleryStyle.container, style]}>
+					<TopBarComponent />
+					<AlbumComponent />
+					{stickyFooter &&
+						<FooterComponent />
+					}
+				</View>
+			</Common.Provider>
 		)
 	}
 }

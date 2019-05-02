@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import { View } from 'react-native';
 
 import renderer from "react-test-renderer";
 import { ShallowWrapper, shallow, mount } from "enzyme";

@@ -1,5 +1,5 @@
 export enum MediaStateEnum {
-	LOADING = "LOADING",
-	APPROVED = "APPROVED",
-	DELETED = "DELETED"
+	LOADING = "Loading",
+	APPROVED = "Approved",
+	DELETED = "Deleted"
 }

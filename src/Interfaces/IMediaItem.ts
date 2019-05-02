@@ -7,3 +7,5 @@ export interface IMediaItem {
 	state: MediaStateEnum;
 	thumb: string;
 }
+
+

@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import { View } from 'react-native';
 
 import renderer from "react-test-renderer";
 import { ShallowWrapper, shallow, mount } from "enzyme";
@@ -10,7 +11,13 @@ describe("Gallery Component", () => {
 	let wrapper: ShallowWrapper;
 	let mounting;
 	const props = {
-		mediaList: []
+		mediaList: [],
+		onBack: jest.fn(),
+		renderStickyFooter: jest.fn(),
+		renderCustomState: jest.fn(),
+		onSelectionChanged: jest.fn(),
+		stickyFooter: true,
+		gridSize: 3
 	}
 	let component = (
 		<GalleryComponent {...props} />
@@ -27,4 +34,11 @@ describe("Gallery Component", () => {
 		expect(render).toBeDefined();
 		expect(render).toMatchSnapshot();
 	});
+
+	test('should children components are render correctly', () => {
+		expect(wrapper.find('TopBarComponent')).toHaveLength(1);
+		expect(wrapper.find('AlbumComponent')).toHaveLength(1);
+		expect(wrapper.find('FooterComponent')).toHaveLength(1);
+	});
+
 });

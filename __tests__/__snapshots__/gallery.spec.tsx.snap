@@ -4,18 +4,13 @@ exports[`Gallery Component should Gallery Component is render correctly 1`] = `
 <react-native-mock>
   <react-native-mock>
     <react-native-mock>
-       TopBarComponent 
+      <react-native-mock />
     </react-native-mock>
-  </react-native-mock>
-  <react-native-mock>
     <react-native-mock>
-      Main
+      0 Photos
     </react-native-mock>
   </react-native-mock>
-  <react-native-mock>
-    <react-native-mock>
-       Footer Component 
-    </react-native-mock>
-  </react-native-mock>
+  <react-native-mock />
+  <react-native-mock />
 </react-native-mock>
 `;

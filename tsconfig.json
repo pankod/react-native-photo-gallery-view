@@ -8,7 +8,9 @@
 			"src/Assets",
 			"src/Assets/Styles",
 			"src/Assets/Images",
-			"src/Enum"
+			"src/Enum",
+			"src/Constants",
+			"src/Provider"
 		],
 		"importHelpers": true,
 		"paths": {
@@ -35,6 +37,12 @@
 			],
 			"@Enum/*": [
 				"src/Enum/*"
+			],
+			"@Constants": [
+				"src/Constants"
+			],
+			"@Provider": [
+				"src/Provider"
 			]
 		},
 		"lib": [
