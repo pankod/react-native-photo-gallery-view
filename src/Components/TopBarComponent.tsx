@@ -18,11 +18,7 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 					(context: IGalleryProps & IGalleryState) => (
 						<View style={[TopBarStyle.container, context.customTopBarStyle]}>
 							{this.backButtonRender()}
-							{
-								context.isModalOpen ?
-									<Text>{context.detailTitle}</Text> :
-									<Text>{context.title}</Text>
-							}
+							{this.titleRender()}
 						</View>
 					)
 				}
@@ -30,14 +26,19 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 		)
 	}
 
+	public titleRender(): JSX.Element {
+		const { imageIndex, mediaList, isModalOpen, title, detailTitle, customMainTitle, customDetailTitle } = this.context;
+
+		return isModalOpen ?
+			customDetailTitle ? customDetailTitle(mediaList.length, imageIndex + 1) : <Text>{detailTitle}</Text> :
+			customMainTitle ? customMainTitle(mediaList.length) : <Text>{title}</Text>
+
+	}
+
 	public backButtonRender(): JSX.Element {
-		const { customTopBarBackIcon } = this.context;
-		if (customTopBarBackIcon) {
-			return (
-				<TouchableWithoutFeedback style={TopBarStyle.backBtnStyle} onPress={() => this.context.onBackRequest()}>
-					<Image source={customTopBarBackIcon} />
-				</TouchableWithoutFeedback>
-			)
+		const { customTopBarBackButton } = this.context;
+		if (customTopBarBackButton) {
+			return customTopBarBackButton(this.context.onBackRequest)
 		}
 
 		return (

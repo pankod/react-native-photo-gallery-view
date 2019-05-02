@@ -12,7 +12,8 @@ export class GalleryComponent extends Component {
             showingImage: {},
             isModalOpen: false,
             showImageModal: this.showImageModal.bind(this),
-            onBackRequest: this.onBackRequest.bind(this)
+            onBackRequest: this.onBackRequest.bind(this),
+            imageIndex: 0
         };
     }
     render() {
@@ -26,6 +27,7 @@ export class GalleryComponent extends Component {
     showImageModal(media, index) {
         const { mediaList } = this.props;
         this.setState({
+            imageIndex: index,
             detailTitle: `${index + 1} of ${mediaList.length}`,
             showingImage: media,
             isModalOpen: true
@@ -39,6 +41,7 @@ export class GalleryComponent extends Component {
         }
         if (isModalOpen) {
             this.setState({
+                imageIndex: 0,
                 detailTitle: null,
                 showingImage: null,
                 isModalOpen: false

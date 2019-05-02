@@ -6,4 +6,5 @@ export interface IGalleryState {
     isModalOpen: boolean;
     showImageModal: (media: IMediaItem, index: number) => any;
     onBackRequest: () => void;
+    imageIndex: number;
 }

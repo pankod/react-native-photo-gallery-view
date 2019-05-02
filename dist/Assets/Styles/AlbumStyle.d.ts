@@ -1,4 +1,5 @@
-import { ViewStyle } from "react-native";
+import { ViewStyle, TextStyle } from "react-native";
 export declare const AlbumStyle: {
     container: ViewStyle;
+    captionText: TextStyle;
 };

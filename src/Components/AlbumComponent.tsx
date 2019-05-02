@@ -34,13 +34,14 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 	}
 
 	public renderModal(): JSX.Element {
-		const { isModalOpen, showingImage, stickyFooter, renderCustomButtons } = this.context;
+		const { isModalOpen, showingImage } = this.context;
 		return (
-			<Modal transparent={false} visible={isModalOpen} animationType={"slide"}>
+			<Modal supportedOrientations={['portrait', 'landscape']} transparent={false} visible={isModalOpen} animationType={"slide"}>
 				<SafeAreaView style={{ flex: 1 }}>
 					<TopBarComponent />
-					<View style={{ flex: 1 }}>
-						<Text>{JSON.stringify(showingImage)}</Text>
+					<View style={{ flex: 1, flexDirection: "column" }}>
+						{showingImage.caption.length > 0 && <Text numberOfLines={2} style={AlbumStyle.captionText}>{showingImage.caption}</Text>}
+						<Image resizeMethod={"resize"} resizeMode={"contain"} style={{ flex: 1 }} source={{ uri: showingImage.photo }} />
 					</View>
 					<FooterComponent />
 				</SafeAreaView>
@@ -55,17 +56,19 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 			displaySelectionButtons,
 			showImageModal,
 			stickyFooter,
-			isModalOpen
+			renderCustomState
 		} = this.context;
 		if (displaySelectionButtons && stickyFooter) {
 			return (
 				<TouchableOpacity onPress={() => onSelectionChanged(item, index)} key={index} style={{ width: width / gridSize, height: width / gridSize, padding: 3 }}>
+					{renderCustomState(item, index)}
 					<Image resizeMode={"cover"} style={{ flex: 1 }} key={index} source={{ uri: item.thumb }} />
 				</TouchableOpacity>
 			)
 		} else {
 			return (
 				<TouchableOpacity onPress={() => showImageModal(item, index)} key={index} style={{ width: width / gridSize, height: width / gridSize, padding: 3 }}>
+					{renderCustomState(item, index)}
 					<Image resizeMode={"cover"} style={{ flex: 1 }} key={index} source={{ uri: item.thumb }} />
 				</TouchableOpacity >
 			)

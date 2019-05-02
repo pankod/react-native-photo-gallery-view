@@ -6,5 +6,6 @@ export declare class TopBarComponent extends Component<ITopBarProps, {}> {
         gridSize: number;
     }>;
     render(): JSX.Element;
+    titleRender(): JSX.Element;
     backButtonRender(): JSX.Element;
 }

@@ -14,11 +14,14 @@ describe("Gallery Component", () => {
 		mediaList: [],
 		onBack: jest.fn(),
 		renderStickyFooter: jest.fn(),
-		renderCustomButtons: jest.fn(),
+		renderDetailButtons: jest.fn(),
 		renderCustomState: jest.fn(),
 		onSelectionChanged: jest.fn(),
+		customTopBarBackButton: jest.fn(),
 		gridSize: 3,
-		stickyFooter: true
+		stickyFooter: true,
+		customMainTitle: jest.fn(),
+		customDetailTitle: jest.fn()
 	}
 	let component = (
 		<GalleryComponent {...props} />
