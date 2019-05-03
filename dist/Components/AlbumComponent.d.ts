@@ -9,4 +9,6 @@ export declare class AlbumComponent extends PureComponent<IAlbumProps, {}> {
     animatedY: Animated.Value;
     render(): JSX.Element;
     private renderItem;
+    private checkedCtrl;
+    private isChecked;
 }

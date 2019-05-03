@@ -24,8 +24,8 @@ export class FooterComponent extends PureComponent<IFooterProps, {}> {
 	}
 
 	public renderDetailButtons(): JSX.Element {
-		const { renderDetailButtons, stickyFooter, isModalOpen } = this.context;
-		if (renderDetailButtons && !stickyFooter && isModalOpen) {
+		const { renderDetailButtons, isModalOpen, displaySelectionButtons } = this.context;
+		if (renderDetailButtons && !displaySelectionButtons && isModalOpen) {
 			return (
 				<View key={"custom"} style={[FooterStyle.container, this.context.customFooterStyle]}>
 					{this.context.renderDetailButtons(this.context.showingImage)}
@@ -36,8 +36,8 @@ export class FooterComponent extends PureComponent<IFooterProps, {}> {
 	}
 
 	public renderStickyFooter(): JSX.Element {
-		const { renderStickyFooter, stickyFooter, isModalOpen } = this.context;
-		if (renderStickyFooter && stickyFooter && !isModalOpen) {
+		const { renderStickyFooter, stickyFooter, isModalOpen, displaySelectionButtons } = this.context;
+		if (renderStickyFooter && stickyFooter && !isModalOpen && displaySelectionButtons) {
 			return (
 				<View key={"sticky"} style={[FooterStyle.container, this.context.customFooterStyle]}>
 					{this.context.renderStickyFooter(Const.HEIGHT)}

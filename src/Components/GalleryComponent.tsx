@@ -19,7 +19,9 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			isModalOpen: false,
 			showImageModal: this.showImageModal.bind(this),
 			onBackRequest: this.onBackRequest.bind(this),
-			imageIndex: 0
+			onSelection: this.onSelection.bind(this),
+			imageIndex: 0,
+			selected: []
 		}
 	}
 
@@ -71,5 +73,24 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 				isModalOpen: false
 			});
 		}
+	}
+
+	private onSelection(item: IMediaItem, index: number): void {
+		const { onSelectionChanged } = this.props;
+		const { selected } = this.state;
+
+		if (onSelectionChanged) {
+			onSelectionChanged(item, index);
+		}
+
+		if (selected.indexOf(item.id) === -1) {
+			selected.push(item.id);
+		} else {
+			selected.splice(selected.indexOf(item.id), 1);
+		}
+
+		this.setState({
+			selected: [...selected]
+		});
 	}
 }

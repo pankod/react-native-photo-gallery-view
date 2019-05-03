@@ -18,6 +18,8 @@ describe("Gallery Component", () => {
 		renderCustomState: jest.fn(),
 		onSelectionChanged: jest.fn(),
 		customTopBarBackButton: jest.fn(),
+		customCheckedView: jest.fn(),
+		customSelectedTitle: jest.fn(),
 		gridSize: 3,
 		stickyFooter: true,
 		customMainTitle: jest.fn(),

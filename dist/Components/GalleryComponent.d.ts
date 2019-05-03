@@ -10,4 +10,5 @@ export declare class GalleryComponent extends Component<IGalleryProps, IGalleryS
     render(): JSX.Element;
     private showImageModal;
     private onBackRequest;
+    private onSelection;
 }

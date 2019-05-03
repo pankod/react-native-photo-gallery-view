@@ -39,7 +39,21 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 	}
 
 	public titleRender(): JSX.Element {
-		const { imageIndex, mediaList, isModalOpen, title, detailTitle, customMainTitle, customDetailTitle } = this.context;
+		const {
+			imageIndex,
+			mediaList,
+			isModalOpen,
+			title,
+			detailTitle,
+			customMainTitle,
+			customDetailTitle,
+			selected,
+			customSelectedTitle
+		} = this.context;
+
+		if (selected && selected.length > 0) {
+			return customSelectedTitle ? customSelectedTitle(selected.length) : <Text>{selected.length} selected</Text>
+		}
 
 		return isModalOpen ?
 			customDetailTitle ? customDetailTitle(mediaList.length, imageIndex + 1) : <Text>{detailTitle}</Text> :

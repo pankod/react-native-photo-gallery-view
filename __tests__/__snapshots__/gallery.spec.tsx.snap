@@ -8,6 +8,5 @@ exports[`Gallery Component should Gallery Component is render correctly 1`] = `
   <react-native-mock>
     <react-native-mock />
   </react-native-mock>
-  <react-native-mock />
 </react-native-mock>
 `;

@@ -23,7 +23,12 @@ export class TopBarComponent extends Component {
         }).start();
     }
     titleRender() {
-        const { imageIndex, mediaList, isModalOpen, title, detailTitle, customMainTitle, customDetailTitle } = this.context;
+        const { imageIndex, mediaList, isModalOpen, title, detailTitle, customMainTitle, customDetailTitle, selected, customSelectedTitle } = this.context;
+        if (selected && selected.length > 0) {
+            return customSelectedTitle ? customSelectedTitle(selected.length) : React.createElement(Text, null,
+                selected.length,
+                " selected");
+        }
         return isModalOpen ?
             customDetailTitle ? customDetailTitle(mediaList.length, imageIndex + 1) : React.createElement(Text, null, detailTitle) :
             customMainTitle ? customMainTitle(mediaList.length) : React.createElement(Text, null, title);

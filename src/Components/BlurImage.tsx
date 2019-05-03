@@ -14,6 +14,7 @@ export class BlurImage extends PureComponent<IBlurImageProps> {
 		Animated.timing(this.imageAnimated, {
 			toValue: 1,
 			duration: 500,
+			useNativeDriver: true
 		}).start();
 	}
 

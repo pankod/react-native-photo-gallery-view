@@ -8,15 +8,15 @@ export class FooterComponent extends PureComponent {
         return (React.createElement(Common.Consumer, null, (context) => [this.renderDetailButtons(), this.renderStickyFooter()]));
     }
     renderDetailButtons() {
-        const { renderDetailButtons, stickyFooter, isModalOpen } = this.context;
-        if (renderDetailButtons && !stickyFooter && isModalOpen) {
+        const { renderDetailButtons, isModalOpen, displaySelectionButtons } = this.context;
+        if (renderDetailButtons && !displaySelectionButtons && isModalOpen) {
             return (React.createElement(View, { key: "custom", style: [FooterStyle.container, this.context.customFooterStyle] }, this.context.renderDetailButtons(this.context.showingImage)));
         }
         return null;
     }
     renderStickyFooter() {
-        const { renderStickyFooter, stickyFooter, isModalOpen } = this.context;
-        if (renderStickyFooter && stickyFooter && !isModalOpen) {
+        const { renderStickyFooter, stickyFooter, isModalOpen, displaySelectionButtons } = this.context;
+        if (renderStickyFooter && stickyFooter && !isModalOpen && displaySelectionButtons) {
             return (React.createElement(View, { key: "sticky", style: [FooterStyle.container, this.context.customFooterStyle] }, this.context.renderStickyFooter(Const.HEIGHT)));
         }
         return null;

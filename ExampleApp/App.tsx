@@ -35,11 +35,17 @@ export default class App extends Component<Props> {
 					renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
 					renderDetailButtons={(media: object) => this.renderDetailButtons(media)}
 					onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
-					displaySelectionButtons={true}
+					displaySelectionButtons={false}
 					stickyFooter={true}
 					customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
 					customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
+					customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}
 					customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
+					customCheckedView={() => (
+						<View style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
+							<Text>Checked</Text>
+						</View>
+					)}
 					renderCustomState={(media, index) => this.renderCustomState(media)}
 				/>
 			</SafeAreaView>
@@ -76,12 +82,12 @@ export default class App extends Component<Props> {
 	}
 
 	onSelectionChanged(media: object, index: number): void {
-		console.warn(media, index);
+		console.log(media, index);
 	}
 
 	renderStickyFooter(height: number): JSX.Element {
 		return (
-			<TouchableOpacity style={[styles.btn, styles.yellow]} onPress={() => console.warn("render stick footer 1. element", height)}>
+			<TouchableOpacity style={[styles.btn, styles.yellow]} onPress={() => console.log("render stick footer 1. element", height)}>
 				<Text>Upload chosen</Text>
 			</TouchableOpacity>
 		)
@@ -90,10 +96,10 @@ export default class App extends Component<Props> {
 	renderDetailButtons(media: object): JSX.Element {
 		return (
 			<React.Fragment>
-				<TouchableOpacity key={1} style={[styles.btn, styles.green]} onPress={() => console.warn(media)}>
+				<TouchableOpacity key={1} style={[styles.btn, styles.green]} onPress={() => console.log(media)}>
 					<Text>Delete</Text>
 				</TouchableOpacity>
-				<TouchableOpacity key={2} style={[styles.btn, styles.yellow]} onPress={() => console.warn(media)}>
+				<TouchableOpacity key={2} style={[styles.btn, styles.yellow]} onPress={() => console.log(media)}>
 					<Text>Set as default</Text>
 				</TouchableOpacity>
 			</React.Fragment>

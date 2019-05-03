@@ -23,4 +23,6 @@ export interface IGalleryProps {
 	customTopBarBackButton?: (action: Function) => JSX.Element
 	customMainTitle?: (totalImages: number) => JSX.Element
 	customDetailTitle?: (totalImages: number, photoIndex: number) => JSX.Element
+	customCheckedView?: () => JSX.Element
+	customSelectedTitle?: (totalSelected: number) => JSX.Element
 }
