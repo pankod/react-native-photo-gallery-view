@@ -35,17 +35,17 @@ export default class App extends Component<Props> {
 					renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
 					renderDetailButtons={(media: object) => this.renderDetailButtons(media)}
 					onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
-					displaySelectionButtons={false}
+					displaySelectionButtons={true}
 					stickyFooter={true}
 					customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
 					customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
 					customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}
 					customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
-					customCheckedView={() => (
-						<View style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
-							<Text>Checked</Text>
-						</View>
-					)}
+					// customCheckedView={() => (
+					// 	<View style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
+					// 		<Text>Checked</Text>
+					// 	</View>
+					// )}
 					renderCustomState={(media, index) => this.renderCustomState(media)}
 				/>
 			</SafeAreaView>

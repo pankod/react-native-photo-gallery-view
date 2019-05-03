@@ -56,7 +56,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		)
 	}
 
-	private showImageModal(media: IMediaItem, index: number): void {
+	public showImageModal(media: IMediaItem, index: number): void {
 		const { mediaList } = this.props;
 		this.setState({
 			imageIndex: index,
@@ -100,7 +100,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	// 	}
 	// }
 
-	private onBackRequest(): void {
+	public onBackRequest(): void {
 		const { onBack } = this.props;
 		const { isModalOpen } = this.state;
 		if (onBack && !isModalOpen) {
@@ -117,7 +117,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		}
 	}
 
-	private onSelection(item: IMediaItem, index: number): void {
+	public onSelection(item: IMediaItem, index: number): void {
 		const { onSelectionChanged } = this.props;
 		const { selected } = this.state;
 

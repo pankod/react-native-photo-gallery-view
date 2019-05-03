@@ -74,13 +74,13 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 		}
 	}
 
-	private checkedCtrl(item: IMediaItem): boolean {
+	public checkedCtrl(item: IMediaItem): boolean {
 		const { selected } = this.context;
 
 		return selected.indexOf(item.id) > -1
 	}
 
-	private isChecked(item: IMediaItem): JSX.Element {
+	public isChecked(item: IMediaItem): JSX.Element {
 		const { customCheckedView } = this.context;
 		if (this.checkedCtrl(item)) {
 
