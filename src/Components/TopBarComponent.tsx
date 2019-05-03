@@ -1,15 +1,17 @@
 // Global Imports
 import React, { Component } from 'react';
-import { Text, View, TouchableWithoutFeedback, Image } from 'react-native';
+import { Animated, View, TouchableWithoutFeedback, Image, Text } from 'react-native';
 
 // Local Imports
 import { TopBarStyle } from '@Styles';
 import { ITopBarProps, IGalleryState, IGalleryProps } from "@Interfaces";
 import Common from '@Provider';
+import { Const } from '@Constants';
 
 export class TopBarComponent extends Component<ITopBarProps, {}> {
 
 	static contextType = Common;
+	public animatedY = new Animated.Value(Const.ANIMATEDY);
 
 	public render(): JSX.Element {
 		return (
@@ -18,12 +20,22 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 					(context: IGalleryProps & IGalleryState) => (
 						<View style={[TopBarStyle.container, context.customTopBarStyle]}>
 							{this.backButtonRender()}
-							{this.titleRender()}
+							<Animated.View style={{
+								transform: [{ translateX: this.animatedY }]
+							}}>{this.titleRender()}</Animated.View>
 						</View>
 					)
 				}
 			</Common.Consumer>
 		)
+	}
+
+	public componentDidMount(): void {
+		Animated.timing(this.animatedY, {
+			toValue: 0,
+			duration: 500,
+			useNativeDriver: true
+		}).start();
 	}
 
 	public titleRender(): JSX.Element {
@@ -32,7 +44,6 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 		return isModalOpen ?
 			customDetailTitle ? customDetailTitle(mediaList.length, imageIndex + 1) : <Text>{detailTitle}</Text> :
 			customMainTitle ? customMainTitle(mediaList.length) : <Text>{title}</Text>
-
 	}
 
 	public backButtonRender(): JSX.Element {

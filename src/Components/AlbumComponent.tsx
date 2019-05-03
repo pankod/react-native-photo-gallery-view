@@ -1,60 +1,37 @@
 // Global Imports
 import React, { PureComponent } from 'react';
-import { Text, View, Image, TouchableOpacity, Dimensions, ScrollView, FlatList, Modal, SafeAreaView } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Dimensions, FlatList, Animated } from 'react-native';
 
 // Local Imports
 import { AlbumStyle } from "@Styles";
 import { IAlbumProps, IMediaItem, IGalleryProps, IGalleryState } from "@Interfaces";
 import Common from '@Provider';
-import { TopBarComponent, FooterComponent, BlurImage } from '@Components';
+import { DetailComponent } from '@Components';
 
 const { width, height } = Dimensions.get('window');
 
 export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 
-	static contextType = Common
+	static contextType = Common;
+	public animatedY = new Animated.Value(0);
 
 	public render(): JSX.Element {
 		return (
 			<Common.Consumer>
 				{
 					(context: IGalleryProps & IGalleryState) => (
-						<React.Fragment>
-							<FlatList style={AlbumStyle.container} data={context.mediaList}
+						<View style={AlbumStyle.container}>
+							<FlatList
+								style={AlbumStyle.container}
+								data={context.mediaList}
 								numColumns={context.gridSize}
 								renderItem={({ item, index }) => this.renderItem(item, index)}
 								keyExtractor={(item, index) => index.toString()}
 							/>
-							{context.isModalOpen && this.renderModal()}
-						</React.Fragment>
+						</View>
 					)
 				}
 			</Common.Consumer>
-		)
-	}
-
-	public renderModal(): JSX.Element {
-		const { isModalOpen, showingImage } = this.context;
-		return (
-			<Modal
-				supportedOrientations={['portrait', 'landscape']}
-				transparent={false}
-				visible={isModalOpen}
-				animationType={"slide"}>
-				<SafeAreaView style={{ flex: 1 }}>
-					<TopBarComponent />
-					<View style={{ flex: 1, flexDirection: "column" }}>
-						{showingImage.caption.length > 0 && <Text numberOfLines={2} style={AlbumStyle.captionText}>{showingImage.caption}</Text>}
-						<BlurImage
-							resizeMethod={"resize"}
-							resizeMode={"contain"}
-							source={{ uri: showingImage.photo }}
-							thumbnail={{ uri: showingImage.thumb }}
-						/>
-					</View>
-					<FooterComponent />
-				</SafeAreaView>
-			</Modal>
 		)
 	}
 

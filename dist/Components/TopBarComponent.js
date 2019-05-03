@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableWithoutFeedback, Image } from 'react-native';
+import { Animated, View, TouchableWithoutFeedback, Image, Text } from 'react-native';
 import { TopBarStyle } from '../Assets/Styles';
 import Common from '../Provider';
+import { Const } from '../Constants';
 export class TopBarComponent extends Component {
+    constructor() {
+        super(...arguments);
+        this.animatedY = new Animated.Value(Const.ANIMATEDY);
+    }
     render() {
         return (React.createElement(Common.Consumer, null, (context) => (React.createElement(View, { style: [TopBarStyle.container, context.customTopBarStyle] },
             this.backButtonRender(),
-            this.titleRender()))));
+            React.createElement(Animated.View, { style: {
+                    transform: [{ translateX: this.animatedY }]
+                } }, this.titleRender())))));
+    }
+    componentDidMount() {
+        Animated.timing(this.animatedY, {
+            toValue: 0,
+            duration: 500,
+            useNativeDriver: true
+        }).start();
     }
     titleRender() {
         const { imageIndex, mediaList, isModalOpen, title, detailTitle, customMainTitle, customDetailTitle } = this.context;

@@ -1,24 +1,16 @@
 import React, { PureComponent } from 'react';
-import { Text, View, Image, TouchableOpacity, Dimensions, FlatList, Modal, SafeAreaView } from 'react-native';
+import { View, Image, TouchableOpacity, Dimensions, FlatList, Animated } from 'react-native';
 import { AlbumStyle } from "../Assets/Styles";
 import Common from '../Provider';
-import { TopBarComponent, FooterComponent, BlurImage } from './';
 const { width, height } = Dimensions.get('window');
 export class AlbumComponent extends PureComponent {
-    render() {
-        return (React.createElement(Common.Consumer, null, (context) => (React.createElement(React.Fragment, null,
-            React.createElement(FlatList, { style: AlbumStyle.container, data: context.mediaList, numColumns: context.gridSize, renderItem: ({ item, index }) => this.renderItem(item, index), keyExtractor: (item, index) => index.toString() }),
-            context.isModalOpen && this.renderModal()))));
+    constructor() {
+        super(...arguments);
+        this.animatedY = new Animated.Value(0);
     }
-    renderModal() {
-        const { isModalOpen, showingImage } = this.context;
-        return (React.createElement(Modal, { supportedOrientations: ['portrait', 'landscape'], transparent: false, visible: isModalOpen, animationType: "slide" },
-            React.createElement(SafeAreaView, { style: { flex: 1 } },
-                React.createElement(TopBarComponent, null),
-                React.createElement(View, { style: { flex: 1, flexDirection: "column" } },
-                    showingImage.caption.length > 0 && React.createElement(Text, { numberOfLines: 2, style: AlbumStyle.captionText }, showingImage.caption),
-                    React.createElement(BlurImage, { resizeMethod: "resize", resizeMode: "contain", source: { uri: showingImage.photo }, thumbnail: { uri: showingImage.thumb } })),
-                React.createElement(FooterComponent, null))));
+    render() {
+        return (React.createElement(Common.Consumer, null, (context) => (React.createElement(View, { style: AlbumStyle.container },
+            React.createElement(FlatList, { style: AlbumStyle.container, data: context.mediaList, numColumns: context.gridSize, renderItem: ({ item, index }) => this.renderItem(item, index), keyExtractor: (item, index) => index.toString() })))));
     }
     renderItem(item, index) {
         const { gridSize, onSelectionChanged, displaySelectionButtons, showImageModal, stickyFooter, renderCustomState } = this.context;

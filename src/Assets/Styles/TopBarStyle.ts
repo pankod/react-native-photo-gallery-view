@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
+import { StyleSheet, ViewStyle, ImageStyle, TextStyle } from "react-native";
 
 import { Const } from "@Constants";
 
@@ -9,7 +9,8 @@ export const TopBarStyle = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		flexDirection: 'row',
-		paddingHorizontal: 10
+		paddingHorizontal: 10,
+		zIndex: 2
 	} as ViewStyle,
 	backBtnImageStyle: {
 		width: 20,

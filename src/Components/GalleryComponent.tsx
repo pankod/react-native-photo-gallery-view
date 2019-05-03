@@ -3,10 +3,9 @@ import React, { Component } from "react"
 import { View } from "react-native"
 
 // Local Imports
-import { TopBarComponent, AlbumComponent, FooterComponent } from "@Components";
+import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent } from "@Components";
 import { IGalleryProps, IGalleryState, IMediaItem } from "@Interfaces";
 import { GalleryStyle } from "@Styles";
-import { Const } from '@Constants';
 import Common from '@Provider';
 
 export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
@@ -34,11 +33,13 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		const {
 			style
 		} = this.props;
+		const { isModalOpen } = this.state;
 		return (
 			<Common.Provider value={{ ...this.state, ...this.props }}>
 				<View style={[GalleryStyle.container, style]}>
 					<TopBarComponent />
-					<AlbumComponent />
+					{!isModalOpen && <AlbumComponent />}
+					{isModalOpen && <DetailComponent />}
 					<FooterComponent />
 				</View>
 			</Common.Provider>

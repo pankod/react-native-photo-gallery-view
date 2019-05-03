@@ -7,7 +7,8 @@ export const TopBarStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        zIndex: 2
     },
     backBtnImageStyle: {
         width: 20,

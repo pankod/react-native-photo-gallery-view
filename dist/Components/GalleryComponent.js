@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import { TopBarComponent, AlbumComponent, FooterComponent } from "./";
+import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent } from "./";
 import { GalleryStyle } from "../Assets/Styles";
 import Common from '../Provider';
 export class GalleryComponent extends Component {
@@ -18,10 +18,12 @@ export class GalleryComponent extends Component {
     }
     render() {
         const { style } = this.props;
+        const { isModalOpen } = this.state;
         return (React.createElement(Common.Provider, { value: Object.assign({}, this.state, this.props) },
             React.createElement(View, { style: [GalleryStyle.container, style] },
                 React.createElement(TopBarComponent, null),
-                React.createElement(AlbumComponent, null),
+                !isModalOpen && React.createElement(AlbumComponent, null),
+                isModalOpen && React.createElement(DetailComponent, null),
                 React.createElement(FooterComponent, null))));
     }
     showImageModal(media, index) {

@@ -1,9 +1,10 @@
 // Global Imports
 import React, { PureComponent } from 'react'
-import { Animated, ImageProps } from 'react-native'
+import { Animated } from 'react-native'
 
 // Local Imports
 import { IBlurImageProps } from '@Interfaces';
+import { BlurImageStyle } from '@Styles';
 
 export class BlurImage extends PureComponent<IBlurImageProps> {
 
@@ -21,10 +22,9 @@ export class BlurImage extends PureComponent<IBlurImageProps> {
 			<React.Fragment>
 				<Animated.Image
 					{...this.props}
-					style={{ flex: 1, opacity: this.imageAnimated }}
+					style={[BlurImageStyle.image, { opacity: this.imageAnimated }]}
 					onLoad={this.onImageLoad.bind(this)}
 					blurRadius={1}
-					onPartialLoad={true}
 				/>
 			</React.Fragment>
 		)

@@ -43,6 +43,7 @@ describe("Gallery Component", () => {
 		expect(wrapper.find('TopBarComponent')).toHaveLength(1);
 		expect(wrapper.find('AlbumComponent')).toHaveLength(1);
 		expect(wrapper.find('FooterComponent')).toHaveLength(1);
+		// expect(wrapper.find('DetailComponent')).toHaveLength(1);
 	});
 
 });

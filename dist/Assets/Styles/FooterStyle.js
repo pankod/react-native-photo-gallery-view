@@ -6,7 +6,8 @@ export const FooterStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        zIndex: 1,
     }
 });
 //# sourceMappingURL=FooterStyle.js.map

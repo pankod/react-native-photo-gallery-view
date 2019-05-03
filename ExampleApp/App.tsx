@@ -36,7 +36,7 @@ export default class App extends Component<Props> {
 					renderDetailButtons={(media: object) => this.renderDetailButtons(media)}
 					onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
 					displaySelectionButtons={true}
-					stickyFooter={false}
+					stickyFooter={true}
 					customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
 					customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
 					customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
@@ -82,7 +82,7 @@ export default class App extends Component<Props> {
 	renderStickyFooter(height: number): JSX.Element {
 		return (
 			<TouchableOpacity style={[styles.btn, styles.yellow]} onPress={() => console.warn("render stick footer 1. element", height)}>
-				<Text></Text>
+				<Text>Upload chosen</Text>
 			</TouchableOpacity>
 		)
 	}
