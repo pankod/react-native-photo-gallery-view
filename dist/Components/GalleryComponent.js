@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
 import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent } from "./";
 import { GalleryStyle } from "../Assets/Styles";
 import Common from '../Provider';
+const { width, height } = Dimensions.get('window');
 export class GalleryComponent extends Component {
     constructor(props) {
         super(props);
@@ -15,14 +16,19 @@ export class GalleryComponent extends Component {
             onBackRequest: this.onBackRequest.bind(this),
             onSelection: this.onSelection.bind(this),
             imageIndex: 0,
-            selected: []
+            selected: [],
+            orientation: 'portrait',
+            dynamicSize: {
+                width: width / props.gridSize,
+                height: width / props.gridSize,
+            }
         };
     }
     render() {
         const { style } = this.props;
         const { isModalOpen } = this.state;
         return (React.createElement(Common.Provider, { value: Object.assign({}, this.state, this.props) },
-            React.createElement(View, { style: [GalleryStyle.container, style] },
+            React.createElement(View, { ref: "rootView", style: [GalleryStyle.container, style] },
                 React.createElement(TopBarComponent, null),
                 !isModalOpen && React.createElement(AlbumComponent, null),
                 isModalOpen && React.createElement(DetailComponent, null),

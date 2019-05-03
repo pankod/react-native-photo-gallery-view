@@ -8,8 +8,6 @@ import { AlbumStyle } from "@Styles";
 import { IAlbumProps, IMediaItem, IGalleryProps, IGalleryState } from "@Interfaces";
 import Common from '@Provider';
 
-const { width, height } = Dimensions.get('window');
-
 export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 
 	static contextType = Common;
@@ -27,7 +25,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 								numColumns={context.gridSize}
 								renderItem={({ item, index }) => this.renderItem(item, index)}
 								keyExtractor={(item, index) => index.toString()}
-								extraData={context.selected}
+								extraData={[context.selected, context.dynamicSize]}
 							/>
 						</View>
 					)
@@ -43,7 +41,8 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 			displaySelectionButtons,
 			showImageModal,
 			stickyFooter,
-			renderCustomState
+			renderCustomState,
+			dynamicSize
 		} = this.context;
 		if (displaySelectionButtons && stickyFooter) {
 			return (
@@ -52,7 +51,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 					style={
 						[
 							this.checkedCtrl(item) && AlbumStyle.checkedBorder,
-							{ position: "relative", width: width / gridSize, height: width / gridSize, padding: 3 }
+							{ position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
 						]
 					}>
 
@@ -65,7 +64,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 				<TouchableOpacity
 					onPress={() => showImageModal(item, index)} key={index}
 					style={
-						{ width: width / gridSize, height: width / gridSize, padding: 3 }
+						{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
 					}
 				>
 					{renderCustomState(item, index)}

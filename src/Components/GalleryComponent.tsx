@@ -1,12 +1,14 @@
 // Global Imports
 import React, { Component } from "react"
-import { View } from "react-native"
+import { View, Dimensions } from "react-native"
 
 // Local Imports
 import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent } from "@Components";
 import { IGalleryProps, IGalleryState, IMediaItem } from "@Interfaces";
 import { GalleryStyle } from "@Styles";
 import Common from '@Provider';
+
+const { width, height } = Dimensions.get('window');
 
 export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 
@@ -21,8 +23,14 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			onBackRequest: this.onBackRequest.bind(this),
 			onSelection: this.onSelection.bind(this),
 			imageIndex: 0,
-			selected: []
+			selected: [],
+			orientation: 'portrait',
+			dynamicSize: {
+				width: width / props.gridSize,
+				height: width / props.gridSize,
+			}
 		}
+		// this.getOrientation = this.getOrientation.bind(this);
 	}
 
 	static defaultProps = {
@@ -38,7 +46,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		const { isModalOpen } = this.state;
 		return (
 			<Common.Provider value={{ ...this.state, ...this.props }}>
-				<View style={[GalleryStyle.container, style]}>
+				<View ref="rootView" style={[GalleryStyle.container, style]}>
 					<TopBarComponent />
 					{!isModalOpen && <AlbumComponent />}
 					{isModalOpen && <DetailComponent />}
@@ -57,6 +65,40 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			isModalOpen: true
 		});
 	}
+
+	// public componentWillMount(): void {
+	// 	this.getOrientation();
+	// }
+
+	// public componentDidMount(): void {
+	// 	Dimensions.addEventListener("change", this.getOrientation);
+	// }
+
+	// public componentWillUnmount(): void {
+	// 	Dimensions.removeEventListener("change", this.getOrientation);
+	// }
+
+	// private getOrientation(): void {
+	// 	if (this.refs.rootView) {
+	// 		const { gridSize } = this.props;
+	// 		if (Dimensions.get('window').width < Dimensions.get('window').height) {
+	// 			this.setState({
+	// 				dynamicSize: {
+	// 					width: width / gridSize,
+	// 					height: width / gridSize,
+	// 				}
+	// 			});
+	// 		}
+	// 		else {
+	// 			this.setState({
+	// 				dynamicSize: {
+	// 					width: height / gridSize,
+	// 					height: height / gridSize,
+	// 				}
+	// 			});
+	// 		}
+	// 	}
+	// }
 
 	private onBackRequest(): void {
 		const { onBack } = this.props;

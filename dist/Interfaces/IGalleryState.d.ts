@@ -9,4 +9,9 @@ export interface IGalleryState {
     onBackRequest: () => void;
     imageIndex: number;
     selected: string[];
+    orientation?: string;
+    dynamicSize?: {
+        width: number;
+        height: number;
+    };
 }
