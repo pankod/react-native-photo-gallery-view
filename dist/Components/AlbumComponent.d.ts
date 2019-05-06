@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Animated } from 'react-native';
-import { IAlbumProps } from "../Interfaces";
+import { IAlbumProps, IMediaItem } from "../Interfaces";
 export declare class AlbumComponent extends PureComponent<IAlbumProps, {}> {
     static contextType: React.Context<{
         mediaList: any[];
@@ -9,6 +9,6 @@ export declare class AlbumComponent extends PureComponent<IAlbumProps, {}> {
     animatedY: Animated.Value;
     render(): JSX.Element;
     private renderItem;
-    private checkedCtrl;
-    private isChecked;
+    checkedCtrl(item: IMediaItem): boolean;
+    isChecked(item: IMediaItem): JSX.Element;
 }

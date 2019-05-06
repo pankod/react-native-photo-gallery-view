@@ -7,7 +7,7 @@ import { ShallowWrapper, shallow, mount } from "enzyme";
 
 import { GalleryComponent } from "../src/Components/GalleryComponent";
 
-jest.mock('./mocks');
+// jest.doMock('./mocks');
 
 const data = [{ "caption": "Quaresma", "id": "db1aa2ad-48a2-4882-b6e9-824c0224315f", "photo": "https://diymyqt2ncnnc.cloudfront.net/s3/siberalemphotos/db1/db1aa2ad-48a2-4882-b6e9-824c0224315f.jpg.jpg", "state": "Deleted", "thumb": "https://diymyqt2ncnnc.cloudfront.net/s3/siberalemphotos/db1/db1aa2ad-48a2-4882-b6e9-824c0224315f.jpg.jpg?preset=siberthumb2x" }];
 

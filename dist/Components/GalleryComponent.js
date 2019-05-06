@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, BackHandler } from "react-native";
 import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent } from "./";
 import { GalleryStyle } from "../Assets/Styles";
 import Common from '../Provider';
@@ -7,6 +7,7 @@ const { width, height } = Dimensions.get('window');
 export class GalleryComponent extends Component {
     constructor(props) {
         super(props);
+        this.xOffset = 0;
         this.state = {
             title: `${props.mediaList.length} Photos`,
             detailTitle: null,
@@ -23,6 +24,7 @@ export class GalleryComponent extends Component {
                 height: width / props.gridSize,
             }
         };
+        this.backKeyHandler = this.backKeyHandler.bind(this);
     }
     render() {
         const { style } = this.props;
@@ -43,6 +45,16 @@ export class GalleryComponent extends Component {
             isModalOpen: true
         });
     }
+    componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.backKeyHandler);
+    }
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.backKeyHandler);
+    }
+    backKeyHandler() {
+        this.onBackRequest();
+        return true;
+    }
     onBackRequest() {
         const { onBack } = this.props;
         const { isModalOpen } = this.state;
@@ -50,13 +62,16 @@ export class GalleryComponent extends Component {
             onBack();
         }
         if (isModalOpen) {
-            this.setState({
-                imageIndex: 0,
-                detailTitle: null,
-                showingImage: null,
-                isModalOpen: false
-            });
+            this.clearModal();
         }
+    }
+    clearModal() {
+        this.setState({
+            imageIndex: 0,
+            detailTitle: null,
+            showingImage: null,
+            isModalOpen: false
+        });
     }
     onSelection(item, index) {
         const { onSelectionChanged } = this.props;

@@ -10,7 +10,7 @@ export class DetailComponent extends PureComponent {
 
 	static contextType = Common;
 
-	render() {
+	public render(): JSX.Element {
 		return (
 			<Common.Consumer>
 				{

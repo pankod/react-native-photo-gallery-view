@@ -1,5 +1,8 @@
+// Global Imports
+import { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
+
+// Local Imports
 import { IMediaItem } from '@Interfaces';
-import { number } from 'prop-types';
 
 export interface IGalleryState {
 	title?: string,

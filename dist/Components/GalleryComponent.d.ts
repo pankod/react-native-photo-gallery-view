@@ -1,6 +1,7 @@
 import { Component } from "react";
-import { IGalleryProps, IGalleryState } from "../Interfaces";
+import { IGalleryProps, IGalleryState, IMediaItem } from "../Interfaces";
 export declare class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
+    private xOffset;
     constructor(props: IGalleryProps);
     static defaultProps: {
         gridSize: number;
@@ -8,7 +9,11 @@ export declare class GalleryComponent extends Component<IGalleryProps, IGalleryS
         displaySelectionButtons: boolean;
     };
     render(): JSX.Element;
-    private showImageModal;
-    private onBackRequest;
-    private onSelection;
+    showImageModal(media: IMediaItem, index: number): void;
+    componentDidMount(): void;
+    componentWillUnmount(): void;
+    backKeyHandler(): boolean;
+    onBackRequest(): void;
+    private clearModal;
+    onSelection(item: IMediaItem, index: number): void;
 }

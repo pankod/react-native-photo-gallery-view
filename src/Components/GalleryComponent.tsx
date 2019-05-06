@@ -1,6 +1,6 @@
 // Global Imports
 import React, { Component } from "react"
-import { View, Dimensions } from "react-native"
+import { View, Dimensions, BackHandler } from "react-native"
 
 // Local Imports
 import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent } from "@Components";
@@ -11,6 +11,8 @@ import Common from '@Provider';
 const { width, height } = Dimensions.get('window');
 
 export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
+
+	private xOffset: number = 0;
 
 	constructor(props: IGalleryProps) {
 		super(props);
@@ -31,6 +33,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			}
 		}
 		// this.getOrientation = this.getOrientation.bind(this);
+		this.backKeyHandler = this.backKeyHandler.bind(this)
 	}
 
 	static defaultProps = {
@@ -100,6 +103,19 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	// 	}
 	// }
 
+	public componentDidMount(): void {
+		BackHandler.addEventListener("hardwareBackPress", this.backKeyHandler);
+	}
+
+	public componentWillUnmount(): void {
+		BackHandler.removeEventListener("hardwareBackPress", this.backKeyHandler);
+	}
+
+	public backKeyHandler(): boolean {
+		this.onBackRequest();
+		return true;
+	}
+
 	public onBackRequest(): void {
 		const { onBack } = this.props;
 		const { isModalOpen } = this.state;
@@ -108,13 +124,17 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		}
 
 		if (isModalOpen) {
-			this.setState({
-				imageIndex: 0,
-				detailTitle: null,
-				showingImage: null,
-				isModalOpen: false
-			});
+			this.clearModal();
 		}
+	}
+
+	private clearModal(): void {
+		this.setState({
+			imageIndex: 0,
+			detailTitle: null,
+			showingImage: null,
+			isModalOpen: false
+		});
 	}
 
 	public onSelection(item: IMediaItem, index: number): void {
