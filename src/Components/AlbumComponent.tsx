@@ -36,13 +36,13 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 
 	private renderItem(item: IMediaItem, index: number): JSX.Element {
 		const {
-			gridSize,
 			onSelection,
 			displaySelectionButtons,
 			showImageModal,
 			stickyFooter,
 			renderCustomState,
-			dynamicSize
+			dynamicSize,
+			customThumbnailImage
 		} = this.context;
 		if (displaySelectionButtons && stickyFooter) {
 			return (
@@ -56,7 +56,11 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 					}>
 
 					{this.isChecked(item)}
-					<BlurImage resizeMode={"cover"} style={{ flex: 1 }} key={index} source={{ uri: item.thumb }} />
+					{
+						customThumbnailImage ? customThumbnailImage(item, index) : (
+							<BlurImage resizeMode={"cover"} key={index} source={{ uri: item.thumb }} />
+						)
+					}
 				</TouchableOpacity>
 			)
 		} else {
@@ -68,7 +72,11 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 					}
 				>
 					{renderCustomState(item, index)}
-					<BlurImage resizeMode={"cover"} style={{ flex: 1 }} key={index} source={{ uri: item.thumb }} />
+					{
+						customThumbnailImage ? customThumbnailImage(item, index) : (
+							<BlurImage resizeMode={"cover"} key={index} source={{ uri: item.thumb }} />
+						)
+					}
 				</TouchableOpacity >
 			)
 		}

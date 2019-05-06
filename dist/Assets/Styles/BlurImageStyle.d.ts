@@ -1,5 +1,6 @@
 import { ImageStyle, ViewStyle } from "react-native";
 export declare const BlurImageStyle: {
-    image: ImageStyle;
+    container: ImageStyle;
     center: ViewStyle;
+    radius: ViewStyle;
 };

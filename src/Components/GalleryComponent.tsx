@@ -24,6 +24,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			showImageModal: this.showImageModal.bind(this),
 			onBackRequest: this.onBackRequest.bind(this),
 			onSelection: this.onSelection.bind(this),
+			changeImage: this.changeImage.bind(this),
 			imageIndex: 0,
 			selected: [],
 			orientation: 'portrait',
@@ -66,6 +67,15 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			detailTitle: `${index + 1} of ${mediaList.length}`,
 			showingImage: media,
 			isModalOpen: true
+		});
+	}
+
+	public changeImage(index: number): void {
+		const { mediaList } = this.props;
+		this.setState({
+			imageIndex: index,
+			detailTitle: `${index + 1} of ${mediaList.length}`,
+			showingImage: mediaList[index],
 		});
 	}
 

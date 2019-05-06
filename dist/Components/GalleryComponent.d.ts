@@ -10,6 +10,7 @@ export declare class GalleryComponent extends Component<IGalleryProps, IGalleryS
     };
     render(): JSX.Element;
     showImageModal(media: IMediaItem, index: number): void;
+    changeImage(index: number): void;
     componentDidMount(): void;
     componentWillUnmount(): void;
     backKeyHandler(): boolean;

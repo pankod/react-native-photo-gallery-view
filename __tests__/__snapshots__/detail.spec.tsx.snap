@@ -3,6 +3,8 @@
 exports[`Album Component should Detail Component is render correctly 1`] = `
 Array [
   <react-native-mock />,
-  <react-native-mock />,
+  <react-native-mock>
+    <react-native-mock />
+  </react-native-mock>,
 ]
 `;

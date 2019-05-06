@@ -3,11 +3,18 @@ import { Animated } from 'react-native';
 import { IBlurImageProps, IBlurImageState } from '../Interfaces';
 export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
     imageAnimated: Animated.Value;
+    translateX: Animated.Value;
+    panResponder: any;
+    private locationX;
+    private direction;
     static contextType: React.Context<{
         mediaList: any[];
         gridSize: number;
     }>;
     constructor(props: any);
-    private onImageLoad;
+    private getDefault;
+    private onImageLoadEnd;
+    private onImageLoadStart;
+    private customImage;
     render(): JSX.Element;
 }

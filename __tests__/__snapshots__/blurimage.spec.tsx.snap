@@ -3,6 +3,8 @@
 exports[`BlurImage Component should BlurImage Component is render correctly 1`] = `
 Array [
   <react-native-mock />,
-  <react-native-mock />,
+  <react-native-mock>
+    <react-native-mock />
+  </react-native-mock>,
 ]
 `;

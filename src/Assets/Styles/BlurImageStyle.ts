@@ -2,7 +2,7 @@
 import { StyleSheet, ImageStyle, ViewStyle } from "react-native";
 
 export const BlurImageStyle = StyleSheet.create({
-	image: {
+	container: {
 		flex: 1
 	} as ImageStyle,
 	center: {
@@ -11,5 +11,8 @@ export const BlurImageStyle = StyleSheet.create({
 		right: 0,
 		bottom: 0,
 		top: 0
+	} as ViewStyle,
+	radius: {
+		borderRadius: 10
 	} as ViewStyle
 });

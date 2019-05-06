@@ -12,6 +12,7 @@ export interface IGalleryState {
 	showImageModal: (media: IMediaItem, index: number) => any,
 	onSelection: (media: IMediaItem, index: number) => any,
 	onBackRequest: () => void,
+	changeImage: (index: number) => void;
 	imageIndex: number;
 	selected: string[];
 	orientation?: string;

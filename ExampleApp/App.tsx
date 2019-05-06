@@ -9,43 +9,14 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, TouchableOpacity, Text, Button, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, SafeAreaView, TouchableOpacity, Text, Button, View, ActivityIndicator, Image } from 'react-native';
 import RNGallery from 'react-native-photo-gallery-view';
 
 
 interface Props { }
 export default class App extends Component<Props> {
 
-	private list = [
-		{
-			"caption": "Galata, Istanbul",
-			"id": 1,
-			"photo": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80",
-			"state": "Approved",
-			"thumb": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-		},
-		{
-			"caption": "Manhattan skyline",
-			"id": 2,
-			"photo": "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80",
-			"state": "Approved",
-			"thumb": "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
-		},
-		{
-			"caption": "Top of The Rock, New York, United States",
-			"id": 3,
-			"photo": "https://images.unsplash.com/photo-1499462817897-fe42dfba9131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
-			"state": "Loading",
-			"thumb": "https://images.unsplash.com/photo-1499462817897-fe42dfba9131?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
-		},
-		{
-			"caption": "7am shot",
-			"id": 4,
-			"photo": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-			"state": "Deleted",
-			"thumb": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-		},
-	]
+	private list = require('./data.json');
 
 	onBack(): void {
 		console.warn('back key pressed...');
@@ -75,7 +46,21 @@ export default class App extends Component<Props> {
 					// 		<Text>Checked</Text>
 					// 	</View>
 					// )}
+					// customImageComponent={(media, index) =>
+					// 	<Image
+					// 		source={{ uri: media.photo }}
+					// 		resizeMode={"contain"}
+					// 		style={{ flex: 1, margin: 5, borderRadius: 20 }}
+					// 	/>
+					// }
+					// customThumbnailImage={(media, index) =>
+					// 	<Image
+					// 		source={{ uri: media.thumb }}
+					// 		style={{ flex: 1, borderRadius: 10 }}
+					// 	/>
+					// }
 					renderCustomState={(media, index) => this.renderCustomState(media)}
+
 				/>
 			</SafeAreaView>
 		);
