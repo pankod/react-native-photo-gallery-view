@@ -66,13 +66,12 @@ const list = require('./data.json');
 
 export default class example extends Component {
 
-	onBack(): void {
+	public onBack(): void {
 		console.warn('back key pressed...');
 	}
 	
-	render() {
+	public render(): JSX.Element {
 		return (
-		<SafeAreaView style={{ flex: 1 }}>
 			<RNGallery
 				mediaList={this.list}
 				onBack={this.onBack.bind(this)}
@@ -88,73 +87,50 @@ export default class example extends Component {
 				onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
 				displaySelectionButtons={false}
 				stickyFooter={true}
-				// customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
-				// customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
-				// customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}
-				// customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
-				// customCheckedView={() => (
-				// 	<View style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
-				// 		<Text>Checked</Text>
-				// 	</View>
-				// )}
-				// customImageComponent={(media, index) =>
-				// 	<Image
-				// 		source={{ uri: media.photo }}
-				// 		resizeMode={"contain"}
-				// 		style={{ flex: 1, margin: 5, borderRadius: 20 }}
-				// 	/>
-				// }
-				// customThumbnailImage={(media, index) =>
-				// 	<Image
-				// 		source={{ uri: media.thumb }}
-				// 		style={{ flex: 1, borderRadius: 10 }}
-				// 	/>
-				// }
 				renderCustomState={(media, index) => this.renderCustomState(media)}
 			/>
-		</SafeAreaView>
+	);
+
+	public renderCustomState(media: object): JSX.Element {
+	if (media.state !== 'Approved') {
+		return (
+			<View style={{
+				alignItems: 'center',
+				backgroundColor: 'white',
+				bottom: 0,
+				justifyContent: 'center',
+				left: 0,
+				opacity: 0.5,
+				position: 'absolute',
+				right: 0,
+				top: 0,
+				zIndex: 1
+			}}>
+				{media.state === 'Loading' &&
+					<ActivityIndicator size={"large"} />
+				}
+				{media.state !== 'Loading' &&
+					<Text style={{ color: media.state === 'Deleted' ? 'red' : 'black' }}>
+						{media.state}
+					</Text>}
+			</View>
 		);
-
-		renderCustomState(media: object): JSX.Element {
-		if (media.state !== 'Approved') {
-			return (
-				<View style={{
-					alignItems: 'center',
-					backgroundColor: 'white',
-					bottom: 0,
-					justifyContent: 'center',
-					left: 0,
-					opacity: 0.5,
-					position: 'absolute',
-					right: 0,
-					top: 0,
-					zIndex: 1
-				}}>
-					{media.state === 'Loading' &&
-						<ActivityIndicator size={"large"} />
-					}
-					{media.state !== 'Loading' &&
-						<Text style={{ color: media.state === 'Deleted' ? 'red' : 'black' }}>
-							{media.state}
-						</Text>}
-				</View>
-			);
-		}
-
-		return null;
 	}
 
-	onSelectionChanged(media: object, index: number): void {
+	return null;
+	}
+
+	public onSelectionChanged(media: object, index: number): void {
 		console.log(media, index);
 	}
 
-	renderStickyFooter(height: number): JSX.Element {
+	public renderStickyFooter(height: number, action: Function): JSX.Element {
 		return (
 			<Button title={"Upload"} onPress={() => console.log("render stick footer 1. element", height)} />
 		)
 	}
 
-	renderDetailButtons(media: object, action: Function): JSX.Element {
+	public renderDetailButtons(media: object, action: Function): JSX.Element {
 		return (
 			<React.Fragment>
 				<Button title={"Delete"} onPress={() => console.log(media)} />
@@ -188,8 +164,8 @@ const styles = StyleSheet.create({
 | Properties | Type | Description | Default |
 |------------|-------------------------------------|-------------|----------------------------------------------------------------|		
 | **mediaList** <br> **required* | `array`  | Array of media items | `"[{caption, id, photo, state, thumb]"` | 
-| **displaySelectionButtons** | `boolean`  | On/off selection mode | `"false"` | 
-| **stickyFooter** | `boolean`  | On/off for renderStickyFooter custom component | `"true"` | 
+| **displaySelectionButtons** | `boolean`  | Enable/Disable selection mode | `"false"` | 
+| **stickyFooter** | `boolean`  | Enable/Disable for renderStickyFooter custom component | `"true"` | 
 | **customTopBarStyle**   | `style` | Custom style for top bar |  | 
 | **customFooterStyle**   | `style` | Custom style for footer bar |  | 
 | **gridSize**   | `number` | How many media items showing side by side | `"3"` | 

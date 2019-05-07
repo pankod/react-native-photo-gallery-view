@@ -9,60 +9,89 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, TouchableOpacity, Text, Button, View, ActivityIndicator, Image } from 'react-native';
+import { StyleSheet, SafeAreaView, TouchableOpacity, Text, Button, View, ActivityIndicator, Image, ImageBackground } from 'react-native';
 import RNGallery from 'react-native-photo-gallery-view';
+import { Fragment } from 'react';
 
+console.disableYellowBox = true;
 
 interface Props { }
 export default class App extends Component<Props> {
 
 	private list = require('./data.json');
 
+	state = {
+		intro: true
+	}
+
 	onBack(): void {
 		console.warn('back key pressed...');
 	}
 
+	componentDidMount() {
+		// for intro :)
+		setTimeout(() => {
+			this.setState({ intro: false });
+		}, 2000);
+	}
+
 	render() {
 		return (
-			<SafeAreaView style={{ flex: 1 }}>
-				<RNGallery
-					mediaList={this.list}
-					onBack={this.onBack.bind(this)}
-					customTopBarStyle={{
-						height: 50
-					}}
-					gridSize={3}
-					renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
-					renderDetailButtons={(media: object, action: Function) => this.renderDetailButtons(media, action)}
-					onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
-					displaySelectionButtons={false}
-					stickyFooter={true}
-					// customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
-					// customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
-					// customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}
-					// customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
-					// customCheckedView={() => (
-					// 	<View style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
-					// 		<Text>Checked</Text>
-					// 	</View>
-					// )}
-					// customImageComponent={(media, index) =>
-					// 	<Image
-					// 		source={{ uri: media.photo }}
-					// 		resizeMode={"contain"}
-					// 		style={{ flex: 1, margin: 5, borderRadius: 20 }}
-					// 	/>
-					// }
-					// customThumbnailImage={(media, index) =>
-					// 	<Image
-					// 		source={{ uri: media.thumb }}
-					// 		style={{ flex: 1, borderRadius: 10 }}
-					// 	/>
-					// }
-					renderCustomState={(media, index) => this.renderCustomState(media)}
+			<Fragment>
+				{this.state.intro ? (
+					<ImageBackground style={{
+						flex: 1,
+						backgroundColor: '#F9D92D',
+						top: 0,
+						left: 0,
+						justifyContent: 'center',
+						alignItems: 'center',
+						zIndex: 1
+					}} resizeMode={'contain'} source={require('./logo.png')}>
+					</ImageBackground>
+				) : (
+						<SafeAreaView style={{ flex: 1 }}>
+							<RNGallery
+								mediaList={this.list}
+								onBack={this.onBack.bind(this)}
+								customTopBarStyle={{
+									height: 50
+								}}
+								gridSize={3}
+								renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
+								renderDetailButtons={(media: object, action: Function) => this.renderDetailButtons(media, action)}
+								onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
+								displaySelectionButtons={false}
+								stickyFooter={true}
+								// customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
+								// customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
+								// customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}
+								// customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
+								// customCheckedView={() => (
+								// 	<View style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
+								// 		<Text>Checked</Text>
+								// 	</View>
+								// )}
+								// customImageComponent={(media, index) =>
+								// 	<Image
+								// 		source={{ uri: media.photo }}
+								// 		resizeMode={"contain"}
+								// 		style={{ flex: 1, margin: 5, borderRadius: 20 }}
+								// 	/>
+								// }
+								// customThumbnailImage={(media, index) =>
+								// 	<Image
+								// 		source={{ uri: media.thumb }}
+								// 		style={{ flex: 1, borderRadius: 10 }}
+								// 	/>
+								// }
+								renderCustomState={(media, index) => this.renderCustomState(media)}
 
-				/>
-			</SafeAreaView>
+							/>
+						</SafeAreaView>
+					)
+				}
+			</Fragment>
 		);
 	}
 
