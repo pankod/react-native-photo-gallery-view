@@ -8,7 +8,7 @@ export interface IGalleryProps {
     onBack?: () => void;
     style?: ViewStyle;
     renderStickyFooter?: (height: number) => JSX.Element;
-    renderDetailButtons?: (media: IMediaItem, index: number) => JSX.Element;
+    renderDetailButtons?: (media: IMediaItem, action: Function) => JSX.Element;
     renderCustomState?: (media: IMediaItem, index: number) => JSX.Element;
     onSelectionChanged: (media: IMediaItem, index: number) => any;
     customThumbnailImage?: (media: IMediaItem, index: number) => JSX.Element;

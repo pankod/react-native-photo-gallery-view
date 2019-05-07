@@ -28,7 +28,7 @@ export class FooterComponent extends PureComponent<IFooterProps, {}> {
 		if (renderDetailButtons && !displaySelectionButtons && isModalOpen) {
 			return (
 				<View key={"custom"} style={[FooterStyle.container, this.context.customFooterStyle]}>
-					{this.context.renderDetailButtons(this.context.showingImage)}
+					{this.context.renderDetailButtons(this.context.showingImage, this.context.onBackRequest)}
 				</View>
 			)
 		}

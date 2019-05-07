@@ -77,7 +77,10 @@ export default class example extends Component {
 				mediaList={this.list}
 				onBack={this.onBack.bind(this)}
 				customTopBarStyle={{
-				height: 50
+					height: 50
+				}}
+				customFooterStyle={{
+					height: 50
 				}}
 				gridSize={3}
 				renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
@@ -151,11 +154,11 @@ export default class example extends Component {
 		)
 	}
 
-	renderDetailButtons(media: object): JSX.Element {
+	renderDetailButtons(media: object, action: Function): JSX.Element {
 		return (
 			<React.Fragment>
 				<Button title={"Delete"} onPress={() => console.log(media)} />
-				<Button title={"Set as default"} onPress={() => console.log(media)} />
+				<Button title={"Back"} onPress={() => action()} />
 			</React.Fragment>
 		)
 	}
@@ -188,10 +191,11 @@ const styles = StyleSheet.create({
 | **displaySelectionButtons** | `boolean`  | On/off selection mode | `"false"` | 
 | **stickyFooter** | `boolean`  | On/off for renderStickyFooter custom component | `"true"` | 
 | **customTopBarStyle**   | `style` | Custom style for top bar |  | 
+| **customFooterStyle**   | `style` | Custom style for footer bar |  | 
 | **gridSize**   | `number` | How many media items showing side by side | `"3"` | 
 | **onBack**   | `Function` |  Fired when the back key is pressed | |
 | **renderStickyFooter**   | `Function` | Custom component for selection mode in footer  | |
-| **renderDetailButtons**   | `Function` | Custom component for view mode in footer  | |
+| **renderDetailButtons**   | `Function` | Custom component for view mode in footer  | `"(media, backAction) => <View .../>"` |
 | **renderCustomState**   | `Function` | Custom component for viewing each media item overlay in main scene | `"(media, index) => <View .../>"` |
 | **customTopBarBackButton**   | `Function` | Custom component for back button in top bar  |  |
 | **customMainTitle**   | `Function` | Custom component for main scene title in top bar  | `"(totalImages) => <Text>{totalImages} Photos</Text>"` |

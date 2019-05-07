@@ -33,7 +33,7 @@ export default class App extends Component<Props> {
 					}}
 					gridSize={3}
 					renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
-					renderDetailButtons={(media: object) => this.renderDetailButtons(media)}
+					renderDetailButtons={(media: object, action: Function) => this.renderDetailButtons(media, action)}
 					onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
 					displaySelectionButtons={false}
 					stickyFooter={true}
@@ -105,11 +105,11 @@ export default class App extends Component<Props> {
 		)
 	}
 
-	renderDetailButtons(media: object): JSX.Element {
+	renderDetailButtons(media: object, action: Function): JSX.Element {
 		return (
 			<React.Fragment>
 				<Button title={"Delete"} onPress={() => console.log(media)} />
-				<Button title={"Set as default"} onPress={() => console.log(media)} />
+				<Button title={"Back"} onPress={() => action()} />
 			</React.Fragment>
 		)
 	}

@@ -10,7 +10,7 @@ export class FooterComponent extends PureComponent {
     renderDetailButtons() {
         const { renderDetailButtons, isModalOpen, displaySelectionButtons } = this.context;
         if (renderDetailButtons && !displaySelectionButtons && isModalOpen) {
-            return (React.createElement(View, { key: "custom", style: [FooterStyle.container, this.context.customFooterStyle] }, this.context.renderDetailButtons(this.context.showingImage)));
+            return (React.createElement(View, { key: "custom", style: [FooterStyle.container, this.context.customFooterStyle] }, this.context.renderDetailButtons(this.context.showingImage, this.context.onBackRequest)));
         }
         return null;
     }
