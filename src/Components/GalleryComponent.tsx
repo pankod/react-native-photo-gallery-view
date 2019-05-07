@@ -12,8 +12,6 @@ const { width, height } = Dimensions.get('window');
 
 export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 
-	private xOffset: number = 0;
-
 	constructor(props: IGalleryProps) {
 		super(props);
 		this.state = {
@@ -77,6 +75,14 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			detailTitle: `${index + 1} of ${mediaList.length}`,
 			showingImage: mediaList[index],
 		});
+	}
+
+	public componentWillReceiveProps(nextProps): void {
+		if (nextProps.displaySelectionButtons !== this.props.displaySelectionButtons) {
+			this.setState({
+				selected: []
+			})
+		}
 	}
 
 	// public componentWillMount(): void {
@@ -143,7 +149,8 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			imageIndex: 0,
 			detailTitle: null,
 			showingImage: null,
-			isModalOpen: false
+			isModalOpen: false,
+			selected: []
 		});
 	}
 

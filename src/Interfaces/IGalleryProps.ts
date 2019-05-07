@@ -11,7 +11,7 @@ export interface IGalleryProps {
 	customFooterStyle?: ViewStyle,
 	onBack?: () => void,
 	style?: ViewStyle,
-	renderStickyFooter?: (height: number) => JSX.Element;
+	renderStickyFooter?: (height: number, action: Function) => JSX.Element;
 	renderDetailButtons?: (media: IMediaItem, action: Function) => JSX.Element;
 	renderCustomState?: (media: IMediaItem, index: number) => JSX.Element;
 	onSelectionChanged: (media: IMediaItem, index: number) => any;

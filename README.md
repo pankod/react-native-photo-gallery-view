@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
 | **customFooterStyle**   | `style` | Custom style for footer bar |  | 
 | **gridSize**   | `number` | How many media items showing side by side | `"3"` | 
 | **onBack**   | `Function` |  Fired when the back key is pressed | |
-| **renderStickyFooter**   | `Function` | Custom component for selection mode in footer  | |
+| **renderStickyFooter**   | `Function` | Custom component for selection mode in footer  | `"(footerHeight, backAction) => <View .../>"` |
 | **renderDetailButtons**   | `Function` | Custom component for view mode in footer  | `"(media, backAction) => <View .../>"` |
 | **renderCustomState**   | `Function` | Custom component for viewing each media item overlay in main scene | `"(media, index) => <View .../>"` |
 | **customTopBarBackButton**   | `Function` | Custom component for back button in top bar  |  |

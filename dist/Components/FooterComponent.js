@@ -17,7 +17,7 @@ export class FooterComponent extends PureComponent {
     renderStickyFooter() {
         const { renderStickyFooter, stickyFooter, isModalOpen, displaySelectionButtons } = this.context;
         if (renderStickyFooter && stickyFooter && !isModalOpen && displaySelectionButtons) {
-            return (React.createElement(View, { key: "sticky", style: [FooterStyle.container, this.context.customFooterStyle] }, this.context.renderStickyFooter(Const.HEIGHT)));
+            return (React.createElement(View, { key: "sticky", style: [FooterStyle.container, this.context.customFooterStyle] }, this.context.renderStickyFooter(Const.HEIGHT, this.context.onBackRequest)));
         }
         return null;
     }

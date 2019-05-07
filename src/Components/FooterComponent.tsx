@@ -40,7 +40,7 @@ export class FooterComponent extends PureComponent<IFooterProps, {}> {
 		if (renderStickyFooter && stickyFooter && !isModalOpen && displaySelectionButtons) {
 			return (
 				<View key={"sticky"} style={[FooterStyle.container, this.context.customFooterStyle]}>
-					{this.context.renderStickyFooter(Const.HEIGHT)}
+					{this.context.renderStickyFooter(Const.HEIGHT, this.context.onBackRequest)}
 				</View>
 			)
 		}

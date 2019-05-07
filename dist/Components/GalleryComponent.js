@@ -7,7 +7,6 @@ const { width, height } = Dimensions.get('window');
 export class GalleryComponent extends Component {
     constructor(props) {
         super(props);
-        this.xOffset = 0;
         this.state = {
             title: `${props.mediaList.length} Photos`,
             detailTitle: null,
@@ -54,6 +53,13 @@ export class GalleryComponent extends Component {
             showingImage: mediaList[index],
         });
     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.displaySelectionButtons !== this.props.displaySelectionButtons) {
+            this.setState({
+                selected: []
+            });
+        }
+    }
     componentDidMount() {
         BackHandler.addEventListener("hardwareBackPress", this.backKeyHandler);
     }
@@ -79,7 +85,8 @@ export class GalleryComponent extends Component {
             imageIndex: 0,
             detailTitle: null,
             showingImage: null,
-            isModalOpen: false
+            isModalOpen: false,
+            selected: []
         });
     }
     onSelection(item, index) {
