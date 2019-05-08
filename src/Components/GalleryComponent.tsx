@@ -38,7 +38,11 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	static defaultProps = {
 		gridSize: 3,
 		stickyFooter: true,
-		displaySelectionButtons: false
+		displaySelectionButtons: false,
+		detailImageResizeMode: "contain",
+		detailImageResizeMethod: "resize",
+		thumbImageResizeMode: "cover",
+		thumbImageResizeMethod: "resize"
 	}
 
 	public render(): JSX.Element {

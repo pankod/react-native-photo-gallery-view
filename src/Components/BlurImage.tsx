@@ -158,8 +158,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 									<Animated.Image
 										{...this.props}
 										style={[BlurImageStyle.container, {
-											borderRadius: 10,
-											opacity: this.imageAnimated
+											opacity: this.imageAnimated,
 										}]}
 										onLoadEnd={this.onImageLoadEnd.bind(this)}
 										onLoadStart={this.onImageLoadStart.bind(this)}

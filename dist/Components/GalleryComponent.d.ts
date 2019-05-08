@@ -6,6 +6,10 @@ export declare class GalleryComponent extends Component<IGalleryProps, IGalleryS
         gridSize: number;
         stickyFooter: boolean;
         displaySelectionButtons: boolean;
+        detailImageResizeMode: string;
+        detailImageResizeMethod: string;
+        thumbImageResizeMode: string;
+        thumbImageResizeMethod: string;
     };
     render(): JSX.Element;
     showImageModal(media: IMediaItem, index: number): void;

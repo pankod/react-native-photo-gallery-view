@@ -109,6 +109,10 @@ export class GalleryComponent extends Component {
 GalleryComponent.defaultProps = {
     gridSize: 3,
     stickyFooter: true,
-    displaySelectionButtons: false
+    displaySelectionButtons: false,
+    detailImageResizeMode: "contain",
+    detailImageResizeMethod: "resize",
+    thumbImageResizeMode: "cover",
+    thumbImageResizeMethod: "resize"
 };
 //# sourceMappingURL=GalleryComponent.js.map

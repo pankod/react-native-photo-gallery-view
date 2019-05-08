@@ -1,9 +1,10 @@
 
 // Global Imports
-import { ViewStyle } from 'react-native';
+import { ViewStyle, ImageResizeMode } from 'react-native';
 
 // Local Imports
 import { IMediaItem } from "@Interfaces";
+import { ResizeMethod } from '@Enum';
 
 export interface IGalleryProps {
 	mediaList: IMediaItem[],
@@ -27,4 +28,8 @@ export interface IGalleryProps {
 	customDetailTitle?: (totalImages: number, photoIndex: number) => JSX.Element
 	customCheckedView?: () => JSX.Element
 	customSelectedTitle?: (totalSelected: number) => JSX.Element
+	detailImageResizeMode?: ImageResizeMode,
+	detailImageResizeMethod?: ResizeMethod,
+	thumbImageResizeMode?: ImageResizeMode,
+	thumbImageResizeMethod?: ResizeMethod
 }

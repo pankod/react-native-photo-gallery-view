@@ -42,7 +42,9 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 			stickyFooter,
 			renderCustomState,
 			dynamicSize,
-			customThumbnailImage
+			customThumbnailImage,
+			thumbImageResizeMode,
+			thumbImageResizeMethod
 		} = this.context;
 		if (displaySelectionButtons && stickyFooter) {
 			return (
@@ -58,7 +60,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 					{this.isChecked(item)}
 					{
 						customThumbnailImage ? customThumbnailImage(item, index) : (
-							<BlurImage resizeMode={"cover"} key={index} source={{ uri: item.thumb }} />
+							<BlurImage resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
 						)
 					}
 				</TouchableOpacity>
@@ -74,7 +76,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 					{renderCustomState(item, index)}
 					{
 						customThumbnailImage ? customThumbnailImage(item, index) : (
-							<BlurImage resizeMode={"cover"} key={index} source={{ uri: item.thumb }} />
+							<BlurImage resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
 						)
 					}
 				</TouchableOpacity >

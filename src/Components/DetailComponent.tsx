@@ -17,8 +17,8 @@ export class DetailComponent extends PureComponent {
 					(context: IGalleryProps & IGalleryState) => (
 						<BlurImage
 							style={{ margin: 5 }}
-							resizeMethod={"resize"}
-							resizeMode={"contain"}
+							resizeMethod={context.detailImageResizeMethod}
+							resizeMode={context.detailImageResizeMode}
 							source={{ uri: context.showingImage && context.showingImage.photo }}
 							thumbnail={{ uri: context.showingImage && context.showingImage.thumb }}
 						/>

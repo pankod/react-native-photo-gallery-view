@@ -133,8 +133,7 @@ export class BlurImage extends PureComponent {
                         transform: [{ translateX: this.translateX }]
                     }
                 ] }, this.panResponder.panHandlers), context.customImageComponent ? this.customImage() : (React.createElement(Animated.Image, Object.assign({}, this.props, { style: [BlurImageStyle.container, {
-                        borderRadius: 10,
-                        opacity: this.imageAnimated
+                        opacity: this.imageAnimated,
                     }], onLoadEnd: this.onImageLoadEnd.bind(this), onLoadStart: this.onImageLoadStart.bind(this) }))))))));
     }
 }
