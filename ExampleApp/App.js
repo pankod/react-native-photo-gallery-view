@@ -9,22 +9,21 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, TouchableOpacity, Text, Button, View, ActivityIndicator, Image, ImageBackground } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, Button, View, ActivityIndicator, ImageBackground } from 'react-native';
 import RNGallery from 'react-native-photo-gallery-view';
 import { Fragment } from 'react';
 
 console.disableYellowBox = true;
 
-interface Props { }
-export default class App extends Component<Props> {
+const list = require('./data.json');
 
-	private list = require('./data.json');
+export default class App extends Component {
 
 	state = {
 		intro: true
 	}
 
-	onBack(): void {
+	onBack() {
 		console.warn('back key pressed...');
 	}
 
@@ -52,14 +51,14 @@ export default class App extends Component<Props> {
 				) : (
 						<SafeAreaView style={{ flex: 1 }}>
 							<RNGallery
-								mediaList={this.list}
+								mediaList={list}
 								onBack={this.onBack.bind(this)}
 								customTopBarStyle={{
 									height: 50
 								}}
 								gridSize={3}
-								renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
-								renderDetailButtons={(media: object, action: Function) => this.renderDetailButtons(media, action)}
+								renderStickyFooter={(height) => this.renderStickyFooter(height)}
+								renderDetailButtons={(media, action) => this.renderDetailButtons(media, action)}
 								onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
 								displaySelectionButtons={false}
 								stickyFooter={true}
@@ -95,7 +94,7 @@ export default class App extends Component<Props> {
 		);
 	}
 
-	renderCustomState(media: object): JSX.Element {
+	renderCustomState(media) {
 		if (media.state !== 'Approved') {
 			return (
 				<View style={{
@@ -124,17 +123,17 @@ export default class App extends Component<Props> {
 		return null;
 	}
 
-	onSelectionChanged(media: object, index: number): void {
+	onSelectionChanged(media, index) {
 		console.log(media, index);
 	}
 
-	renderStickyFooter(height: number): JSX.Element {
+	renderStickyFooter(height) {
 		return (
 			<Button title={"Upload"} onPress={() => console.log("render stick footer 1. element", height)} />
 		)
 	}
 
-	renderDetailButtons(media: object, action: Function): JSX.Element {
+	renderDetailButtons(media, action) {
 		return (
 			<React.Fragment>
 				<Button title={"Delete"} onPress={() => console.log(media)} />

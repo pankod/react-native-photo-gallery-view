@@ -59,10 +59,10 @@ $ yarn add react-native-photo-gallery-view
 ## Example
 ```javascript
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, TouchableOpacity, Text, Button, View, ActivityIndicator, Image } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, Button, View, ActivityIndicator, ImageBackground } from 'react-native';
 import RNGallery from 'react-native-photo-gallery-view';
 
-const list = require('./data.json');
+const list = require('./data.json'); // browse ExampleApp folder
 
 export default class example extends Component {
 
@@ -73,7 +73,7 @@ export default class example extends Component {
 	public render(): JSX.Element {
 		return (
 			<RNGallery
-				mediaList={this.list}
+				mediaList={list}
 				onBack={this.onBack.bind(this)}
 				customTopBarStyle={{
 					height: 50
