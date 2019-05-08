@@ -23,7 +23,7 @@
 
 <br/>
 <div align="center"> <h3>React Native Photo Gallery View<h3></div>
-<div align="center">React Native Module to select and view for photos gallery</div>
+<div align="center">React Native Module to select and view gallery for photos</div>
 <div align="center">
   <sub>Created by <a href="https://www.pankod.com">Pankod</a></sub>
 </div>
