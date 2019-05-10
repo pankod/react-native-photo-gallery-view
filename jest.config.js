@@ -2,6 +2,7 @@ const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { compilerOptions } = require('./tsconfig');
 
 module.exports = {
+	"collectCoverage": true,
 	"preset": "react-native",
 	"testRegex": "(/__tests__/.*| (\\.| /)(test|spec))\\.(ts?|tsx?)$",
 	"transform": {

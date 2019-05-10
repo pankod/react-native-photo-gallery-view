@@ -1,5 +1,7 @@
 sudo: false
 language: node_js
+scripts:
+  - npm install codecov -g
 cache:
   directories:
     - ~/.npm
@@ -10,7 +12,7 @@ node_js:
   - 10
 after_success:
   - npm run build
-#   - npm run travis-deploy-once "npm run semantic-release"
+  - codecov
 branches:
   only:
     - master

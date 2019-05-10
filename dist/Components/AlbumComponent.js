@@ -15,18 +15,16 @@ export class AlbumComponent extends PureComponent {
     renderItem(item, index) {
         const { onSelection, displaySelectionButtons, showImageModal, stickyFooter, renderCustomState, dynamicSize, customThumbnailImage, thumbImageResizeMode, thumbImageResizeMethod } = this.context;
         if (displaySelectionButtons && stickyFooter) {
-            return (React.createElement(TouchableOpacity, { onPress: () => onSelection(item, index), key: index, style: [
+            return (React.createElement(TouchableOpacity, { onPress: () => onSelection(item, index), key: "onSelection", style: [
                     this.checkedCtrl(item) && AlbumStyle.checkedBorder,
                     { position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
                 ] },
                 this.isChecked(item),
                 customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
         }
-        else {
-            return (React.createElement(TouchableOpacity, { onPress: () => showImageModal(item, index), key: index, style: { width: dynamicSize.width, height: dynamicSize.height, padding: 3 } },
-                renderCustomState(item, index),
-                customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
-        }
+        return (React.createElement(TouchableOpacity, { onPress: () => showImageModal(item, index), key: "showImageModal", style: { width: dynamicSize.width, height: dynamicSize.height, padding: 3 } },
+            renderCustomState(item, index),
+            customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
     }
     checkedCtrl(item) {
         const { selected } = this.context;

@@ -12,9 +12,9 @@ export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImage
         gridSize: number;
     }>;
     constructor(props: any);
-    private getDefault;
-    private onImageLoadEnd;
-    private onImageLoadStart;
-    private customImage;
+    getDefault(): void;
+    onImageLoadEnd(): void;
+    onImageLoadStart(): void;
+    customImage(): JSX.Element;
     render(): JSX.Element;
 }
