@@ -26,6 +26,7 @@ describe("Gallery Component", () => {
 		customSelectedTitle: jest.fn(),
 		gridSize: 3,
 		stickyFooter: true,
+		displaySelectionButtons: true,
 		customMainTitle: jest.fn(),
 		customDetailTitle: jest.fn()
 	}
@@ -56,7 +57,7 @@ describe("Gallery Component", () => {
 	});
 
 	test('should if onback fired when state reset', () => {
-		const spy = spyOn(GalleryComponent.prototype, 'onBackRequest');
+		const spy = spyOn(GalleryComponent.prototype, 'onBackRequest').and.callThrough();
 		const instance = mounting.instance() as any;
 
 		wrapper.setState({
@@ -64,16 +65,40 @@ describe("Gallery Component", () => {
 		});
 
 		instance.onBackRequest();
-		expect(spy).toHaveBeenCalled();
 
 		setTimeout(() => {
 			expect(wrapper.state('isModalOpen')).toEqual(false);
 			expect(wrapper.state('showingImage')).toEqual(null);
 		}, 0);
+		expect(spy).toHaveBeenCalled();
+	});
+
+	test('should fired showImageModal', () => {
+		const spy = spyOn(GalleryComponent.prototype, 'showImageModal').and.callThrough();
+		const instance = mounting.instance() as any;
+
+		wrapper.setProps({
+			mediaList: []
+		});
+
+		wrapper.setState({
+			imageIndex: 0,
+			showingImage: true,
+			isModalOpen: true
+		})
+
+		instance.showImageModal();
+		expect(spy).toHaveBeenCalled();
+
+		setTimeout(() => {
+			expect(wrapper.state('isModalOpen')).toBeTruthy();
+			expect(wrapper.state('imageIndex')).toEqual(0);
+			expect(wrapper.state('showingImage')).toBeTruthy();
+		}, 0);
 	});
 
 	test('should fired push item in selected list', () => {
-		const spy = spyOn(GalleryComponent.prototype, 'onSelection');
+		const spy = spyOn(GalleryComponent.prototype, 'onSelection').and.callThrough();
 		const instance = mounting.instance() as any;
 
 		wrapper.setState({
@@ -92,6 +117,66 @@ describe("Gallery Component", () => {
 		expect(wrapper.find('TopBarComponent')).toHaveLength(1);
 		expect(wrapper.find('AlbumComponent')).toHaveLength(1);
 		expect(wrapper.find('FooterComponent')).toHaveLength(1);
+	});
+
+	test('should fired onBackRequest', () => {
+		const spy = spyOn(GalleryComponent.prototype, "onBackRequest").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		instance.onBackRequest();
+
+		expect(spy).toHaveBeenCalled();
+	});
+
+	test('should backKeyHandler return true', () => {
+		const spy = spyOn(GalleryComponent.prototype, "backKeyHandler").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		instance.backKeyHandler();
+		expect(instance.backKeyHandler()).toBeTruthy();
+	});
+
+	test('should fired changeImage method', () => {
+		const spy = spyOn(GalleryComponent.prototype, "changeImage").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		wrapper.setProps({
+			mediaList: [data[0]]
+		})
+
+		instance.changeImage(0);
+		expect(spy).toHaveBeenCalled();
+	});
+
+	test('should fired clearModal and clear state', () => {
+		const spy = spyOn(GalleryComponent.prototype, "clearModal").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		wrapper.setState({
+			imageIndex: 0,
+			detailTitle: null,
+			showingImage: null,
+			isModalOpen: false,
+			selected: []
+		})
+
+		instance.clearModal();
+		expect(wrapper.state()).toMatchObject({
+			imageIndex: 0,
+			detailTitle: null,
+			showingImage: null,
+			isModalOpen: false,
+			selected: []
+		})
+		expect(spy).toHaveBeenCalled();
+	});
+
+	test('should fired componentWillUnmount', () => {
+		const spy = spyOn(GalleryComponent.prototype, "componentWillUnmount").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		wrapper.unmount();
+		expect(spy).toHaveBeenCalled();
 	});
 
 });

@@ -148,7 +148,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		}
 	}
 
-	private clearModal(): void {
+	public clearModal(): void {
 		this.setState({
 			imageIndex: 0,
 			detailTitle: null,

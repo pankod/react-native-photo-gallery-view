@@ -90,7 +90,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 		});
 	}
 
-	private getDefault(): void {
+	public getDefault(): void {
 		Animated.spring(this.translateX, {
 			toValue: 0,
 			bounciness: 5,
@@ -98,7 +98,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 		}).start();
 	}
 
-	private onImageLoadEnd(): void {
+	public onImageLoadEnd(): void {
 		this.setState({
 			loading: false
 		}, () => {
@@ -123,7 +123,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 
 	}
 
-	private onImageLoadStart(): void {
+	public onImageLoadStart(): void {
 		this.setState({ loading: true }, () => {
 			Animated.timing(this.imageAnimated, {
 				toValue: 0,
@@ -133,7 +133,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 		});
 	}
 
-	private customImage(): JSX.Element {
+	public customImage(): JSX.Element {
 		return this.context.customImageComponent(this.context.showingImage, this.context.imageIndex)
 	}
 

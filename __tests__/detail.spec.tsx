@@ -5,15 +5,22 @@ import renderer from "react-test-renderer";
 import { ShallowWrapper, shallow, mount } from "enzyme";
 
 import { DetailComponent } from "../src/Components/DetailComponent";
+import { BlurImage } from "../src/Components/BlurImage";
+import Common from "../src/Provider";
 
 describe("Album Component", () => {
 	let wrapper: ShallowWrapper;
 	let mounting;
 	const props = {
+		showingImage: jest.fn(() => true)
+	}
+	const state = {
 
 	}
 	let component = (
-		<DetailComponent {...props} />
+		<Common.Provider value={{ mediaList: [], gridSize: 3, ...props, ...state }}>
+			<DetailComponent {...props} />
+		</Common.Provider>
 	);
 
 	beforeEach(() => {
@@ -27,4 +34,5 @@ describe("Album Component", () => {
 		expect(render).toBeDefined();
 		expect(render).toMatchSnapshot();
 	});
+
 });

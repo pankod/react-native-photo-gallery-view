@@ -34,7 +34,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 		)
 	}
 
-	private renderItem(item: IMediaItem, index: number): JSX.Element {
+	public renderItem(item: IMediaItem, index: number): JSX.Element {
 		const {
 			onSelection,
 			displaySelectionButtons,
@@ -49,7 +49,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 		if (displaySelectionButtons && stickyFooter) {
 			return (
 				<TouchableOpacity
-					onPress={() => onSelection(item, index)} key={index}
+					onPress={() => onSelection(item, index)} key={"onSelection"}
 					style={
 						[
 							this.checkedCtrl(item) && AlbumStyle.checkedBorder,
@@ -65,28 +65,27 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 					}
 				</TouchableOpacity>
 			)
-		} else {
-			return (
-				<TouchableOpacity
-					onPress={() => showImageModal(item, index)} key={index}
-					style={
-						{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
-					}
-				>
-					{renderCustomState(item, index)}
-					{
-						customThumbnailImage ? customThumbnailImage(item, index) : (
-							<BlurImage resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
-						)
-					}
-				</TouchableOpacity >
-			)
 		}
+
+		return (
+			<TouchableOpacity
+				onPress={() => showImageModal(item, index)} key={"showImageModal"}
+				style={
+					{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
+				}
+			>
+				{renderCustomState(item, index)}
+				{
+					customThumbnailImage ? customThumbnailImage(item, index) : (
+						<BlurImage resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
+					)
+				}
+			</TouchableOpacity >
+		)
 	}
 
 	public checkedCtrl(item: IMediaItem): boolean {
 		const { selected } = this.context;
-
 		return selected.indexOf(item.id) > -1
 	}
 

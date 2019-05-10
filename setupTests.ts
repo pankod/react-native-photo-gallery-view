@@ -29,7 +29,7 @@ copyProps(window, global);
 // JSDOM done
 
 // Mock and Enzyme
-jest.mock('react-native', () => require('react-native-mock-render'), { virtual: true })
+jest.mock('react-native', () => require('react-native-mock-render'), { virtual: true });
 
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
