@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Dimensions, BackHandler } from "react-native";
-import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent } from "./";
+import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent, PreviewModalComponent } from "./";
 import { GalleryStyle } from "../Assets/Styles";
 import Common from '../Provider';
 const { width, height } = Dimensions.get('window');
@@ -13,6 +13,8 @@ export class GalleryComponent extends Component {
             showingImage: {},
             isModalOpen: false,
             showImageModal: this.showImageModal.bind(this),
+            showPreview: this.showPreview.bind(this),
+            hidePreview: this.hidePreview.bind(this),
             onBackRequest: this.onBackRequest.bind(this),
             onSelection: this.onSelection.bind(this),
             changeImage: this.changeImage.bind(this),
@@ -22,19 +24,23 @@ export class GalleryComponent extends Component {
             dynamicSize: {
                 width: width / props.gridSize,
                 height: width / props.gridSize,
-            }
+            },
+            previewIsOpen: false,
+            imagePreview: {}
         };
         this.backKeyHandler = this.backKeyHandler.bind(this);
+        this.unTouch = this.unTouch.bind(this);
     }
     render() {
         const { style } = this.props;
-        const { isModalOpen } = this.state;
+        const { isModalOpen, previewIsOpen } = this.state;
         return (React.createElement(Common.Provider, { value: Object.assign({}, this.state, this.props) },
-            React.createElement(View, { ref: "rootView", style: [GalleryStyle.container, style] },
+            React.createElement(View, { onTouchEnd: () => this.unTouch(), ref: "rootView", style: [GalleryStyle.container, style] },
                 React.createElement(TopBarComponent, null),
                 !isModalOpen && React.createElement(AlbumComponent, null),
                 isModalOpen && React.createElement(DetailComponent, null),
-                React.createElement(FooterComponent, null))));
+                React.createElement(FooterComponent, null),
+                previewIsOpen && React.createElement(PreviewModalComponent, null))));
     }
     showImageModal(media, index) {
         const { mediaList } = this.props;
@@ -78,6 +84,23 @@ export class GalleryComponent extends Component {
         }
         if (isModalOpen) {
             this.clearModal();
+        }
+    }
+    showPreview(item, index) {
+        this.setState({
+            imagePreview: item,
+            previewIsOpen: true
+        });
+    }
+    hidePreview() {
+        this.setState({
+            previewIsOpen: false,
+            imagePreview: {}
+        });
+    }
+    unTouch() {
+        if (this.state.previewIsOpen) {
+            this.hidePreview();
         }
     }
     clearModal() {

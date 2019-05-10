@@ -1,9 +1,9 @@
 // Global Imports
 import React, { Component } from "react"
-import { View, Dimensions, BackHandler } from "react-native"
+import { View, Dimensions, BackHandler, AppState } from "react-native"
 
 // Local Imports
-import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent } from "@Components";
+import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent, PreviewModalComponent } from "@Components";
 import { IGalleryProps, IGalleryState, IMediaItem } from "@Interfaces";
 import { GalleryStyle } from "@Styles";
 import Common from '@Provider';
@@ -20,6 +20,8 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			showingImage: {} as IMediaItem,
 			isModalOpen: false,
 			showImageModal: this.showImageModal.bind(this),
+			showPreview: this.showPreview.bind(this),
+			hidePreview: this.hidePreview.bind(this),
 			onBackRequest: this.onBackRequest.bind(this),
 			onSelection: this.onSelection.bind(this),
 			changeImage: this.changeImage.bind(this),
@@ -29,10 +31,13 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			dynamicSize: {
 				width: width / props.gridSize,
 				height: width / props.gridSize,
-			}
+			},
+			previewIsOpen: false,
+			imagePreview: {} as IMediaItem
 		}
 		// this.getOrientation = this.getOrientation.bind(this);
 		this.backKeyHandler = this.backKeyHandler.bind(this)
+		this.unTouch = this.unTouch.bind(this);
 	}
 
 	static defaultProps = {
@@ -49,14 +54,20 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		const {
 			style
 		} = this.props;
-		const { isModalOpen } = this.state;
+		const { isModalOpen, previewIsOpen } = this.state;
 		return (
 			<Common.Provider value={{ ...this.state, ...this.props }}>
-				<View ref="rootView" style={[GalleryStyle.container, style]}>
+				<View
+					onTouchEnd={() => this.unTouch()}
+					// onTouchEndCapture={() => console.log("end capture")}
+					ref="rootView"
+					style={[GalleryStyle.container, style]}
+				>
 					<TopBarComponent />
 					{!isModalOpen && <AlbumComponent />}
 					{isModalOpen && <DetailComponent />}
 					<FooterComponent />
+					{previewIsOpen && <PreviewModalComponent />}
 				</View>
 			</Common.Provider>
 		)
@@ -89,40 +100,6 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		}
 	}
 
-	// public componentWillMount(): void {
-	// 	this.getOrientation();
-	// }
-
-	// public componentDidMount(): void {
-	// 	Dimensions.addEventListener("change", this.getOrientation);
-	// }
-
-	// public componentWillUnmount(): void {
-	// 	Dimensions.removeEventListener("change", this.getOrientation);
-	// }
-
-	// private getOrientation(): void {
-	// 	if (this.refs.rootView) {
-	// 		const { gridSize } = this.props;
-	// 		if (Dimensions.get('window').width < Dimensions.get('window').height) {
-	// 			this.setState({
-	// 				dynamicSize: {
-	// 					width: width / gridSize,
-	// 					height: width / gridSize,
-	// 				}
-	// 			});
-	// 		}
-	// 		else {
-	// 			this.setState({
-	// 				dynamicSize: {
-	// 					width: height / gridSize,
-	// 					height: height / gridSize,
-	// 				}
-	// 			});
-	// 		}
-	// 	}
-	// }
-
 	public componentDidMount(): void {
 		BackHandler.addEventListener("hardwareBackPress", this.backKeyHandler);
 	}
@@ -145,6 +122,26 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 
 		if (isModalOpen) {
 			this.clearModal();
+		}
+	}
+
+	public showPreview(item: IMediaItem, index: number): void {
+		this.setState({
+			imagePreview: item,
+			previewIsOpen: true
+		});
+	}
+
+	public hidePreview(): void {
+		this.setState({
+			previewIsOpen: false,
+			imagePreview: {} as IMediaItem
+		});
+	}
+
+	public unTouch(): void {
+		if (this.state.previewIsOpen) {
+			this.hidePreview();
 		}
 	}
 

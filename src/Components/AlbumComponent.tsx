@@ -44,7 +44,9 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 			dynamicSize,
 			customThumbnailImage,
 			thumbImageResizeMode,
-			thumbImageResizeMethod
+			thumbImageResizeMethod,
+			showPreview,
+			hidePreview
 		} = this.context;
 		if (displaySelectionButtons && stickyFooter) {
 			return (
@@ -70,10 +72,12 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 		return (
 			<TouchableOpacity
 				onPress={() => showImageModal(item, index)} key={"showImageModal"}
+				onLongPress={() => showPreview(item, index)}
+				// onPressOut={() => hidePreview()}
+				delayLongPress={200}
 				style={
 					{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
-				}
-			>
+				}>
 				{renderCustomState(item, index)}
 				{
 					customThumbnailImage ? customThumbnailImage(item, index) : (

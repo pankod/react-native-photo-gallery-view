@@ -13,7 +13,7 @@ export class AlbumComponent extends PureComponent {
             React.createElement(FlatList, { style: AlbumStyle.container, data: context.mediaList, numColumns: context.gridSize, renderItem: ({ item, index }) => this.renderItem(item, index), keyExtractor: (item, index) => index.toString(), extraData: [context.selected, context.dynamicSize] })))));
     }
     renderItem(item, index) {
-        const { onSelection, displaySelectionButtons, showImageModal, stickyFooter, renderCustomState, dynamicSize, customThumbnailImage, thumbImageResizeMode, thumbImageResizeMethod } = this.context;
+        const { onSelection, displaySelectionButtons, showImageModal, stickyFooter, renderCustomState, dynamicSize, customThumbnailImage, thumbImageResizeMode, thumbImageResizeMethod, showPreview, hidePreview } = this.context;
         if (displaySelectionButtons && stickyFooter) {
             return (React.createElement(TouchableOpacity, { onPress: () => onSelection(item, index), key: "onSelection", style: [
                     this.checkedCtrl(item) && AlbumStyle.checkedBorder,
@@ -22,7 +22,7 @@ export class AlbumComponent extends PureComponent {
                 this.isChecked(item),
                 customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
         }
-        return (React.createElement(TouchableOpacity, { onPress: () => showImageModal(item, index), key: "showImageModal", style: { width: dynamicSize.width, height: dynamicSize.height, padding: 3 } },
+        return (React.createElement(TouchableOpacity, { onPress: () => showImageModal(item, index), key: "showImageModal", onLongPress: () => showPreview(item, index), delayLongPress: 200, style: { width: dynamicSize.width, height: dynamicSize.height, padding: 3 } },
             renderCustomState(item, index),
             customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
     }

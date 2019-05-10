@@ -4,4 +4,5 @@ export { FooterComponent } from './FooterComponent';
 export { AlbumComponent } from './AlbumComponent';
 export { BlurImage } from './BlurImage';
 export { DetailComponent } from './DetailComponent';
+export { PreviewModalComponent } from './PreviewModalComponent';
 //# sourceMappingURL=index.js.map

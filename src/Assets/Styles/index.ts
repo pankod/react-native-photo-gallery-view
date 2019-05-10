@@ -3,3 +3,4 @@ export { GalleryStyle } from "@Styles/GalleryStyle";
 export { AlbumStyle } from "@Styles/AlbumStyle";
 export { FooterStyle } from "@Styles/FooterStyle";
 export { BlurImageStyle } from "@Styles/BlurImageStyle";
+export { PreviewModalStyle } from "@Styles/PreviewModalStyle";

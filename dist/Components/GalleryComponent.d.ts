@@ -19,6 +19,9 @@ export declare class GalleryComponent extends Component<IGalleryProps, IGalleryS
     componentWillUnmount(): void;
     backKeyHandler(): boolean;
     onBackRequest(): void;
+    showPreview(item: IMediaItem, index: number): void;
+    hidePreview(): void;
+    unTouch(): void;
     clearModal(): void;
     onSelection(item: IMediaItem, index: number): void;
 }
