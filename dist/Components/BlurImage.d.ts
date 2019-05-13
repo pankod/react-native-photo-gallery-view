@@ -6,9 +6,9 @@ export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImage
     translateX: Animated.Value;
     translateY: Animated.Value;
     panResponder: any;
-    private locationY;
-    private locationX;
-    private direction;
+    locationY: number;
+    locationX: number;
+    direction: string;
     static contextType: React.Context<{
         mediaList: any[];
         gridSize: number;

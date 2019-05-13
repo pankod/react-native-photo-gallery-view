@@ -35,18 +35,19 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 
 				if (dx === 0 && vx === 0) {
 					return
-				} else if (dy > 0) {
-					console.log("down")
-					this.direction = "down";
-				} else if (dy < 0) {
-					console.log("top")
-					this.direction = "top";
 				}
+				// else if (dy > 0) {
+				// 	console.log("down")
+				// 	this.direction = "down";
+				// } else if (dy < 0) {
+				// 	console.log("top")
+				// 	this.direction = "top";
+				// }
 				else if (dx > 0) {
 					if (imageIndex !== 0) {
 						console.log("right")
 						this.direction = "right";
-						if (vx <= 0.8 || dx <= 0.8 * screenWidth) {
+						if (vx <= 0.9 || dx <= 0.9 * screenWidth) {
 							Animated.timing(this.translateX, {
 								toValue: dx > 0 ? screenWidth : -screenWidth,
 								duration: 250,
@@ -69,7 +70,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 					if (imageIndex >= 0 && imageIndex < mediaList.length - 1) {
 						console.log("left")
 						this.direction = "left";
-						if (vx >= 0.8 || dx >= 0.8 * -screenWidth) {
+						if (vx >= 0.9 || dx >= 0.9 * -screenWidth) {
 							Animated.timing(this.translateX, {
 								toValue: dx > 0 ? screenWidth : -screenWidth,
 								duration: 250,

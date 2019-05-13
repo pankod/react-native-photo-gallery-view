@@ -41,7 +41,7 @@ export class PreviewModal extends PureComponent {
 						<ImageBackground style={{
 							flex: 1,
 						}}
-							blurRadius={Platform.OS == 'ios' ? 10 : 5}
+							blurRadius={Platform.OS == 'ios' ? 20 : 15}
 							// source={{ uri: context.imagePreview.thumb }}
 							source={require("../Assets/Images/radius-bg.png")}
 							resizeMode={"cover"}

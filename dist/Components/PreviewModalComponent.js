@@ -26,7 +26,7 @@ export class PreviewModal extends PureComponent {
         return (React.createElement(Common.Consumer, null, (context) => (React.createElement(Modal, { animationType: "none", visible: context.previewIsOpen, transparent: true },
             React.createElement(ImageBackground, { style: {
                     flex: 1,
-                }, blurRadius: Platform.OS == 'ios' ? 10 : 5, source: require("../Assets/Images/radius-bg.png"), resizeMode: "cover" },
+                }, blurRadius: Platform.OS == 'ios' ? 20 : 15, source: require("../Assets/Images/radius-bg.png"), resizeMode: "cover" },
                 React.createElement(Animated.View, { style: [
                         PreviewModalStyle.container,
                         {
