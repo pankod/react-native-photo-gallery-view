@@ -9,7 +9,7 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, Text, Button, View, ActivityIndicator, ImageBackground } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, Button, View, ActivityIndicator, ImageBackground, Image } from 'react-native';
 import RNGallery from 'react-native-photo-gallery-view';
 import { Fragment } from 'react';
 
@@ -62,6 +62,7 @@ export default class App extends Component {
 								onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
 								displaySelectionButtons={false}
 								stickyFooter={true}
+								// customPreviewComponent={(media) => this.customPreviewComponent(media)}
 								// customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
 								// customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
 								// customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}
@@ -92,6 +93,14 @@ export default class App extends Component {
 				}
 			</Fragment>
 		);
+	}
+
+	customPreviewComponent(media) {
+		return (
+			<View style={{ flex: 1, backgroundColor: '#ddd', width: "100%", height: "100%" }}>
+				<Image style={{ flex: 1, width: "100%" }} resizeMode={"contain"} source={{ uri: media.photo }} />
+			</View>
+		)
 	}
 
 	renderCustomState(media) {

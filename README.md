@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
 | **customImageComponent**   | `Function` | Custom component for view media item  | `"(media, index) => <Image .../>"` |
 | **customThumbnailImage**   | `Function` | Custom component for thumbnail media item in main scene | `"(media, index) => <Image .../>"` |
 | **customSelectedTitle**   | `Function` | Custom component for main scene title when selected mode in top bar  | `"(totalSelected) => <Text>{totalSelected} selected photos...</Text>"` |
+| **customPreviewComponent**   | `Function` | Custom component for preview modal when long press a item  | `"(image) => <Image source={image.photo}/>"` |
 | **customDetailTitle**   | `Function` | Custom component for detail scene title in top bar  | `"(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>"` |
 | **onSelectionChanged** <br> **required* | `Function`  | Returns selected item object | `"{caption, id, photo, state, thumb}"` | 
 

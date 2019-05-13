@@ -18,6 +18,7 @@ export interface IGalleryProps {
 	onSelectionChanged: (media: IMediaItem, index: number) => any;
 	customThumbnailImage?: (media: IMediaItem, index: number) => JSX.Element;
 	customImageComponent?: (media: IMediaItem, index: number) => JSX.Element;
+	customPreviewComponent?: (media: IMediaItem) => JSX.Element;
 	title?: string;
 	detailTitle?: string;
 	gridSize: number;

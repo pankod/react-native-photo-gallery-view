@@ -6,7 +6,6 @@ import { Text, View, Modal, Image, Animated, ImageBackground, Platform } from 'r
 import Common from '@Provider';
 import { IGalleryProps, IGalleryState } from '@Interfaces';
 import { PreviewModalStyle } from '@Styles';
-import { BlurImage } from '@Components';
 
 export class PreviewModalComponent extends PureComponent {
 
@@ -64,13 +63,15 @@ export class PreviewModalComponent extends PureComponent {
 								]}>
 								<View style={PreviewModalStyle.imagePreview}>
 									{
-										(context.imagePreview && context.imagePreview.photo) && (
-											<BlurImage
-												style={{ flex: 1 }}
-												source={{ uri: context.imagePreview.photo }}
-												thumbnail={{ uri: context.imagePreview.thumb }}
-											/>
-										)
+										context.customPreviewComponent ?
+											context.customPreviewComponent(context.imagePreview) :
+											(
+												<Image
+													style={{ width: "100%", flex: 1 }}
+													source={{ uri: context.imagePreview.photo }}
+													resizeMode={"contain"}
+												/>
+											)
 									}
 								</View>
 							</Animated.View>

@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
-import { View, Modal, Animated, ImageBackground, Platform } from 'react-native';
+import { View, Modal, Image, Animated, ImageBackground, Platform } from 'react-native';
 import Common from '../Provider';
 import { PreviewModalStyle } from '../Assets/Styles';
-import { BlurImage } from './';
 export class PreviewModalComponent extends PureComponent {
     constructor() {
         super(...arguments);
@@ -42,7 +41,9 @@ export class PreviewModalComponent extends PureComponent {
                             opacity: this.opacity
                         }
                     ] },
-                    React.createElement(View, { style: PreviewModalStyle.imagePreview }, (context.imagePreview && context.imagePreview.photo) && (React.createElement(BlurImage, { style: { flex: 1 }, source: { uri: context.imagePreview.photo }, thumbnail: { uri: context.imagePreview.thumb } })))))))));
+                    React.createElement(View, { style: PreviewModalStyle.imagePreview }, context.customPreviewComponent ?
+                        context.customPreviewComponent(context.imagePreview) :
+                        (React.createElement(Image, { style: { width: "100%", flex: 1 }, source: { uri: context.imagePreview.photo }, resizeMode: "contain" })))))))));
     }
 }
 PreviewModalComponent.contextType = Common;
