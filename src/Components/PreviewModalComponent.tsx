@@ -13,15 +13,31 @@ export class PreviewModal extends PureComponent {
 
 	public scale = new Animated.Value(0);
 	public opacity = new Animated.Value(0);
+	public thumbOpacity = new Animated.Value(1);
+	public containOpacity = new Animated.Value(0);
 
-	public componentDidMount(): void {
+	public componentWillMount(): void {
 		Animated.parallel([
 			Animated.spring(this.scale, {
 				toValue: 1,
-				bounciness: 10,
+				bounciness: 8,
 				useNativeDriver: true
 			}),
 			Animated.timing(this.opacity, {
+				toValue: 1,
+				duration: 250,
+				useNativeDriver: true
+			})
+		]).start();
+	}
+	public hideThumb(): void {
+		Animated.parallel([
+			Animated.timing(this.thumbOpacity, {
+				toValue: 0,
+				duration: 250,
+				useNativeDriver: true
+			}),
+			Animated.timing(this.containOpacity, {
 				toValue: 1,
 				duration: 500,
 				useNativeDriver: true
@@ -66,11 +82,30 @@ export class PreviewModal extends PureComponent {
 										context.customPreviewComponent ?
 											context.customPreviewComponent(context.imagePreview) :
 											(
-												<Image
-													style={{ width: "100%", flex: 1 }}
-													source={{ uri: context.imagePreview.photo }}
-													resizeMode={"contain"}
-												/>
+												<React.Fragment>
+													<Animated.Image
+														style={[
+															PreviewModalStyle.thumbPreview,
+															{
+																opacity: this.thumbOpacity
+															}
+														]}
+														source={{ uri: context.imagePreview.thumb }}
+														resizeMode={"contain"}
+														blurRadius={Platform.OS == 'ios' ? 10 : 5}
+													/>
+													<Animated.Image
+														style={[
+															PreviewModalStyle.containPreview,
+															{
+																opacity: this.containOpacity
+															}
+														]}
+														onLoadEnd={() => this.hideThumb()}
+														source={{ uri: context.imagePreview.photo }}
+														resizeMode={"contain"}
+													/>
+												</React.Fragment>
 											)
 									}
 								</View>

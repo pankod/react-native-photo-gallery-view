@@ -22,7 +22,7 @@ export class AlbumComponent extends PureComponent {
                 this.isChecked(item),
                 customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
         }
-        return (React.createElement(TouchableOpacity, { onPress: () => showImageModal(item, index), key: "showImageModal", onLongPress: () => showPreview(item, index), delayLongPress: 200, style: { width: dynamicSize.width, height: dynamicSize.height, padding: 3 } },
+        return (React.createElement(TouchableOpacity, { onPress: () => showImageModal(item, index), key: "showImageModal", onLongPress: () => showPreview(item, index), style: { width: dynamicSize.width, height: dynamicSize.height, padding: 3 } },
             renderCustomState(item, index),
             customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
     }

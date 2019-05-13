@@ -21,7 +21,6 @@ export declare class GalleryComponent extends Component<IGalleryProps, IGalleryS
     onBackRequest(): void;
     showPreview(item: IMediaItem, index: number): void;
     hidePreview(): void;
-    unTouch(): void;
     clearModal(): void;
     onSelection(item: IMediaItem, index: number): void;
 }

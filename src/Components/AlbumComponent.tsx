@@ -74,7 +74,6 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 				onPress={() => showImageModal(item, index)} key={"showImageModal"}
 				onLongPress={() => showPreview(item, index)}
 				// onPressOut={() => hidePreview()}
-				delayLongPress={200}
 				style={
 					{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
 				}>

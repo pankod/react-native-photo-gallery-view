@@ -22,7 +22,21 @@ export const PreviewModalStyle = StyleSheet.create({
         width: width - outer * 2,
         height: width - outer * 2,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        position: "relative"
+    },
+    thumbPreview: {
+        width: "100%",
+        flex: 1,
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+    },
+    containPreview: {
+        width: "100%",
+        flex: 1
     }
 });
 //# sourceMappingURL=PreviewModalStyle.js.map

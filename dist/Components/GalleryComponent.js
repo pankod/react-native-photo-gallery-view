@@ -29,13 +29,12 @@ export class GalleryComponent extends Component {
             imagePreview: {}
         };
         this.backKeyHandler = this.backKeyHandler.bind(this);
-        this.unTouch = this.unTouch.bind(this);
     }
     render() {
         const { style } = this.props;
         const { isModalOpen, previewIsOpen } = this.state;
         return (React.createElement(Common.Provider, { value: Object.assign({}, this.state, this.props) },
-            React.createElement(View, { onTouchEnd: () => this.unTouch(), ref: "rootView", style: [GalleryStyle.container, style] },
+            React.createElement(View, { onMoveShouldSetResponderCapture: () => previewIsOpen, onTouchEndCapture: () => previewIsOpen && this.hidePreview(), ref: "rootView", style: [GalleryStyle.container, style] },
                 React.createElement(TopBarComponent, null),
                 !isModalOpen && React.createElement(AlbumComponent, null),
                 isModalOpen && React.createElement(DetailComponent, null),
@@ -97,11 +96,6 @@ export class GalleryComponent extends Component {
             previewIsOpen: false,
             imagePreview: {}
         });
-    }
-    unTouch() {
-        if (this.state.previewIsOpen) {
-            this.hidePreview();
-        }
     }
     clearModal() {
         this.setState({

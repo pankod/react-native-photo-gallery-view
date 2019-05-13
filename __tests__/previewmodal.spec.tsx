@@ -35,5 +35,12 @@ describe("PreviewModal Component", () => {
 		expect(render).toMatchSnapshot();
 	});
 
+	test('should hidethumb method', () => {
+		const spy = spyOn(PreviewModal.prototype, "hideThumb").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		instance.hideThumb();
+		expect(spy).toHaveBeenCalled();
+	});
 
 });

@@ -25,7 +25,6 @@ describe("Gallery Component", () => {
 		customCheckedView: jest.fn(),
 		customSelectedTitle: jest.fn(),
 		hidePreview: jest.fn(),
-		unTouch: jest.fn(),
 		gridSize: 3,
 		stickyFooter: true,
 		displaySelectionButtons: true,
@@ -101,20 +100,6 @@ describe("Gallery Component", () => {
 
 		instance.hidePreview();
 		expect(wrapper.state("previewIsOpen")).not.toBeTruthy();
-		expect(spy).toHaveBeenCalled();
-	});
-
-	test('should fired untouch event', () => {
-		const spy = spyOn(GalleryComponent.prototype, "hidePreview").and.callThrough();
-		const instance = mounting.instance() as any;
-
-		wrapper.setState({
-			previewIsOpen: true
-		});
-
-		instance.unTouch();
-		instance.hidePreview();
-		expect(wrapper.state("previewIsOpen")).toBeTruthy();
 		expect(spy).toHaveBeenCalled();
 	});
 

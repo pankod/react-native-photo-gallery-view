@@ -37,7 +37,6 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		}
 		// this.getOrientation = this.getOrientation.bind(this);
 		this.backKeyHandler = this.backKeyHandler.bind(this)
-		this.unTouch = this.unTouch.bind(this);
 	}
 
 	static defaultProps = {
@@ -58,8 +57,8 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		return (
 			<Common.Provider value={{ ...this.state, ...this.props }}>
 				<View
-					onTouchEnd={() => this.unTouch()}
-					// onTouchEndCapture={() => console.log("end capture")}
+					onMoveShouldSetResponderCapture={() => previewIsOpen}
+					onTouchEndCapture={() => previewIsOpen && this.hidePreview()}
 					ref="rootView"
 					style={[GalleryStyle.container, style]}
 				>
@@ -137,12 +136,6 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			previewIsOpen: false,
 			imagePreview: {} as IMediaItem
 		});
-	}
-
-	public unTouch(): void {
-		if (this.state.previewIsOpen) {
-			this.hidePreview();
-		}
 	}
 
 	public clearModal(): void {
