@@ -37,7 +37,9 @@ describe("BlurImage Component", () => {
 		source: {},
 		customImage: jest.fn()
 	}
-	const state = {}
+	const state = {
+		changeImage: jest.fn(() => true)
+	}
 	let component = (
 		<Common.Provider value={{ mediaList: [], gridSize: 3, ...props, ...state }}>
 			<BlurImage {...props} />

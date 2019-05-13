@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreviewModal Component should PreviewModal Component is render correctly 1`] = `
+<react-native-mock>
+  <react-native-mock>
+    <react-native-mock>
+      <react-native-mock />
+    </react-native-mock>
+  </react-native-mock>
+</react-native-mock>
+`;

@@ -13,9 +13,9 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 	public translateX = new Animated.Value(0);
 	public translateY = new Animated.Value(0);
 	public panResponder;
-	private locationY: number = 0;
-	private locationX: number = 0;
-	private direction: string = "left";
+	public locationY: number = 0;
+	public locationX: number = 0;
+	public direction: string = "left";
 
 	static contextType = Common;
 

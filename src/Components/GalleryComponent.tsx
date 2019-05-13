@@ -3,7 +3,7 @@ import React, { Component } from "react"
 import { View, Dimensions, BackHandler, AppState } from "react-native"
 
 // Local Imports
-import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent, PreviewModalComponent } from "@Components";
+import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent, PreviewModal } from "@Components";
 import { IGalleryProps, IGalleryState, IMediaItem } from "@Interfaces";
 import { GalleryStyle } from "@Styles";
 import Common from '@Provider';
@@ -67,7 +67,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 					{!isModalOpen && <AlbumComponent />}
 					{isModalOpen && <DetailComponent />}
 					<FooterComponent />
-					{previewIsOpen && <PreviewModalComponent />}
+					{previewIsOpen && <PreviewModal />}
 				</View>
 			</Common.Provider>
 		)

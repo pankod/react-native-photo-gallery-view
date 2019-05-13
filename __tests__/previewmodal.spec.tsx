@@ -1,0 +1,39 @@
+
+import * as React from 'react';
+
+import renderer from "react-test-renderer";
+import { ShallowWrapper, shallow, mount } from "enzyme";
+
+import { PreviewModal } from "../src/Components/PreviewModalComponent";
+import Common from "../src/Provider";
+
+describe("PreviewModal Component", () => {
+	let wrapper: ShallowWrapper;
+	let mounting;
+	const props = {
+		imagePreview: {
+			photo: {}
+		},
+		customPreviewComponent: jest.fn()
+	}
+	const state = {}
+	let component = (
+		<Common.Provider value={{ mediaList: [], gridSize: 3, ...props, ...state }}>
+			<PreviewModal {...props} />
+		</Common.Provider>
+	);
+
+	beforeEach(() => {
+		wrapper = shallow(component, { context: { ...state, ...props } })
+		mounting = mount(component, { context: { ...state, ...props } });
+	});
+
+	test('should PreviewModal Component is render correctly', () => {
+		const render = renderer.create(component).toJSON();
+
+		expect(render).toBeDefined();
+		expect(render).toMatchSnapshot();
+	});
+
+
+});

@@ -65,6 +65,7 @@ describe("Album Component", () => {
 		instance.renderItem(data[0], 0);
 
 		expect(instance.renderItem(data[0], 0).key).toBe("onSelection");
+		instance.renderItem(data[0], 0).props.onPress();
 		expect(spy).toHaveBeenCalled();
 	});
 
@@ -73,6 +74,7 @@ describe("Album Component", () => {
 		const instance = mounting.instance() as any;
 		instance.context.displaySelectionButtons = false;
 		instance.context.stickyFooter = false;
+		instance.context.showPreview = jest.fn(() => true);
 
 		wrapper.setProps({
 			renderCustomState: jest.fn(() => true)
@@ -81,6 +83,8 @@ describe("Album Component", () => {
 		instance.renderItem(data[0], 0);
 
 		expect(instance.renderItem(data[0], 0).key).toBe("showImageModal");
+		instance.renderItem(data[0], 0).props.onPress();
+		instance.renderItem(data[0], 0).props.onLongPress();
 		expect(spy).toHaveBeenCalled();
 	});
 

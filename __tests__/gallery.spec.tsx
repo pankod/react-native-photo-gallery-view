@@ -24,6 +24,8 @@ describe("Gallery Component", () => {
 		customTopBarBackButton: jest.fn(),
 		customCheckedView: jest.fn(),
 		customSelectedTitle: jest.fn(),
+		hidePreview: jest.fn(),
+		unTouch: jest.fn(),
 		gridSize: 3,
 		stickyFooter: true,
 		displaySelectionButtons: true,
@@ -69,7 +71,50 @@ describe("Gallery Component", () => {
 		setTimeout(() => {
 			expect(wrapper.state('isModalOpen')).toEqual(false);
 			expect(wrapper.state('showingImage')).toEqual(null);
+			console.log(instance.clearModal())
 		}, 0);
+		expect(spy).toHaveBeenCalled();
+	});
+
+	test('should fired showPreview method', () => {
+		const spy = spyOn(GalleryComponent.prototype, "showPreview").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		wrapper.setState({
+			imagePreview: data[0],
+			previewIsOpen: true
+		});
+
+		instance.showPreview(data[0], 0);
+
+		expect(wrapper.state("previewIsOpen")).toBeTruthy();
+		expect(spy).toHaveBeenCalled();
+	});
+
+	test('should fired hidePreview method', () => {
+		const spy = spyOn(GalleryComponent.prototype, "hidePreview").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		wrapper.setState({
+			previewIsOpen: false
+		});
+
+		instance.hidePreview();
+		expect(wrapper.state("previewIsOpen")).not.toBeTruthy();
+		expect(spy).toHaveBeenCalled();
+	});
+
+	test('should fired untouch event', () => {
+		const spy = spyOn(GalleryComponent.prototype, "hidePreview").and.callThrough();
+		const instance = mounting.instance() as any;
+
+		wrapper.setState({
+			previewIsOpen: true
+		});
+
+		instance.unTouch();
+		instance.hidePreview();
+		expect(wrapper.state("previewIsOpen")).toBeTruthy();
 		expect(spy).toHaveBeenCalled();
 	});
 
@@ -113,10 +158,34 @@ describe("Gallery Component", () => {
 		}, 0);
 	});
 
+	test('should fired splice item in selected list', () => {
+		const spy = spyOn(GalleryComponent.prototype, 'onSelection').and.callThrough();
+		const instance = mounting.instance() as any;
+
+		wrapper.setState({
+			selected: [data[0]]
+		});
+
+		instance.onSelection(data[0], 0);
+		expect(spy).toHaveBeenCalled();
+
+		setTimeout(() => {
+			console.log(wrapper.state('selected'))
+			expect(wrapper.state('selected')).toHaveLength(0);
+		}, 0);
+	});
+
 	test('should children components are render correctly', () => {
 		expect(wrapper.find('TopBarComponent')).toHaveLength(1);
 		expect(wrapper.find('AlbumComponent')).toHaveLength(1);
 		expect(wrapper.find('FooterComponent')).toHaveLength(1);
+
+		wrapper.setState({
+			isModalOpen: true,
+			previewIsOpen: true
+		});
+		expect(wrapper.find('PreviewModal')).toHaveLength(1);
+		expect(wrapper.find('DetailComponent')).toHaveLength(1);
 	});
 
 	test('should fired onBackRequest', () => {

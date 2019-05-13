@@ -7,7 +7,7 @@ import Common from '@Provider';
 import { IGalleryProps, IGalleryState } from '@Interfaces';
 import { PreviewModalStyle } from '@Styles';
 
-export class PreviewModalComponent extends PureComponent {
+export class PreviewModal extends PureComponent {
 
 	static contextType = Common;
 

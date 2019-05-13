@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Dimensions, BackHandler } from "react-native";
-import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent, PreviewModalComponent } from "./";
+import { TopBarComponent, AlbumComponent, FooterComponent, DetailComponent, PreviewModal } from "./";
 import { GalleryStyle } from "../Assets/Styles";
 import Common from '../Provider';
 const { width, height } = Dimensions.get('window');
@@ -40,7 +40,7 @@ export class GalleryComponent extends Component {
                 !isModalOpen && React.createElement(AlbumComponent, null),
                 isModalOpen && React.createElement(DetailComponent, null),
                 React.createElement(FooterComponent, null),
-                previewIsOpen && React.createElement(PreviewModalComponent, null))));
+                previewIsOpen && React.createElement(PreviewModal, null))));
     }
     showImageModal(media, index) {
         const { mediaList } = this.props;

@@ -73,6 +73,8 @@ describe("Topbar Component", () => {
 		instance.context.onBackRequest = jest.fn(() => true);
 		expect(instance.backButtonRender().type.displayName).toEqual("TouchableWithoutFeedback");
 
+		instance.backButtonRender().props.onPress();
+
 		expect(spy).toHaveBeenCalled();
 	})
 

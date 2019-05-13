@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Modal, Image, Animated, ImageBackground, Platform } from 'react-native';
 import Common from '../Provider';
 import { PreviewModalStyle } from '../Assets/Styles';
-export class PreviewModalComponent extends PureComponent {
+export class PreviewModal extends PureComponent {
     constructor() {
         super(...arguments);
         this.scale = new Animated.Value(0);
@@ -46,5 +46,5 @@ export class PreviewModalComponent extends PureComponent {
                         (React.createElement(Image, { style: { width: "100%", flex: 1 }, source: { uri: context.imagePreview.photo }, resizeMode: "contain" })))))))));
     }
 }
-PreviewModalComponent.contextType = Common;
+PreviewModal.contextType = Common;
 //# sourceMappingURL=PreviewModalComponent.js.map
