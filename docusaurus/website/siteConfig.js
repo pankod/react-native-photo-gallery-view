@@ -20,8 +20,7 @@ const users = [
 	},
 ];
 
-const organizationName = "Pankod Inc.";
-const projectName = "React Native Project";
+const organizationName = "pankod";
 const packageName = "react-native-photo-gallery-view";
 const url = [
 	{
@@ -41,8 +40,8 @@ const url = [
 const siteConfig = {
 	title: 'Pankod', // Title for your website.
 	tagline: 'Open Source Documentation',
-	url: 'https://www.pankod.com', // Your website URL
-	baseUrl: '/', // Base URL for your project */
+	url: 'https://pankod.github.io/', // Your website URL
+	baseUrl: '/' + packageName + '/', // Base URL for your project */
 	// For github.io type URLs, you would set the url and baseUrl like:
 	//   url: 'https://facebook.github.io',
 	//   baseUrl: '/test-site/',
@@ -51,7 +50,7 @@ const siteConfig = {
 	packageName: packageName,
 
 	// Used for publishing and more
-	projectName: projectName,
+	projectName: packageName,
 	organizationName: organizationName,
 	// For top-level user or org sites, the organization is still the same.
 	// e.g., for the https://JoelMarcey.github.io site, it would be set like...
