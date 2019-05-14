@@ -9,7 +9,7 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, Text, Button, View, ActivityIndicator, ImageBackground, Image } from 'react-native';
+import { Animated, StyleSheet, SafeAreaView, Text, Button, View, ActivityIndicator, ImageBackground, Image } from 'react-native';
 import RNGallery from 'react-native-photo-gallery-view';
 import { Fragment } from 'react';
 
@@ -56,7 +56,10 @@ export default class App extends Component {
 								customTopBarStyle={{
 									height: 50
 								}}
-								gridSize={3}
+								customFooterStyle={{
+									height: 50
+								}}
+								gridSize={1}
 								renderStickyFooter={(height) => this.renderStickyFooter(height)}
 								renderDetailButtons={(media, action) => this.renderDetailButtons(media, action)}
 								onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
@@ -73,7 +76,7 @@ export default class App extends Component {
 								// 	</View>
 								// )}
 								// customImageComponent={(media, index) =>
-								// 	<Image
+								// 	media && <Animated.Image
 								// 		source={{ uri: media.photo }}
 								// 		resizeMode={"contain"}
 								// 		style={{ flex: 1, margin: 5, borderRadius: 20 }}
@@ -82,7 +85,7 @@ export default class App extends Component {
 								// customThumbnailImage={(media, index) =>
 								// 	<Image
 								// 		source={{ uri: media.thumb }}
-								// 		style={{ flex: 1, borderRadius: 10 }}
+								// 		style={{ flex: 1, borderRadius: 50 }}
 								// 	/>
 								// }
 								renderCustomState={(media, index) => this.renderCustomState(media)}
@@ -138,7 +141,7 @@ export default class App extends Component {
 
 	renderStickyFooter(height) {
 		return (
-			<Button title={"Upload"} onPress={() => console.log("render stick footer 1. element", height)} />
+			<Button title={"Upload"} onPress={() => console.log("render sticky footer 1. element", height)} />
 		)
 	}
 
