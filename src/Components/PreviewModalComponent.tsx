@@ -34,7 +34,7 @@ export class PreviewModal extends PureComponent {
 		Animated.parallel([
 			Animated.timing(this.thumbOpacity, {
 				toValue: 0,
-				duration: 250,
+				duration: 100,
 				useNativeDriver: true
 			}),
 			Animated.timing(this.containOpacity, {

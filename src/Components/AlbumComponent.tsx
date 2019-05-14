@@ -77,7 +77,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 				style={
 					{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
 				}>
-				{renderCustomState(item, index)}
+				{renderCustomState && renderCustomState(item, index)}
 				{
 					customThumbnailImage ? customThumbnailImage(item, index) : (
 						<BlurImage resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
