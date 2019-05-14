@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { View, Image, TouchableOpacity, FlatList, Animated } from 'react-native';
-import { BlurImage } from './';
 import { AlbumStyle } from "../Assets/Styles";
 import Common from '../Provider';
 export class AlbumComponent extends PureComponent {
@@ -20,11 +19,11 @@ export class AlbumComponent extends PureComponent {
                     { position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
                 ] },
                 this.isChecked(item),
-                customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
+                customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(Image, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
         }
         return (React.createElement(TouchableOpacity, { onPress: () => showImageModal(item, index), key: "showImageModal", onLongPress: () => showPreview(item, index), style: { width: dynamicSize.width, height: dynamicSize.height, padding: 3 } },
             renderCustomState && renderCustomState(item, index),
-            customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(BlurImage, { resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
+            customThumbnailImage ? customThumbnailImage(item, index) : (React.createElement(Image, { style: { flex: 1 }, resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumb } }))));
     }
     checkedCtrl(item) {
         const { selected } = this.context;

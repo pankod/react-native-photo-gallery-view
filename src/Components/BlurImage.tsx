@@ -145,7 +145,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 	}
 
 	public customImage(): JSX.Element {
-		return this.context.customImageComponent(this.context.showingImage, this.context.imageIndex)
+		return this.context.customImageComponent(this.context.showingImage, this.context.imageIndex);
 	}
 
 	public render(): JSX.Element {
@@ -155,29 +155,30 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 				{(context: IGalleryProps & IGalleryState) => (
 					<React.Fragment>
 						{this.state.loading && <ActivityIndicator style={BlurImageStyle.center} />}
-						<Animated.View
-							style={[
-								BlurImageStyle.container,
-								{
-									transform: [{ translateX: this.translateX }]
-								}
-							]}
-							{...this.panResponder.panHandlers}
-						>
-							{
-								context.customImageComponent ? this.customImage() : (
-									<Animated.Image
-										{...this.props}
-										style={[BlurImageStyle.container, {
-											opacity: this.imageAnimated,
-										}]}
-										onLoadEnd={this.onImageLoadEnd.bind(this)}
-										onLoadStart={this.onImageLoadStart.bind(this)}
-									/>
+						{
+							context.customImageComponent ?
+								this.customImage() :
+								(
+									<Animated.View
+										style={[
+											BlurImageStyle.container,
+											{
+												transform: [{ translateX: this.translateX }]
+											}
+										]}
+										{...this.panResponder.panHandlers}
+									>
+										<Animated.Image
+											{...this.props}
+											style={[BlurImageStyle.container, {
+												opacity: this.imageAnimated,
+											}]}
+											onLoadEnd={this.onImageLoadEnd.bind(this)}
+											onLoadStart={this.onImageLoadStart.bind(this)}
+										/>
+									</Animated.View>
 								)
-							}
-
-						</Animated.View>
+						}
 					</React.Fragment>
 				)}
 			</Common.Consumer>

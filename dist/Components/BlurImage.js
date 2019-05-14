@@ -131,14 +131,17 @@ export class BlurImage extends PureComponent {
     render() {
         return (React.createElement(Common.Consumer, null, (context) => (React.createElement(React.Fragment, null,
             this.state.loading && React.createElement(ActivityIndicator, { style: BlurImageStyle.center }),
-            React.createElement(Animated.View, Object.assign({ style: [
-                    BlurImageStyle.container,
-                    {
-                        transform: [{ translateX: this.translateX }]
-                    }
-                ] }, this.panResponder.panHandlers), context.customImageComponent ? this.customImage() : (React.createElement(Animated.Image, Object.assign({}, this.props, { style: [BlurImageStyle.container, {
-                        opacity: this.imageAnimated,
-                    }], onLoadEnd: this.onImageLoadEnd.bind(this), onLoadStart: this.onImageLoadStart.bind(this) }))))))));
+            context.customImageComponent ?
+                this.customImage() :
+                (React.createElement(Animated.View, Object.assign({ style: [
+                        BlurImageStyle.container,
+                        {
+                            transform: [{ translateX: this.translateX }]
+                        }
+                    ] }, this.panResponder.panHandlers),
+                    React.createElement(Animated.Image, Object.assign({}, this.props, { style: [BlurImageStyle.container, {
+                                opacity: this.imageAnimated,
+                            }], onLoadEnd: this.onImageLoadEnd.bind(this), onLoadStart: this.onImageLoadStart.bind(this) }))))))));
     }
 }
 BlurImage.contextType = Common;

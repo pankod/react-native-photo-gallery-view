@@ -62,7 +62,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 					{this.isChecked(item)}
 					{
 						customThumbnailImage ? customThumbnailImage(item, index) : (
-							<BlurImage resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
+							<Image resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
 						)
 					}
 				</TouchableOpacity>
@@ -80,7 +80,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 				{renderCustomState && renderCustomState(item, index)}
 				{
 					customThumbnailImage ? customThumbnailImage(item, index) : (
-						<BlurImage resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
+						<Image style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
 					)
 				}
 			</TouchableOpacity >
