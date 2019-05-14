@@ -2,4 +2,4 @@ GIT_USER=kozmonotselcuk
 USE_SSH=true
 CURRENT_BRANCH=master
 
-# GIT_USER=pankod CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
+# GIT_USER=kozmonotselcuk CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
