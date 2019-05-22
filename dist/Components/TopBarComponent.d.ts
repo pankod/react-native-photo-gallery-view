@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import { ITopBarProps } from "../Interfaces";
 export declare class TopBarComponent extends Component<ITopBarProps, {}> {
     static contextType: React.Context<{
-        mediaList: any[];
+        items: any[];
         gridSize: number;
     }>;
     animatedY: Animated.Value;

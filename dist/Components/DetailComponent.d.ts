@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 export declare class DetailComponent extends PureComponent {
     static contextType: React.Context<{
-        mediaList: any[];
+        items: any[];
         gridSize: number;
     }>;
     render(): JSX.Element;

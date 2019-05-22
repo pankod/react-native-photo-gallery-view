@@ -15,7 +15,7 @@ describe("Gallery Component", () => {
 	let wrapper: ShallowWrapper;
 	let mounting;
 	const props = {
-		mediaList: [],
+		items: [],
 		onBack: jest.fn(),
 		renderStickyFooter: jest.fn(),
 		renderDetailButtons: jest.fn(),
@@ -108,7 +108,7 @@ describe("Gallery Component", () => {
 		const instance = mounting.instance() as any;
 
 		wrapper.setProps({
-			mediaList: []
+			items: []
 		});
 
 		wrapper.setState({
@@ -195,7 +195,7 @@ describe("Gallery Component", () => {
 		const instance = mounting.instance() as any;
 
 		wrapper.setProps({
-			mediaList: [data[0]]
+			items: [data[0]]
 		})
 
 		instance.changeImage(0);

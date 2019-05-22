@@ -9,7 +9,7 @@ export class AlbumComponent extends PureComponent {
     }
     render() {
         return (React.createElement(Common.Consumer, null, (context) => (React.createElement(View, { style: AlbumStyle.container },
-            React.createElement(FlatList, { style: AlbumStyle.container, data: context.mediaList, numColumns: context.gridSize, renderItem: ({ item, index }) => this.renderItem(item, index), keyExtractor: (item, index) => index.toString(), extraData: [context.selected, context.dynamicSize] })))));
+            React.createElement(FlatList, { style: AlbumStyle.container, data: context.items, numColumns: context.gridSize, renderItem: ({ item, index }) => this.renderItem(item, index), keyExtractor: (item, index) => index.toString(), extraData: [context.selected, context.dynamicSize] })))));
     }
     renderItem(item, index) {
         const { onSelection, displaySelectionButtons, showImageModal, stickyFooter, renderCustomState, dynamicSize, customThumbnailImage, thumbImageResizeMode, thumbImageResizeMethod, showPreview, hidePreview } = this.context;

@@ -38,7 +38,7 @@ describe("Album Component", () => {
 
 	let component = (
 		<Common.Provider value={{
-			mediaList: [], gridSize: 3, ...state, ...props
+			items: [], gridSize: 3, ...state, ...props
 		}}>
 			<AlbumComponent />
 		</Common.Provider>

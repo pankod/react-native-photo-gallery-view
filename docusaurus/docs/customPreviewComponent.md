@@ -11,7 +11,7 @@ Listeme ekranında görsele uzun (longpress) basıldığında instagram tarzı �
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	customPreviewComponent={(media) => this.customPreviewComponent(media)}

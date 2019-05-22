@@ -74,7 +74,7 @@ export default class example extends Component {
 	public render(): JSX.Element {
 		return (
 			<RNGallery
-				mediaList={list}
+				items={list}
 				onBack={this.onBack.bind(this)}
 				customTopBarStyle={{
 					height: 50
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
 
 | Properties | Type | Description | Default |
 |------------|-------------------------------------|-------------|----------------------------------------------------------------|		
-| **mediaList** <br> **required* | `array`  | Array of media items | `"[{caption, id, photo, state, thumb]"` | 
+| **items** <br> **required* | `array`  | Array of media items | `"[{caption, id, photo, state, thumb]"` | 
 | **displaySelectionButtons** | `boolean`  | Enable/Disable selection mode | `"false"` | 
 | **stickyFooter** | `boolean`  | Enable/Disable for renderStickyFooter custom component | `"true"` | 
 | **customTopBarStyle**   | `style` | Custom style for top bar |  | 

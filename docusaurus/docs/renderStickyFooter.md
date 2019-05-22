@@ -17,7 +17,7 @@ bu alanda verilen component, listeleme ekranında çoklu seçim aktifken footer 
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	renderStickyFooter={(height) => this.renderStickyFooter(height)}

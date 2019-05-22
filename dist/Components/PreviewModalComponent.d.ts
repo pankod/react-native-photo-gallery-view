@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Animated } from 'react-native';
 export declare class PreviewModal extends PureComponent {
     static contextType: React.Context<{
-        mediaList: any[];
+        items: any[];
         gridSize: number;
     }>;
     scale: Animated.Value;

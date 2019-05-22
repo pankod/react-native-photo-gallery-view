@@ -1,0 +1,16 @@
+config/
+db/
+dist/
+features/
+**/node_modules/
+script/
+**/spec/
+**/test/
+**/tests/
+Tests/
+**/vendor/
+**/*_test.go
+**/*.d.ts
+docusaurus/
+__tests__/
+ExampleApp/

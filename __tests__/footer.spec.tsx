@@ -18,14 +18,14 @@ describe("Footer Component", () => {
 	}
 	const state = {}
 	let component = (
-		<Common.Provider value={{ ...props, ...state, mediaList: [], gridSize: 3 }}>
+		<Common.Provider value={{ ...props, ...state, items: [], gridSize: 3 }}>
 			<FooterComponent />
 		</Common.Provider>
 	);
 
 	beforeEach(() => {
-		wrapper = shallow(component, { context: { ...props, ...state, mediaList: [], gridSize: 3 } });
-		mounting = mount(component, { context: { ...props, ...state, mediaList: [], gridSize: 3 } });
+		wrapper = shallow(component, { context: { ...props, ...state, items: [], gridSize: 3 } });
+		mounting = mount(component, { context: { ...props, ...state, items: [], gridSize: 3 } });
 	});
 
 	test('should Footer Component is render correctly', () => {

@@ -11,7 +11,7 @@ Listeme ekranında çoklu seçim aktifken seçilen nesnelerin bilgilerini ve ind
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}

@@ -11,7 +11,7 @@ Detay görüntüleme ekranında üst barda bulunan sağ alanda bulunan custom co
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}

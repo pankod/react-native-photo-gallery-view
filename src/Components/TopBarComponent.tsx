@@ -41,7 +41,7 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 	public titleRender(): JSX.Element {
 		const {
 			imageIndex,
-			mediaList,
+			items,
 			isModalOpen,
 			title,
 			detailTitle,
@@ -56,8 +56,8 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 		}
 
 		return isModalOpen ?
-			customDetailTitle ? customDetailTitle(mediaList.length, imageIndex + 1) : <Text>{detailTitle}</Text> :
-			customMainTitle ? customMainTitle(mediaList.length) : <Text>{title}</Text>
+			customDetailTitle ? customDetailTitle(items.length, imageIndex + 1) : <Text>{detailTitle}</Text> :
+			customMainTitle ? customMainTitle(items.length) : <Text>{title}</Text>
 	}
 
 	public backButtonRender(): JSX.Element {

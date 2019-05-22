@@ -13,7 +13,7 @@ sidebar_label: customSelectedTitle
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}

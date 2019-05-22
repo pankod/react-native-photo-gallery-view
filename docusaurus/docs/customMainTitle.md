@@ -11,7 +11,7 @@ Listeme ekranında bulunan üst barda sağ alana yazılacak custom component, to
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}

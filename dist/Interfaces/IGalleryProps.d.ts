@@ -3,7 +3,7 @@ import { ViewStyle, ImageResizeMode } from 'react-native';
 import { IMediaItem } from "./";
 import { ResizeMethod } from '../Enum';
 export interface IGalleryProps {
-    mediaList: IMediaItem[];
+    items: IMediaItem[];
     customTopBarStyle?: ViewStyle;
     customFooterStyle?: ViewStyle;
     onBack?: () => void;

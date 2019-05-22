@@ -17,7 +17,7 @@ Ana ekranda listenecek öğeler için kolon sayısı, varsayılan 3.
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={2}
 />

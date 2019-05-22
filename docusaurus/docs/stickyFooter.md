@@ -17,7 +17,7 @@ footer alanında gösterilen custom componentlerin gösterilmesini açıp kapat�
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	renderStickyFooter={(height) => this.renderStickyFooter(height)}

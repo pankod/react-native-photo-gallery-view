@@ -17,7 +17,7 @@ Ana ekran çoklu seçim aktifken, seçili görsellerde gösterilecek custom chec
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	customCheckedView={() => (

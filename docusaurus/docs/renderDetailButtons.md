@@ -18,7 +18,7 @@ geri dönüş parametreleri, görüntülenen içerik bilgisi ve back tuşu event
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	renderDetailButtons={(media, backFn) => this.renderDetailButtons(media, backFn)}

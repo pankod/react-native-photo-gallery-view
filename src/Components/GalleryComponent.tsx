@@ -15,7 +15,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	constructor(props: IGalleryProps) {
 		super(props);
 		this.state = {
-			title: `${props.mediaList.length} Photos`,
+			title: `${props.items.length} Photos`,
 			detailTitle: null,
 			showingImage: {} as IMediaItem,
 			isModalOpen: false,
@@ -73,21 +73,21 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	}
 
 	public showImageModal(media: IMediaItem, index: number): void {
-		const { mediaList } = this.props;
+		const { items } = this.props;
 		this.setState({
 			imageIndex: index,
-			detailTitle: `${index + 1} of ${mediaList.length}`,
+			detailTitle: `${index + 1} of ${items.length}`,
 			showingImage: media,
 			isModalOpen: true
 		});
 	}
 
 	public changeImage(index: number): void {
-		const { mediaList } = this.props;
+		const { items } = this.props;
 		this.setState({
 			imageIndex: index,
-			detailTitle: `${index + 1} of ${mediaList.length}`,
-			showingImage: mediaList[index],
+			detailTitle: `${index + 1} of ${items.length}`,
+			showingImage: items[index],
 		});
 	}
 

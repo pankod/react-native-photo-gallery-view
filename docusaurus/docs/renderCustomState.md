@@ -17,7 +17,7 @@ Ana ekranda listenen görsellerin üzerine gelecek custom overlay component, lis
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	renderCustomState={(media, index) => this.renderCustomState(media)}
 />

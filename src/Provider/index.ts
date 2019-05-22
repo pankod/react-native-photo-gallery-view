@@ -2,7 +2,7 @@
 import * as React from "react";
 
 const Common = React.createContext({
-	mediaList: [],
+	items: [],
 	gridSize: 3
 });
 

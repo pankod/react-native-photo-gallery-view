@@ -25,7 +25,7 @@ import RNGallery from 'react-native-photo-gallery-view';
 const list = [];
 
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={()=> console.warn('back key pressed...')}
 	gridSize={3}
 />

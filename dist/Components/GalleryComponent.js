@@ -8,7 +8,7 @@ export class GalleryComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: `${props.mediaList.length} Photos`,
+            title: `${props.items.length} Photos`,
             detailTitle: null,
             showingImage: {},
             isModalOpen: false,
@@ -42,20 +42,20 @@ export class GalleryComponent extends Component {
                 previewIsOpen && React.createElement(PreviewModal, null))));
     }
     showImageModal(media, index) {
-        const { mediaList } = this.props;
+        const { items } = this.props;
         this.setState({
             imageIndex: index,
-            detailTitle: `${index + 1} of ${mediaList.length}`,
+            detailTitle: `${index + 1} of ${items.length}`,
             showingImage: media,
             isModalOpen: true
         });
     }
     changeImage(index) {
-        const { mediaList } = this.props;
+        const { items } = this.props;
         this.setState({
             imageIndex: index,
-            detailTitle: `${index + 1} of ${mediaList.length}`,
-            showingImage: mediaList[index],
+            detailTitle: `${index + 1} of ${items.length}`,
+            showingImage: items[index],
         });
     }
     componentWillReceiveProps(nextProps) {

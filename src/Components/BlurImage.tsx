@@ -29,7 +29,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 			onMoveShouldSetPanResponderCapture: () => true,
 			onPanResponderMove: Animated.event([null, { dx: this.translateX }]),
 			onPanResponderRelease: (e, { vx, dx, vy, dy }) => {
-				let { imageIndex, mediaList } = this.context;
+				let { imageIndex, items } = this.context;
 				const screenWidth = Dimensions.get("window").width;
 				const screenHeight = Dimensions.get("window").height;
 
@@ -67,7 +67,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 						this.getDefault();
 					}
 				} else {
-					if (imageIndex >= 0 && imageIndex < mediaList.length - 1) {
+					if (imageIndex >= 0 && imageIndex < items.length - 1) {
 						console.log("left")
 						this.direction = "left";
 						if (vx >= 0.9 || dx >= 0.9 * -screenWidth) {

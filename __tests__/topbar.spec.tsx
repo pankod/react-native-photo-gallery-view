@@ -17,14 +17,14 @@ describe("Topbar Component", () => {
 		selected: [],
 	}
 	let component = (
-		<Common.Provider value={{ mediaList: [], gridSize: 3, ...props, ...state }}>
+		<Common.Provider value={{ items: [], gridSize: 3, ...props, ...state }}>
 			<TopBarComponent {...props} />
 		</Common.Provider>
 	);
 
 	beforeEach(() => {
-		wrapper = shallow(component, { context: { ...props, ...state, gridSize: 3, mediaList: [] } });
-		mounting = mount(component, { context: { ...props, ...state, gridSize: 3, mediaList: [] } });
+		wrapper = shallow(component, { context: { ...props, ...state, gridSize: 3, items: [] } });
+		mounting = mount(component, { context: { ...props, ...state, gridSize: 3, items: [] } });
 	});
 
 	test('should Topbar Component is render correctly', () => {

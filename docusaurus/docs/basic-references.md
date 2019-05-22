@@ -8,7 +8,7 @@ sidebar_label: Basic References
 const list = [];
 
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={() => console.log("back key pressed.")}
 	customTopBarStyle={{
 		height: 50,
@@ -24,7 +24,7 @@ const list = [];
 />
 ```
 
-## mediaList
+## items
 Listenecek içerikler array tipinde bu props ile verilecek
 
 ## onBack

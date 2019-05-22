@@ -7,7 +7,7 @@ import { IMediaItem } from "@Interfaces";
 import { ResizeMethod } from '@Enum';
 
 export interface IGalleryProps {
-	mediaList: IMediaItem[],
+	items: IMediaItem[],
 	customTopBarStyle?: ViewStyle,
 	customFooterStyle?: ViewStyle,
 	onBack?: () => void,

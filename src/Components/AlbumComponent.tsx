@@ -21,7 +21,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 						<View style={AlbumStyle.container}>
 							<FlatList
 								style={AlbumStyle.container}
-								data={context.mediaList}
+								data={context.items}
 								numColumns={context.gridSize}
 								renderItem={({ item, index }) => this.renderItem(item, index)}
 								keyExtractor={(item, index) => index.toString()}

@@ -51,7 +51,7 @@ export default class App extends Component {
 				) : (
 						<SafeAreaView style={{ flex: 1 }}>
 							<RNGallery
-								mediaList={list}
+								items={list}
 								onBack={this.onBack.bind(this)}
 								customTopBarStyle={{
 									height: 50
@@ -59,7 +59,7 @@ export default class App extends Component {
 								customFooterStyle={{
 									height: 50
 								}}
-								gridSize={1}
+								gridSize={3}
 								renderStickyFooter={(height) => this.renderStickyFooter(height)}
 								renderDetailButtons={(media, action) => this.renderDetailButtons(media, action)}
 								onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}

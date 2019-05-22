@@ -17,7 +17,7 @@ Detay ekranında gösterim için custom image component, gösterilen içeriğin 
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	customImageComponent={(media, index) =>

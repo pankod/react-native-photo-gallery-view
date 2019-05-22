@@ -17,7 +17,7 @@ Listeleme ekranında gösterim için custom image component, gösterilen içeri�
 
 ```
 <RNGallery
-	mediaList={list}
+	items={list}
 	onBack={this.onBack.bind(this)}
 	gridSize={3}
 	customThumbnailImage={(media, index) =>
