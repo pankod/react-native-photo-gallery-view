@@ -64,7 +64,7 @@ export default class App extends Component {
 								renderDetailFooter={(media, action) => this.renderDetailFooter(media, action)}
 								onSelectItem={(media, index) => this.onSelectItem(media, index)}
 								enableItemSelection={false}
-								renderPreview={(media) => this.renderPreview(media)}
+								// renderPreview={(media) => this.renderPreview(media)}
 								// renderBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
 								// renderGalleryTitleBar={(totalImages) => <Text>{totalImages} Photos</Text>}
 								// customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}

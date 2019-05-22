@@ -10,7 +10,8 @@
 			"src/Assets/Images",
 			"src/Enum",
 			"src/Constants",
-			"src/Provider"
+			"src/Provider",
+			"src/Helpers"
 		],
 		"importHelpers": true,
 		"paths": {
@@ -37,6 +38,12 @@
 			],
 			"@Enum/*": [
 				"src/Enum/*"
+			],
+			"@Helpers": [
+				"src/Helpers"
+			],
+			"@Helpers/*": [
+				"src/Helpers/*"
 			],
 			"@Constants": [
 				"src/Constants"

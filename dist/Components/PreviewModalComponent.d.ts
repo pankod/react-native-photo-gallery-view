@@ -11,5 +11,7 @@ export declare class PreviewModal extends PureComponent {
     containOpacity: Animated.Value;
     componentWillMount(): void;
     hideThumb(): void;
+    renderAnimatedView(): JSX.Element;
+    defaultView(): JSX.Element;
     render(): JSX.Element;
 }

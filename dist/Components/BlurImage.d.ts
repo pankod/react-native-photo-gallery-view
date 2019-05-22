@@ -22,4 +22,5 @@ export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImage
     onImageLoadStart(): void;
     customImage(): JSX.Element;
     render(): JSX.Element;
+    defaultRender(): JSX.Element;
 }

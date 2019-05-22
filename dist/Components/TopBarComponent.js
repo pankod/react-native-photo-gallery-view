@@ -3,6 +3,7 @@ import { Animated, View, TouchableWithoutFeedback, Image, Text } from 'react-nat
 import { TopBarStyle } from '../Assets/Styles';
 import Common from '../Provider';
 import { Const } from '../Constants';
+import { Animate } from '../Helpers';
 export class TopBarComponent extends Component {
     constructor() {
         super(...arguments);
@@ -11,15 +12,12 @@ export class TopBarComponent extends Component {
     render() {
         return (React.createElement(Common.Consumer, null, (context) => (React.createElement(View, { style: [TopBarStyle.container, context.topBarStyle] },
             this.backButtonRender(),
-            React.createElement(Animated.View, { style: {
-                    transform: [{ translateX: this.animatedY }]
-                } }, this.titleRender())))));
+            React.createElement(Animated.View, { style: { transform: [{ translateX: this.animatedY }] } }, this.titleRender())))));
     }
     componentDidMount() {
-        Animated.timing(this.animatedY, {
+        Animate.timing(this.animatedY, {
             toValue: 0,
-            duration: 500,
-            useNativeDriver: true
+            duration: 500
         }).start();
     }
     titleRender() {

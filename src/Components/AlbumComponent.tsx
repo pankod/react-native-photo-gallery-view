@@ -35,26 +35,12 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 	}
 
 	public renderItem(item: IMediaItem, index: number): JSX.Element {
-		const {
-			onSelection,
-			enableItemSelection,
-			showImageModal,
-			renderThumbnailOverlay,
-			dynamicSize,
-			renderThumbnailImage,
-			thumbImageResizeMode,
-			thumbImageResizeMethod,
-			showPreview
-		} = this.context;
+		const { onSelection, enableItemSelection, showImageModal, renderThumbnailOverlay, dynamicSize, renderThumbnailImage, thumbImageResizeMode, thumbImageResizeMethod, showPreview } = this.context;
 		if (enableItemSelection) {
 			return (
 				<TouchableOpacity
 					onPress={() => onSelection(item, index)} key={"onSelection"}
-					style={
-						[
-							this.checkedCtrl(item) && AlbumStyle.checkedBorder,
-							{ position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
-						]
+					style={[this.checkedCtrl(item) && AlbumStyle.checkedBorder, { position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }]
 					}>
 
 					{this.isChecked(item)}
@@ -71,10 +57,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 			<TouchableOpacity
 				onPress={() => showImageModal(item, index)} key={"showImageModal"}
 				onLongPress={() => showPreview(item, index)}
-				// onPressOut={() => hidePreview()}
-				style={
-					{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
-				}>
+				style={{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }}>
 				{renderThumbnailOverlay && renderThumbnailOverlay(item, index)}
 				{
 					renderThumbnailImage ? renderThumbnailImage(item, index) : (

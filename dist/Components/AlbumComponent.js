@@ -14,10 +14,7 @@ export class AlbumComponent extends PureComponent {
     renderItem(item, index) {
         const { onSelection, enableItemSelection, showImageModal, renderThumbnailOverlay, dynamicSize, renderThumbnailImage, thumbImageResizeMode, thumbImageResizeMethod, showPreview } = this.context;
         if (enableItemSelection) {
-            return (React.createElement(TouchableOpacity, { onPress: () => onSelection(item, index), key: "onSelection", style: [
-                    this.checkedCtrl(item) && AlbumStyle.checkedBorder,
-                    { position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
-                ] },
+            return (React.createElement(TouchableOpacity, { onPress: () => onSelection(item, index), key: "onSelection", style: [this.checkedCtrl(item) && AlbumStyle.checkedBorder, { position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }] },
                 this.isChecked(item),
                 renderThumbnailImage ? renderThumbnailImage(item, index) : (React.createElement(Image, { style: { flex: 1 }, resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumbnail } }))));
         }

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Animated, ActivityIndicator, PanResponder, Dimensions } from 'react-native';
 import { BlurImageStyle } from '../Assets/Styles';
 import Common from '../Provider';
+import { Animate } from '../Helpers';
 export class BlurImage extends PureComponent {
     constructor() {
         super(...arguments);
@@ -31,10 +32,9 @@ export class BlurImage extends PureComponent {
                         console.log("right");
                         this.direction = "right";
                         if (vx <= 0.9 || dx <= 0.9 * screenWidth) {
-                            Animated.timing(this.translateX, {
+                            Animate.timing(this.translateX, {
                                 toValue: dx > 0 ? screenWidth : -screenWidth,
-                                duration: 250,
-                                useNativeDriver: true
+                                duration: 250
                             }).start(() => {
                                 this.context.changeImage(--imageIndex);
                                 if (this.context.renderDetailImage) {
@@ -57,10 +57,9 @@ export class BlurImage extends PureComponent {
                         console.log("left");
                         this.direction = "left";
                         if (vx >= 0.9 || dx >= 0.9 * -screenWidth) {
-                            Animated.timing(this.translateX, {
+                            Animate.timing(this.translateX, {
                                 toValue: dx > 0 ? screenWidth : -screenWidth,
                                 duration: 250,
-                                useNativeDriver: true
                             }).start(() => {
                                 this.context.changeImage(++imageIndex);
                                 if (this.context.renderDetailImage) {
@@ -88,10 +87,9 @@ export class BlurImage extends PureComponent {
         });
     }
     getDefault() {
-        Animated.spring(this.translateX, {
+        Animate.spring(this.translateX, {
             toValue: 0,
             bounciness: 5,
-            useNativeDriver: true
         }).start();
     }
     onImageLoadEnd() {
@@ -104,26 +102,23 @@ export class BlurImage extends PureComponent {
             else {
                 this.translateX.setValue(-this.locationX);
             }
-            Animated.parallel([
-                Animated.timing(this.translateX, {
+            Animate.parallel([
+                Animate.timing(this.translateX, {
                     toValue: 0,
-                    duration: 100,
-                    useNativeDriver: true
+                    duration: 100
                 }),
-                Animated.timing(this.imageAnimated, {
+                Animate.timing(this.imageAnimated, {
                     toValue: 1,
-                    duration: 250,
-                    useNativeDriver: true
+                    duration: 250
                 })
             ]).start();
         });
     }
     onImageLoadStart() {
         this.setState({ loading: true }, () => {
-            Animated.timing(this.imageAnimated, {
+            Animate.timing(this.imageAnimated, {
                 toValue: 0,
                 duration: 250,
-                useNativeDriver: true
             }).start();
         });
     }
@@ -133,17 +128,18 @@ export class BlurImage extends PureComponent {
     render() {
         return (React.createElement(Common.Consumer, null, (context) => (React.createElement(React.Fragment, null,
             this.state.loading && React.createElement(ActivityIndicator, { style: BlurImageStyle.center }),
-            context.renderDetailImage ?
-                this.customImage() :
-                (React.createElement(Animated.View, Object.assign({ style: [
-                        BlurImageStyle.container,
-                        {
-                            transform: [{ translateX: this.translateX }]
-                        }
-                    ] }, this.panResponder.panHandlers),
-                    React.createElement(Animated.Image, Object.assign({}, this.props, { style: [BlurImageStyle.container, {
-                                opacity: this.imageAnimated,
-                            }], onLoadEnd: this.onImageLoadEnd.bind(this), onLoadStart: this.onImageLoadStart.bind(this) }))))))));
+            context.renderDetailImage ? this.customImage() : this.defaultRender()))));
+    }
+    defaultRender() {
+        return (React.createElement(Animated.View, Object.assign({ style: [
+                BlurImageStyle.container,
+                {
+                    transform: [{ translateX: this.translateX }]
+                }
+            ] }, this.panResponder.panHandlers),
+            React.createElement(Animated.Image, Object.assign({}, this.props, { style: [BlurImageStyle.container, {
+                        opacity: this.imageAnimated,
+                    }], onLoadEnd: this.onImageLoadEnd.bind(this), onLoadStart: this.onImageLoadStart.bind(this) }))));
     }
 }
 BlurImage.contextType = Common;
