@@ -10,7 +10,8 @@
 [![dev-dependencies Status](https://david-dm.org/pankod/react-native-photo-gallery-view/dev-status.svg)](https://david-dm.org/pankod/react-native-photo-gallery-view?type=dev)
 [![Build Status](https://travis-ci.com/pankod/react-native-photo-gallery-view.svg?branch=master)](https://travis-ci.com/pankod/react-native-photo-gallery-view)
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/pankod/react-native-photo-gallery-view/develop.svg?style=flat-square)](https://codecov.io/gh/pankod/react-native-photo-gallery-view/)
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/6c7bbc069e594e25d014/maintainability)](https://codeclimate.com/github/pankod/react-native-photo-gallery-view/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6c7bbc069e594e25d014/test_coverage)](https://codeclimate.com/github/pankod/react-native-photo-gallery-view/test_coverage)
 </div>
 <br/>
 
