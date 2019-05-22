@@ -19,8 +19,8 @@ export class DetailComponent extends PureComponent {
 							style={{ margin: 5 }}
 							resizeMethod={context.detailImageResizeMethod}
 							resizeMode={context.detailImageResizeMode}
-							source={{ uri: context.showingImage && context.showingImage.photo }}
-							thumbnail={{ uri: context.showingImage && context.showingImage.thumb }}
+							source={{ uri: context.showingImage && context.showingImage.original }}
+							thumbnail={{ uri: context.showingImage && context.showingImage.thumbnail }}
 						/>
 					)
 				}

@@ -9,7 +9,7 @@ export class TopBarComponent extends Component {
         this.animatedY = new Animated.Value(Const.ANIMATEDY);
     }
     render() {
-        return (React.createElement(Common.Consumer, null, (context) => (React.createElement(View, { style: [TopBarStyle.container, context.customTopBarStyle] },
+        return (React.createElement(Common.Consumer, null, (context) => (React.createElement(View, { style: [TopBarStyle.container, context.topBarStyle] },
             this.backButtonRender(),
             React.createElement(Animated.View, { style: {
                     transform: [{ translateX: this.animatedY }]
@@ -23,22 +23,22 @@ export class TopBarComponent extends Component {
         }).start();
     }
     titleRender() {
-        const { imageIndex, items, isModalOpen, title, detailTitle, customMainTitle, customDetailTitle, selected, customSelectedTitle } = this.context;
+        const { imageIndex, items, isModalOpen, title, detailTitle, renderGalleryTitleBar, renderDetailTitleBar, selected, customSelectedTitle } = this.context;
         if (selected && selected.length > 0) {
             return customSelectedTitle ? customSelectedTitle(selected.length) : React.createElement(Text, null,
                 selected.length,
                 " selected");
         }
         return isModalOpen ?
-            customDetailTitle ? customDetailTitle(items.length, imageIndex + 1) : React.createElement(Text, null, detailTitle) :
-            customMainTitle ? customMainTitle(items.length) : React.createElement(Text, null, title);
+            renderDetailTitleBar ? renderDetailTitleBar(items.length, imageIndex + 1) : React.createElement(Text, null, detailTitle) :
+            renderGalleryTitleBar ? renderGalleryTitleBar(items.length) : React.createElement(Text, null, title);
     }
     backButtonRender() {
-        const { customTopBarBackButton } = this.context;
-        if (customTopBarBackButton) {
-            return customTopBarBackButton(this.context.onBackRequest);
+        const { renderBackButton } = this.context;
+        if (renderBackButton) {
+            return renderBackButton(this.context.onCloseRequest);
         }
-        return (React.createElement(TouchableWithoutFeedback, { style: TopBarStyle.backBtnStyle, onPress: () => this.context.onBackRequest() },
+        return (React.createElement(TouchableWithoutFeedback, { style: TopBarStyle.backBtnStyle, onPress: () => this.context.onCloseRequest() },
             React.createElement(Image, { source: require('../Assets/Images/back.png'), style: TopBarStyle.backBtnImageStyle })));
     }
 }

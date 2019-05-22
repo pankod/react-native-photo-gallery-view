@@ -1,7 +1,7 @@
 ---
-id: customDetailTitle
-title: customDetailTitle
-sidebar_label: customDetailTitle
+id: renderDetailTitleBar
+title: renderDetailTitleBar
+sidebar_label: renderDetailTitleBar
 ---
 
 # Usage
@@ -12,9 +12,9 @@ Detay görüntüleme ekranında üst barda bulunan sağ alanda bulunan custom co
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
-	customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
+	onClose={this.onClose.bind(this)}
+	columns={3}
+	renderDetailTitleBar={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
 />
 
 ```

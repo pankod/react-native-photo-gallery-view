@@ -9,17 +9,17 @@ const list = [];
 
 <RNGallery
 	items={list}
-	onBack={() => console.log("back key pressed.")}
-	customTopBarStyle={{
+	onClose={() => console.log("back key pressed.")}
+	topBarStyle={{
 		height: 50,
 		backgroundColor: "#ddd"
 	}}
-	customFooterStyle={{
+	footerStyle={{
 		height: 50,
 		backgroundColor: "#ddd"
 	}}
-	gridSize={3}
-	displaySelectionButtons={false}
+	columns={3}
+	enableItemSelection={false}
 	stickyFooter={true}
 />
 ```
@@ -27,19 +27,19 @@ const list = [];
 ## items
 Listenecek içerikler array tipinde bu props ile verilecek
 
-## onBack
+## onClose
 Geri tuşuna basıldığında çalıştırılacka method buradan tetiklenir.
 
-## customTopBarStyle
+## topBarStyle
 Uygulamanın top bar stilini buradan değiştirebilirsiniz.
 
-## customFooterStyle
+## footerStyle
 Uygulamanın footer bar stilini buradan değiştirebilirsiniz.
 
-## gridSize
+## columns
 Grid kolon sayısını buradan belirtebilirsiniz, varsayılan 3
 
-## displaySelectionButtons
+## enableItemSelection
 Viewing modedan çıkar ve çoklu seçim ekranı çalışır.
 
 ## stickyFooter

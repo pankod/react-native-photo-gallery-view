@@ -1,7 +1,7 @@
 ---
-id: customThumbnailImage
-title: customThumbnailImage
-sidebar_label: customThumbnailImage
+id: renderThumbnailImage
+title: renderThumbnailImage
+sidebar_label: renderThumbnailImage
 ---
 
 # Usage
@@ -10,7 +10,7 @@ Listeleme ekranında gösterim için custom image component, gösterilen içeri�
 <br/>
 
 <div class="img-container">
-	<img src="../img/ios_customThumbnailImage.png" height="400"> <img src="../img/android_customThumbnailImage.png" height="400">
+	<img src="../img/ios_renderThumbnailImage.png" height="400"> <img src="../img/android_renderThumbnailImage.png" height="400">
 </div>
 
 <br/>
@@ -18,11 +18,11 @@ Listeleme ekranında gösterim için custom image component, gösterilen içeri�
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
-	customThumbnailImage={(media, index) =>
+	onClose={this.onClose.bind(this)}
+	columns={3}
+	renderThumbnailImage={(media, index) =>
 		media && <Image
-			source={{ uri: media.thumb }}
+			source={{ uri: media.thumbnail }}
 			style={{ flex: 1, borderRadius: 10 }}
 		/>
 	}

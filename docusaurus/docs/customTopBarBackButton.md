@@ -1,7 +1,7 @@
 ---
-id: customTopBarBackButton
-title: customTopBarBackButton
-sidebar_label: customTopBarBackButton
+id: renderBackButton
+title: renderBackButton
+sidebar_label: renderBackButton
 ---
 
 # Usage
@@ -12,9 +12,9 @@ sidebar_label: customTopBarBackButton
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
-	customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
+	onClose={this.onClose.bind(this)}
+	columns={3}
+	renderBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
 />
 
 ```

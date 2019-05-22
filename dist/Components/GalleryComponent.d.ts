@@ -3,9 +3,8 @@ import { IGalleryProps, IGalleryState, IMediaItem } from "../Interfaces";
 export declare class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
     constructor(props: IGalleryProps);
     static defaultProps: {
-        gridSize: number;
-        stickyFooter: boolean;
-        displaySelectionButtons: boolean;
+        columns: number;
+        enableItemSelection: boolean;
         detailImageResizeMode: string;
         detailImageResizeMethod: string;
         thumbImageResizeMode: string;
@@ -18,7 +17,7 @@ export declare class GalleryComponent extends Component<IGalleryProps, IGalleryS
     componentDidMount(): void;
     componentWillUnmount(): void;
     backKeyHandler(): boolean;
-    onBackRequest(): void;
+    onCloseRequest(): void;
     showPreview(item: IMediaItem, index: number): void;
     hidePreview(): void;
     clearModal(): void;

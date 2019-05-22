@@ -58,7 +58,7 @@ export class PreviewModal extends PureComponent {
 							flex: 1,
 						}}
 							blurRadius={Platform.OS == 'ios' ? 20 : 15}
-							// source={{ uri: context.imagePreview.thumb }}
+							// source={{ uri: context.imagePreview.thumbnail }}
 							source={require("../Assets/Images/radius-bg.png")}
 							resizeMode={"cover"}
 						>
@@ -79,8 +79,8 @@ export class PreviewModal extends PureComponent {
 								]}>
 								<View style={PreviewModalStyle.imagePreview}>
 									{
-										context.customPreviewComponent ?
-											context.customPreviewComponent(context.imagePreview) :
+										context.renderPreview ?
+											context.renderPreview(context.imagePreview) :
 											(
 												<React.Fragment>
 													<Animated.Image
@@ -90,7 +90,7 @@ export class PreviewModal extends PureComponent {
 																opacity: this.thumbOpacity
 															}
 														]}
-														source={{ uri: context.imagePreview.thumb }}
+														source={{ uri: context.imagePreview.thumbnail }}
 														resizeMode={"contain"}
 														blurRadius={Platform.OS == 'ios' ? 10 : 5}
 													/>
@@ -102,7 +102,7 @@ export class PreviewModal extends PureComponent {
 															}
 														]}
 														onLoadEnd={() => this.hideThumb()}
-														source={{ uri: context.imagePreview.photo }}
+														source={{ uri: context.imagePreview.original }}
 														resizeMode={"contain"}
 													/>
 												</React.Fragment>

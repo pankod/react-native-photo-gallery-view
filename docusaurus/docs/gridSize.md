@@ -1,7 +1,7 @@
 ---
-id: gridSize
-title: gridSize
-sidebar_label: gridSize
+id: columns
+title: columns
+sidebar_label: columns
 ---
 
 # Usage
@@ -10,7 +10,7 @@ Ana ekranda listenecek öğeler için kolon sayısı, varsayılan 3.
 <br/>
 
 <div class="img-container">
-	<img src="../img/ios_gridSize.png" height="400"> <img src="../img/android_gridSize.png" height="400">
+	<img src="../img/ios_columns.png" height="400"> <img src="../img/android_columns.png" height="400">
 </div>
 
 <br/>
@@ -18,8 +18,8 @@ Ana ekranda listenecek öğeler için kolon sayısı, varsayılan 3.
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={2}
+	onClose={this.onClose.bind(this)}
+	columns={2}
 />
 
 ```

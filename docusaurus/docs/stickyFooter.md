@@ -10,7 +10,7 @@ footer alanında gösterilen custom componentlerin gösterilmesini açıp kapat�
 <br/>
 
 <div class="img-container">
-	<img src="../img/ios_renderStickyFooter.png" height="400"> <img src="../img/android_renderStickyFooter.png" height="400">
+	<img src="../img/ios_renderGalleryFooter.png" height="400"> <img src="../img/android_renderGalleryFooter.png" height="400">
 </div>
 
 <br/>
@@ -18,13 +18,13 @@ footer alanında gösterilen custom componentlerin gösterilmesini açıp kapat�
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
-	renderStickyFooter={(height) => this.renderStickyFooter(height)}
+	onClose={this.onClose.bind(this)}
+	columns={3}
+	renderGalleryFooter={(height) => this.renderGalleryFooter(height)}
 	stickyFooter={true}
 />
 
-renderStickyFooter(height) {
+renderGalleryFooter(height) {
 	return (
 		<Button title={"Upload"} onPress={() => console.log("Pressed", height)} />
 	)

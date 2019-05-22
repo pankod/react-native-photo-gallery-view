@@ -26,8 +26,8 @@ const list = [];
 
 <RNGallery
 	items={list}
-	onBack={()=> console.warn('back key pressed...')}
-	gridSize={3}
+	onClose={()=> console.warn('back key pressed...')}
+	columns={3}
 />
 ```
 

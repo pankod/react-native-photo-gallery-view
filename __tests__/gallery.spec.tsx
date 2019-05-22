@@ -16,20 +16,19 @@ describe("Gallery Component", () => {
 	let mounting;
 	const props = {
 		items: [],
-		onBack: jest.fn(),
-		renderStickyFooter: jest.fn(),
-		renderDetailButtons: jest.fn(),
-		renderCustomState: jest.fn(),
-		onSelectionChanged: jest.fn(),
-		customTopBarBackButton: jest.fn(),
-		customCheckedView: jest.fn(),
+		onClose: jest.fn(),
+		renderGalleryFooter: jest.fn(),
+		renderDetailFooter: jest.fn(),
+		renderThumbnailOverlay: jest.fn(),
+		onSelectItem: jest.fn(),
+		renderBackButton: jest.fn(),
+		renderCheckedIcon: jest.fn(),
 		customSelectedTitle: jest.fn(),
 		hidePreview: jest.fn(),
-		gridSize: 3,
-		stickyFooter: true,
-		displaySelectionButtons: true,
-		customMainTitle: jest.fn(),
-		customDetailTitle: jest.fn()
+		columns: 3,
+		enableItemSelection: true,
+		renderGalleryTitleBar: jest.fn(),
+		renderDetailTitleBar: jest.fn()
 	}
 	let component = (
 		<GalleryComponent {...props} />
@@ -57,15 +56,15 @@ describe("Gallery Component", () => {
 		expect(wrapper.state('isModalOpen')).toBeTruthy();
 	});
 
-	test('should if onback fired when state reset', () => {
-		const spy = spyOn(GalleryComponent.prototype, 'onBackRequest').and.callThrough();
+	test('should if onClose fired when state reset', () => {
+		const spy = spyOn(GalleryComponent.prototype, 'onCloseRequest').and.callThrough();
 		const instance = mounting.instance() as any;
 
 		wrapper.setState({
 			isModalOpen: true
 		});
 
-		instance.onBackRequest();
+		instance.onCloseRequest();
 
 		setTimeout(() => {
 			expect(wrapper.state('isModalOpen')).toEqual(false);
@@ -173,11 +172,11 @@ describe("Gallery Component", () => {
 		expect(wrapper.find('DetailComponent')).toHaveLength(1);
 	});
 
-	test('should fired onBackRequest', () => {
-		const spy = spyOn(GalleryComponent.prototype, "onBackRequest").and.callThrough();
+	test('should fired onCloseRequest', () => {
+		const spy = spyOn(GalleryComponent.prototype, "onCloseRequest").and.callThrough();
 		const instance = mounting.instance() as any;
 
-		instance.onBackRequest();
+		instance.onCloseRequest();
 
 		expect(spy).toHaveBeenCalled();
 	});

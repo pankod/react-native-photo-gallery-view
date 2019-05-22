@@ -35,7 +35,7 @@ export class BlurImage extends PureComponent {
                                 useNativeDriver: true
                             }).start(() => {
                                 this.context.changeImage(--imageIndex);
-                                if (this.context.customImageComponent) {
+                                if (this.context.renderDetailImage) {
                                     setTimeout(() => {
                                         this.translateX.setValue(0);
                                     }, 1000);
@@ -61,7 +61,7 @@ export class BlurImage extends PureComponent {
                                 useNativeDriver: true
                             }).start(() => {
                                 this.context.changeImage(++imageIndex);
-                                if (this.context.customImageComponent) {
+                                if (this.context.renderDetailImage) {
                                     setTimeout(() => {
                                         this.translateX.setValue(0);
                                     }, 1000);
@@ -126,12 +126,12 @@ export class BlurImage extends PureComponent {
         });
     }
     customImage() {
-        return this.context.customImageComponent(this.context.showingImage, this.context.imageIndex);
+        return this.context.renderDetailImage(this.context.showingImage, this.context.imageIndex);
     }
     render() {
         return (React.createElement(Common.Consumer, null, (context) => (React.createElement(React.Fragment, null,
             this.state.loading && React.createElement(ActivityIndicator, { style: BlurImageStyle.center }),
-            context.customImageComponent ?
+            context.renderDetailImage ?
                 this.customImage() :
                 (React.createElement(Animated.View, Object.assign({ style: [
                         BlurImageStyle.container,

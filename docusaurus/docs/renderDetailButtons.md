@@ -1,7 +1,7 @@
 ---
-id: renderDetailButtons
-title: renderDetailButtons
-sidebar_label: renderDetailButtons
+id: renderDetailFooter
+title: renderDetailFooter
+sidebar_label: renderDetailFooter
 ---
 
 # Usage
@@ -11,7 +11,7 @@ geri dönüş parametreleri, görüntülenen içerik bilgisi ve back tuşu event
 <br/>
 
 <div class="img-container">
-	<img src="../img/ios_renderDetailButtons.png" height="400"> <img src="../img/android_renderDetailButtons.png" height="400">
+	<img src="../img/ios_renderDetailFooter.png" height="400"> <img src="../img/android_renderDetailFooter.png" height="400">
 </div>
 
 <br/>
@@ -19,13 +19,13 @@ geri dönüş parametreleri, görüntülenen içerik bilgisi ve back tuşu event
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
-	renderDetailButtons={(media, backFn) => this.renderDetailButtons(media, backFn)}
+	onClose={this.onClose.bind(this)}
+	columns={3}
+	renderDetailFooter={(media, backFn) => this.renderDetailFooter(media, backFn)}
 	stickyFooter={true}
 />
 
-renderDetailButtons(media, backFn) {
+renderDetailFooter(media, backFn) {
 	return (
 		<React.Fragment>
 			<Button title={"Delete"} onPress={() => console.log(media)} />

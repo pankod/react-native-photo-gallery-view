@@ -15,15 +15,15 @@ export class GalleryComponent extends Component {
             showImageModal: this.showImageModal.bind(this),
             showPreview: this.showPreview.bind(this),
             hidePreview: this.hidePreview.bind(this),
-            onBackRequest: this.onBackRequest.bind(this),
+            onCloseRequest: this.onCloseRequest.bind(this),
             onSelection: this.onSelection.bind(this),
             changeImage: this.changeImage.bind(this),
             imageIndex: 0,
             selected: [],
             orientation: 'portrait',
             dynamicSize: {
-                width: width / props.gridSize,
-                height: width / props.gridSize,
+                width: width / props.columns,
+                height: width / props.columns,
             },
             previewIsOpen: false,
             imagePreview: {}
@@ -31,7 +31,7 @@ export class GalleryComponent extends Component {
         this.backKeyHandler = this.backKeyHandler.bind(this);
     }
     render() {
-        const { style } = this.props;
+        const { style, } = this.props;
         const { isModalOpen, previewIsOpen } = this.state;
         return (React.createElement(Common.Provider, { value: Object.assign({}, this.state, this.props) },
             React.createElement(View, { onMoveShouldSetResponderCapture: () => previewIsOpen, onTouchEndCapture: () => previewIsOpen && this.hidePreview(), ref: "rootView", style: [GalleryStyle.container, style] },
@@ -59,7 +59,7 @@ export class GalleryComponent extends Component {
         });
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.displaySelectionButtons !== this.props.displaySelectionButtons) {
+        if (nextProps.enableItemSelection !== this.props.enableItemSelection) {
             this.setState({
                 selected: []
             });
@@ -72,14 +72,14 @@ export class GalleryComponent extends Component {
         BackHandler.removeEventListener("hardwareBackPress", this.backKeyHandler);
     }
     backKeyHandler() {
-        this.onBackRequest();
+        this.onCloseRequest();
         return true;
     }
-    onBackRequest() {
-        const { onBack } = this.props;
+    onCloseRequest() {
+        const { onClose } = this.props;
         const { isModalOpen } = this.state;
-        if (onBack && !isModalOpen) {
-            onBack();
+        if (onClose && !isModalOpen) {
+            onClose();
         }
         if (isModalOpen) {
             this.clearModal();
@@ -107,12 +107,14 @@ export class GalleryComponent extends Component {
         });
     }
     onSelection(item, index) {
-        const { onSelectionChanged } = this.props;
+        const { onSelectItem } = this.props;
         const { selected } = this.state;
-        if (onSelectionChanged) {
-            onSelectionChanged(item, index);
+        if (onSelectItem) {
+            item.isSelected = true;
+            onSelectItem(item, index);
         }
         if (selected.indexOf(item.id) === -1) {
+            item.isSelected = true;
             selected.push(item.id);
         }
         else {
@@ -124,9 +126,8 @@ export class GalleryComponent extends Component {
     }
 }
 GalleryComponent.defaultProps = {
-    gridSize: 3,
-    stickyFooter: true,
-    displaySelectionButtons: false,
+    columns: 3,
+    enableItemSelection: false,
     detailImageResizeMode: "contain",
     detailImageResizeMethod: "resize",
     thumbImageResizeMode: "cover",

@@ -3,7 +3,7 @@ import * as React from "react";
 
 const Common = React.createContext({
 	items: [],
-	gridSize: 3
+	columns: 3
 });
 
 export default Common;

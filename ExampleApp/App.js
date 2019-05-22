@@ -23,7 +23,7 @@ export default class App extends Component {
 		intro: true
 	}
 
-	onBack() {
+	onClose() {
 		console.warn('back key pressed...');
 	}
 
@@ -52,43 +52,42 @@ export default class App extends Component {
 						<SafeAreaView style={{ flex: 1 }}>
 							<RNGallery
 								items={list}
-								onBack={this.onBack.bind(this)}
-								customTopBarStyle={{
+								onClose={this.onClose.bind(this)}
+								topBarStyle={{
 									height: 50
 								}}
-								customFooterStyle={{
+								footerStyle={{
 									height: 50
 								}}
-								gridSize={3}
-								renderStickyFooter={(height) => this.renderStickyFooter(height)}
-								renderDetailButtons={(media, action) => this.renderDetailButtons(media, action)}
-								onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
-								displaySelectionButtons={false}
-								stickyFooter={true}
-								// customPreviewComponent={(media) => this.customPreviewComponent(media)}
-								// customTopBarBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
-								// customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
+								columns={3}
+								renderGalleryFooter={(height) => this.renderGalleryFooter(height)}
+								renderDetailFooter={(media, action) => this.renderDetailFooter(media, action)}
+								onSelectItem={(media, index) => this.onSelectItem(media, index)}
+								enableItemSelection={false}
+								renderPreview={(media) => this.renderPreview(media)}
+								// renderBackButton={(action) => <Button onPress={() => action()} title={"Back"} />}
+								// renderGalleryTitleBar={(totalImages) => <Text>{totalImages} Photos</Text>}
 								// customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}
-								// customDetailTitle={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
-								// customCheckedView={() => (
+								// renderDetailTitleBar={(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>}
+								// renderCheckedIcon={() => (
 								// 	<View style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
 								// 		<Text>Checked</Text>
 								// 	</View>
 								// )}
-								// customImageComponent={(media, index) =>
+								// renderDetailImage={(media, index) =>
 								// 	media && <Animated.Image
-								// 		source={{ uri: media.photo }}
+								// 		source={{ uri: media.original }}
 								// 		resizeMode={"contain"}
 								// 		style={{ flex: 1, margin: 5, borderRadius: 20 }}
 								// 	/>
 								// }
-								// customThumbnailImage={(media, index) =>
+								// renderThumbnailImage={(media, index) =>
 								// 	<Image
-								// 		source={{ uri: media.thumb }}
+								// 		source={{ uri: media.thumbnail }}
 								// 		style={{ flex: 1, borderRadius: 50 }}
 								// 	/>
 								// }
-								renderCustomState={(media, index) => this.renderCustomState(media)}
+								renderThumbnailOverlay={(media, index) => this.renderThumbnailOverlay(media)}
 
 							/>
 						</SafeAreaView>
@@ -98,15 +97,15 @@ export default class App extends Component {
 		);
 	}
 
-	customPreviewComponent(media) {
+	renderPreview(media) {
 		return (
 			<View style={{ flex: 1, backgroundColor: '#ddd', width: "100%", height: "100%" }}>
-				<Image style={{ flex: 1, width: "100%" }} resizeMode={"contain"} source={{ uri: media.photo }} />
+				<Image style={{ flex: 1, width: "100%" }} resizeMode={"contain"} source={{ uri: media.original }} />
 			</View>
 		)
 	}
 
-	renderCustomState(media) {
+	renderThumbnailOverlay(media) {
 		if (media.state !== 'Approved') {
 			return (
 				<View style={{
@@ -135,17 +134,17 @@ export default class App extends Component {
 		return null;
 	}
 
-	onSelectionChanged(media, index) {
+	onSelectItem(media, index) {
 		console.log(media, index);
 	}
 
-	renderStickyFooter(height) {
+	renderGalleryFooter(height) {
 		return (
 			<Button title={"Upload"} onPress={() => console.log("render sticky footer 1. element", height)} />
 		)
 	}
 
-	renderDetailButtons(media, action) {
+	renderDetailFooter(media, action) {
 		return (
 			<React.Fragment>
 				<Button title={"Delete"} onPress={() => console.log(media)} />

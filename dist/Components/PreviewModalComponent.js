@@ -57,21 +57,21 @@ export class PreviewModal extends PureComponent {
                             opacity: this.opacity
                         }
                     ] },
-                    React.createElement(View, { style: PreviewModalStyle.imagePreview }, context.customPreviewComponent ?
-                        context.customPreviewComponent(context.imagePreview) :
+                    React.createElement(View, { style: PreviewModalStyle.imagePreview }, context.renderPreview ?
+                        context.renderPreview(context.imagePreview) :
                         (React.createElement(React.Fragment, null,
                             React.createElement(Animated.Image, { style: [
                                     PreviewModalStyle.thumbPreview,
                                     {
                                         opacity: this.thumbOpacity
                                     }
-                                ], source: { uri: context.imagePreview.thumb }, resizeMode: "contain", blurRadius: Platform.OS == 'ios' ? 10 : 5 }),
+                                ], source: { uri: context.imagePreview.thumbnail }, resizeMode: "contain", blurRadius: Platform.OS == 'ios' ? 10 : 5 }),
                             React.createElement(Animated.Image, { style: [
                                     PreviewModalStyle.containPreview,
                                     {
                                         opacity: this.containOpacity
                                     }
-                                ], onLoadEnd: () => this.hideThumb(), source: { uri: context.imagePreview.photo }, resizeMode: "contain" }))))))))));
+                                ], onLoadEnd: () => this.hideThumb(), source: { uri: context.imagePreview.original }, resizeMode: "contain" }))))))))));
     }
 }
 PreviewModal.contextType = Common;

@@ -4,7 +4,7 @@ import { ITopBarProps } from "../Interfaces";
 export declare class TopBarComponent extends Component<ITopBarProps, {}> {
     static contextType: React.Context<{
         items: any[];
-        gridSize: number;
+        columns: number;
     }>;
     animatedY: Animated.Value;
     render(): JSX.Element;

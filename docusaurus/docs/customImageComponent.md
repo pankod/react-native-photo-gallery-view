@@ -1,7 +1,7 @@
 ---
-id: customImageComponent
-title: customImageComponent
-sidebar_label: customImageComponent
+id: renderDetailImage
+title: renderDetailImage
+sidebar_label: renderDetailImage
 ---
 
 # Usage
@@ -10,7 +10,7 @@ Detay ekranında gösterim için custom image component, gösterilen içeriğin 
 <br/>
 
 <div class="img-container">
-	<img src="../img/ios_customImageComponent.png" height="400"> <img src="../img/android_customImageComponent.png" height="400">
+	<img src="../img/ios_renderDetailImage.png" height="400"> <img src="../img/android_renderDetailImage.png" height="400">
 </div>
 
 <br/>
@@ -18,11 +18,11 @@ Detay ekranında gösterim için custom image component, gösterilen içeriğin 
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
-	customImageComponent={(media, index) =>
+	onClose={this.onClose.bind(this)}
+	columns={3}
+	renderDetailImage={(media, index) =>
 		media && <Image
-			source={{ uri: media.photo }}
+			source={{ uri: media.original }}
 			resizeMode={"cover"}
 			style={{ flex: 1, margin: 5, borderRadius: 20 }}
 		/>

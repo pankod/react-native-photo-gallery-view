@@ -12,11 +12,11 @@ Listeme ekranında çoklu seçim aktifken seçilen nesnelerin bilgilerini ve ind
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
+	onClose={this.onClose.bind(this)}
+	columns={3}
 	onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
 	stickyFooter={true}
-	displaySelectionButtons={true}
+	enableItemSelection={true}
 />
 
 onSelectionChanged(media, index) {

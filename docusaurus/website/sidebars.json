@@ -1,28 +1,28 @@
 {
-	"getting-started": {
-		"Getting Started": [
-			"getting-started",
-			"setup"
-		],
-		"API References": [
-			"basic-references",
-			"gridSize",
-			"stickyFooter",
-			"renderStickyFooter",
-			"renderDetailButtons",
-			"onSelectionChanged",
-			"displaySelectionButtons",
-			"customPreviewComponent",
-			"customTopBarBackButton",
-			"customDetailTitle",
-			"customMainTitle",
-			"customCheckedView",
-			"customImageComponent",
-			"customThumbnailImage",
-			"renderCustomState"
-		],
-		"Guides": [
-			"troubleshooting"
-		]
-	}
+  "getting-started": {
+    "Getting Started": [
+      "getting-started",
+      "setup"
+    ],
+    "API References": [
+      "basic-references",
+      "columns",
+      "stickyFooter",
+      "renderGalleryFooter",
+      "renderDetailFooter",
+      "onSelectionChanged",
+      "enableItemSelection",
+      "renderPreview",
+      "renderBackButton",
+      "renderDetailTitleBar",
+      "renderGalleryTitleBar",
+      "renderCheckedIcon",
+      "renderDetailImage",
+      "renderThumbnailImage",
+      "renderThumbnailOverlay"
+    ],
+    "Guides": [
+      "troubleshooting"
+    ]
+  }
 }

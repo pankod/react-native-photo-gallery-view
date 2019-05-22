@@ -11,21 +11,21 @@ describe("Footer Component", () => {
 	let wrapper: ShallowWrapper;
 	let mounting;
 	const props = {
-		renderDetailButtons: jest.fn(),
-		renderStickyFooter: jest.fn(),
+		renderDetailFooter: jest.fn(),
+		renderGalleryFooter: jest.fn(),
 		isModalOpen: true,
-		displaySelectionButtons: true
+		enableItemSelection: true
 	}
 	const state = {}
 	let component = (
-		<Common.Provider value={{ ...props, ...state, items: [], gridSize: 3 }}>
+		<Common.Provider value={{ ...props, ...state, items: [], columns: 3 }}>
 			<FooterComponent />
 		</Common.Provider>
 	);
 
 	beforeEach(() => {
-		wrapper = shallow(component, { context: { ...props, ...state, items: [], gridSize: 3 } });
-		mounting = mount(component, { context: { ...props, ...state, items: [], gridSize: 3 } });
+		wrapper = shallow(component, { context: { ...props, ...state, items: [], columns: 3 } });
+		mounting = mount(component, { context: { ...props, ...state, items: [], columns: 3 } });
 	});
 
 	test('should Footer Component is render correctly', () => {
@@ -35,27 +35,27 @@ describe("Footer Component", () => {
 		expect(render).toMatchSnapshot();
 	});
 
-	test('should return renderDetailButtons render view when isModalOpen true', () => {
-		const spy = spyOn(FooterComponent.prototype, "renderDetailButtons").and.callThrough();
+	test('should return renderDetailFooter render view when isModalOpen true', () => {
+		const spy = spyOn(FooterComponent.prototype, "renderDetailFooter").and.callThrough();
 		const instance = mounting.instance() as any;
-		instance.context.renderDetailButtons = jest.fn(() => <View />);
-		instance.context.displaySelectionButtons = false;
+		instance.context.renderDetailFooter = jest.fn(() => <View />);
+		instance.context.enableItemSelection = false;
 		instance.context.isModalOpen = true;
 
-		expect(instance.renderDetailButtons().key).toEqual("custom");
+		expect(instance.renderDetailFooter().key).toEqual("custom");
 		expect(spy).toBeCalled();
 	});
 
-	test('should return renderStickyFooter render view when isModalOpen false', () => {
-		const spy = spyOn(FooterComponent.prototype, "renderStickyFooter").and.callThrough();
+	test('should return renderGalleryFooter render view when isModalOpen false', () => {
+		const spy = spyOn(FooterComponent.prototype, "renderGalleryFooter").and.callThrough();
 		const instance = mounting.instance() as any;
 
-		instance.context.renderStickyFooter = jest.fn(() => <View />);
-		instance.context.stickyFooter = true;
+		instance.context.renderGalleryFooter = jest.fn(() => <View />);
+		instance.context.enableItemSelection = true;
 		instance.context.isModalOpen = false;
-		instance.context.displaySelectionButtons = true;
+		instance.context.enableItemSelection = true;
 
-		expect(instance.renderStickyFooter().key).toEqual("sticky");
+		expect(instance.renderGalleryFooter().key).toEqual("sticky");
 		expect(spy).toBeCalled();
 	});
 });

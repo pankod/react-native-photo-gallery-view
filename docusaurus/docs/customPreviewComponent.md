@@ -1,7 +1,7 @@
 ---
-id: customPreviewComponent
-title: customPreviewComponent
-sidebar_label: customPreviewComponent
+id: renderPreview
+title: renderPreview
+sidebar_label: renderPreview
 ---
 
 # Usage
@@ -12,15 +12,15 @@ Listeme ekranında görsele uzun (longpress) basıldığında instagram tarzı �
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
-	customPreviewComponent={(media) => this.customPreviewComponent(media)}
+	onClose={this.onClose.bind(this)}
+	columns={3}
+	renderPreview={(item) => this.renderPreview(item)}
 />
 
-customPreviewComponent(media) {
+renderPreview(item) {
 	return (
 		<View style={{ flex: 1, backgroundColor: '#ddd', width: "100%", height: "100%" }}>
-			<Image style={{ flex: 1, width: "100%" }} resizeMode={"contain"} source={{ uri: media.photo }} />
+			<Image style={{ flex: 1, width: "100%" }} resizeMode={"contain"} source={{ uri: item.original }} />
 		</View>
 	)
 }

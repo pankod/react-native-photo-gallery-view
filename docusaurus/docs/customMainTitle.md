@@ -1,7 +1,7 @@
 ---
-id: customMainTitle
-title: customMainTitle
-sidebar_label: customMainTitle
+id: renderGalleryTitleBar
+title: renderGalleryTitleBar
+sidebar_label: renderGalleryTitleBar
 ---
 
 # Usage
@@ -12,9 +12,9 @@ Listeme ekranında bulunan üst barda sağ alana yazılacak custom component, to
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
-	customMainTitle={(totalImages) => <Text>{totalImages} Photos</Text>}
+	onClose={this.onClose.bind(this)}
+	columns={3}
+	renderGalleryTitleBar={(totalImages) => <Text>{totalImages} Photos</Text>}
 />
 
 ```

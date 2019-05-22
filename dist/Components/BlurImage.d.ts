@@ -11,7 +11,7 @@ export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImage
     direction: string;
     static contextType: React.Context<{
         items: any[];
-        gridSize: number;
+        columns: number;
     }>;
     constructor(props: any);
     getDefault(): void;

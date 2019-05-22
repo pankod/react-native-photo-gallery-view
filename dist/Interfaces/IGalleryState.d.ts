@@ -10,7 +10,7 @@ export interface IGalleryState {
     imagePreview?: IMediaItem;
     previewIsOpen: boolean;
     onSelection: (media: IMediaItem, index: number) => any;
-    onBackRequest: () => void;
+    onCloseRequest: () => void;
     changeImage: (index: number) => void;
     imageIndex: number;
     selected: string[];

@@ -3,9 +3,9 @@ import { IFooterProps } from "../Interfaces";
 export declare class FooterComponent extends PureComponent<IFooterProps, {}> {
     static contextType: React.Context<{
         items: any[];
-        gridSize: number;
+        columns: number;
     }>;
     render(): JSX.Element;
-    renderDetailButtons(): JSX.Element;
-    renderStickyFooter(): JSX.Element;
+    renderDetailFooter(): JSX.Element;
+    renderGalleryFooter(): JSX.Element;
 }

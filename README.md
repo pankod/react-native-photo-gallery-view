@@ -67,7 +67,7 @@ const list = require('./data.json'); // browse ExampleApp folder
 
 export default class example extends Component {
 
-	public onBack(): void {
+	public onClose(): void {
 		console.warn('back key pressed...');
 	}
 	
@@ -75,24 +75,24 @@ export default class example extends Component {
 		return (
 			<RNGallery
 				items={list}
-				onBack={this.onBack.bind(this)}
-				customTopBarStyle={{
+				onClose={this.onClose.bind(this)}
+				topBarStyle={{
 					height: 50
 				}}
-				customFooterStyle={{
+				footerStyle={{
 					height: 50
 				}}
-				gridSize={3}
-				renderStickyFooter={(height: number) => this.renderStickyFooter(height)}
-				renderDetailButtons={(media: object) => this.renderDetailButtons(media)}
+				columns={3}
+				renderGalleryFooter={(height: number) => this.renderGalleryFooter(height)}
+				renderDetailFooter={(media: object) => this.renderDetailFooter(media)}
 				onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
-				displaySelectionButtons={false}
+				enableItemSelection={false}
 				stickyFooter={true}
-				renderCustomState={(media, index) => this.renderCustomState(media)}
+				renderThumbnailOverlay={(media, index) => this.renderThumbnailOverlay(media)}
 			/>
 	);
 
-	public renderCustomState(media: object): JSX.Element {
+	public renderThumbnailOverlay(media: object): JSX.Element {
 	if (media.state !== 'Approved') {
 		return (
 			<View style={{
@@ -125,13 +125,13 @@ export default class example extends Component {
 		console.log(media, index);
 	}
 
-	public renderStickyFooter(height: number, action: Function): JSX.Element {
+	public renderGalleryFooter(height: number, action: Function): JSX.Element {
 		return (
 			<Button title={"Upload"} onPress={() => console.log("render stick footer 1. element", height)} />
 		)
 	}
 
-	public renderDetailButtons(media: object, action: Function): JSX.Element {
+	public renderDetailFooter(media: object, action: Function): JSX.Element {
 		return (
 			<React.Fragment>
 				<Button title={"Delete"} onPress={() => console.log(media)} />
@@ -165,23 +165,23 @@ const styles = StyleSheet.create({
 | Properties | Type | Description | Default |
 |------------|-------------------------------------|-------------|----------------------------------------------------------------|		
 | **items** <br> **required* | `array`  | Array of media items | `"[{caption, id, photo, state, thumb]"` | 
-| **displaySelectionButtons** | `boolean`  | Enable/Disable selection mode | `"false"` | 
-| **stickyFooter** | `boolean`  | Enable/Disable for renderStickyFooter custom component | `"true"` | 
-| **customTopBarStyle**   | `style` | Custom style for top bar |  | 
-| **customFooterStyle**   | `style` | Custom style for footer bar |  | 
-| **gridSize**   | `number` | How many media items showing side by side | `"3"` | 
-| **onBack**   | `Function` |  Fired when the back key is pressed | |
-| **renderStickyFooter**   | `Function` | Custom component for selection mode in footer  | `"(footerHeight, backAction) => <View .../>"` |
-| **renderDetailButtons**   | `Function` | Custom component for view mode in footer  | `"(media, backAction) => <View .../>"` |
-| **renderCustomState**   | `Function` | Custom component for viewing each media item overlay in main scene | `"(media, index) => <View .../>"` |
-| **customTopBarBackButton**   | `Function` | Custom component for back button in top bar  |  |
-| **customMainTitle**   | `Function` | Custom component for main scene title in top bar  | `"(totalImages) => <Text>{totalImages} Photos</Text>"` |
-| **customCheckedView**   | `Function` | Custom component for selected view when media item selected  |  |
-| **customImageComponent**   | `Function` | Custom component for view media item  | `"(media, index) => <Image .../>"` |
-| **customThumbnailImage**   | `Function` | Custom component for thumbnail media item in main scene | `"(media, index) => <Image .../>"` |
+| **enableItemSelection** | `boolean`  | Enable/Disable selection mode | `"false"` | 
+| **stickyFooter** | `boolean`  | Enable/Disable for renderGalleryFooter custom component | `"true"` | 
+| **topBarStyle**   | `style` | Custom style for top bar |  | 
+| **footerStyle**   | `style` | Custom style for footer bar |  | 
+| **columns**   | `number` | How many media items showing side by side | `"3"` | 
+| **onClose**   | `Function` |  Fired when the back key is pressed | |
+| **renderGalleryFooter**   | `Function` | Custom component for selection mode in footer  | `"(footerHeight, backAction) => <View .../>"` |
+| **renderDetailFooter**   | `Function` | Custom component for view mode in footer  | `"(media, backAction) => <View .../>"` |
+| **renderThumbnailOverlay**   | `Function` | Custom component for viewing each media item overlay in main scene | `"(media, index) => <View .../>"` |
+| **renderBackButton**   | `Function` | Custom component for back button in top bar  |  |
+| **renderGalleryTitleBar**   | `Function` | Custom component for main scene title in top bar  | `"(totalImages) => <Text>{totalImages} Photos</Text>"` |
+| **renderCheckedIcon**   | `Function` | Custom component for selected view when media item selected  |  |
+| **renderDetailImage**   | `Function` | Custom component for view media item  | `"(media, index) => <Image .../>"` |
+| **renderThumbnailImage**   | `Function` | Custom component for thumbnail media item in main scene | `"(media, index) => <Image .../>"` |
 | **customSelectedTitle**   | `Function` | Custom component for main scene title when selected mode in top bar  | `"(totalSelected) => <Text>{totalSelected} selected photos...</Text>"` |
-| **customPreviewComponent**   | `Function` | Custom component for preview modal when long press a item  | `"(image) => <Image source={image.photo}/>"` |
-| **customDetailTitle**   | `Function` | Custom component for detail scene title in top bar  | `"(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>"` |
+| **renderPreview**   | `Function` | Custom component for preview modal when long press a item  | `"(item) => <Image source={item.original}/>"` |
+| **renderDetailTitleBar**   | `Function` | Custom component for detail scene title in top bar  | `"(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>"` |
 | **onSelectionChanged** <br> **required* | `Function`  | Returns selected item object | `"{caption, id, photo, state, thumb}"` | 
 
 

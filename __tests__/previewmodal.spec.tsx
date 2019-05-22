@@ -14,11 +14,11 @@ describe("PreviewModal Component", () => {
 		imagePreview: {
 			photo: {}
 		},
-		customPreviewComponent: jest.fn()
+		renderPreview: jest.fn()
 	}
 	const state = {}
 	let component = (
-		<Common.Provider value={{ items: [], gridSize: 3, ...props, ...state }}>
+		<Common.Provider value={{ items: [], columns: 3, ...props, ...state }}>
 			<PreviewModal {...props} />
 		</Common.Provider>
 	);

@@ -22,15 +22,15 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 			showImageModal: this.showImageModal.bind(this),
 			showPreview: this.showPreview.bind(this),
 			hidePreview: this.hidePreview.bind(this),
-			onBackRequest: this.onBackRequest.bind(this),
+			onCloseRequest: this.onCloseRequest.bind(this),
 			onSelection: this.onSelection.bind(this),
 			changeImage: this.changeImage.bind(this),
 			imageIndex: 0,
 			selected: [],
 			orientation: 'portrait',
 			dynamicSize: {
-				width: width / props.gridSize,
-				height: width / props.gridSize,
+				width: width / props.columns,
+				height: width / props.columns,
 			},
 			previewIsOpen: false,
 			imagePreview: {} as IMediaItem
@@ -40,9 +40,8 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	}
 
 	static defaultProps = {
-		gridSize: 3,
-		stickyFooter: true,
-		displaySelectionButtons: false,
+		columns: 3,
+		enableItemSelection: false,
 		detailImageResizeMode: "contain",
 		detailImageResizeMethod: "resize",
 		thumbImageResizeMode: "cover",
@@ -51,7 +50,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 
 	public render(): JSX.Element {
 		const {
-			style
+			style,
 		} = this.props;
 		const { isModalOpen, previewIsOpen } = this.state;
 		return (
@@ -92,7 +91,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	}
 
 	public componentWillReceiveProps(nextProps): void {
-		if (nextProps.displaySelectionButtons !== this.props.displaySelectionButtons) {
+		if (nextProps.enableItemSelection !== this.props.enableItemSelection) {
 			this.setState({
 				selected: []
 			})
@@ -108,15 +107,15 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	}
 
 	public backKeyHandler(): boolean {
-		this.onBackRequest();
+		this.onCloseRequest();
 		return true;
 	}
 
-	public onBackRequest(): void {
-		const { onBack } = this.props;
+	public onCloseRequest(): void {
+		const { onClose } = this.props;
 		const { isModalOpen } = this.state;
-		if (onBack && !isModalOpen) {
-			onBack();
+		if (onClose && !isModalOpen) {
+			onClose();
 		}
 
 		if (isModalOpen) {
@@ -149,14 +148,16 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	}
 
 	public onSelection(item: IMediaItem, index: number): void {
-		const { onSelectionChanged } = this.props;
+		const { onSelectItem } = this.props;
 		const { selected } = this.state;
 
-		if (onSelectionChanged) {
-			onSelectionChanged(item, index);
+		if (onSelectItem) {
+			item.isSelected = true;
+			onSelectItem(item, index);
 		}
 
 		if (selected.indexOf(item.id) === -1) {
+			item.isSelected = true;
 			selected.push(item.id);
 		} else {
 			selected.splice(selected.indexOf(item.id), 1);

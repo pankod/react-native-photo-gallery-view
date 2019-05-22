@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 export declare class PreviewModal extends PureComponent {
     static contextType: React.Context<{
         items: any[];
-        gridSize: number;
+        columns: number;
     }>;
     scale: Animated.Value;
     opacity: Animated.Value;

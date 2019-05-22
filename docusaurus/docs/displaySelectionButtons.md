@@ -1,7 +1,7 @@
 ---
-id: displaySelectionButtons
-title: displaySelectionButtons
-sidebar_label: displaySelectionButtons
+id: enableItemSelection
+title: enableItemSelection
+sidebar_label: enableItemSelection
 ---
 
 # Usage
@@ -10,7 +10,7 @@ Listeme ekranında çoklu seçim modunu aktifleştirir.
 <br/>
 
 <div class="img-container">
-	<img src="../img/ios_displaySelectionButtons.png" height="400"> <img src="../img/android_displaySelectionButtons.png" height="400">
+	<img src="../img/ios_enableItemSelection.png" height="400"> <img src="../img/android_enableItemSelection.png" height="400">
 </div>
 
 <br/>
@@ -18,11 +18,11 @@ Listeme ekranında çoklu seçim modunu aktifleştirir.
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
+	onClose={this.onClose.bind(this)}
+	columns={3}
 	onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
 	stickyFooter={true}
-	displaySelectionButtons={true}
+	enableItemSelection={true}
 />
 
 onSelectionChanged(media, index) {

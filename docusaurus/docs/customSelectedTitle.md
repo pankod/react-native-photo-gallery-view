@@ -8,14 +8,14 @@ sidebar_label: customSelectedTitle
 Çoklu seçim aktifken listeme ekranında bulunan üst barda sağ alana yazılacak component, toplam seçilen görsel sayısını döndürür.
 
 <div class="img-container">
-	<img src="../img/ios_displaySelectionButtons.png" height="400"> <img src="../img/android_displaySelectionButtons.png" height="400">
+	<img src="../img/ios_enableItemSelection.png" height="400"> <img src="../img/android_enableItemSelection.png" height="400">
 </div>
 
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	gridSize={3}
+	onClose={this.onClose.bind(this)}
+	columns={3}
 	customSelectedTitle={(totalSelected) => <Text>{totalSelected} selected photos...</Text>}
 />
 

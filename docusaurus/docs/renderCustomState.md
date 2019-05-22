@@ -1,7 +1,7 @@
 ---
-id: renderCustomState
-title: renderCustomState
-sidebar_label: renderCustomState
+id: renderThumbnailOverlay
+title: renderThumbnailOverlay
+sidebar_label: renderThumbnailOverlay
 ---
 
 # Usage
@@ -10,7 +10,7 @@ Ana ekranda listenen görsellerin üzerine gelecek custom overlay component, lis
 <br/>
 
 <div class="img-container">
-	<img src="../img/ios_renderCustomState.png" height="400"> <img src="../img/android_renderCustomState.png" height="400">
+	<img src="../img/ios_renderThumbnailOverlay.png" height="400"> <img src="../img/android_renderThumbnailOverlay.png" height="400">
 </div>
 
 <br/>
@@ -18,11 +18,11 @@ Ana ekranda listenen görsellerin üzerine gelecek custom overlay component, lis
 ```
 <RNGallery
 	items={list}
-	onBack={this.onBack.bind(this)}
-	renderCustomState={(media, index) => this.renderCustomState(media)}
+	onClose={this.onClose.bind(this)}
+	renderThumbnailOverlay={(media, index) => this.renderThumbnailOverlay(media)}
 />
 
-renderCustomState(media) {
+renderThumbnailOverlay(media) {
 	if (media.state !== 'Approved') {
 		return (
 			<View style={{

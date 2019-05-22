@@ -22,7 +22,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 							<FlatList
 								style={AlbumStyle.container}
 								data={context.items}
-								numColumns={context.gridSize}
+								numColumns={context.columns}
 								renderItem={({ item, index }) => this.renderItem(item, index)}
 								keyExtractor={(item, index) => index.toString()}
 								extraData={[context.selected, context.dynamicSize]}
@@ -37,18 +37,16 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 	public renderItem(item: IMediaItem, index: number): JSX.Element {
 		const {
 			onSelection,
-			displaySelectionButtons,
+			enableItemSelection,
 			showImageModal,
-			stickyFooter,
-			renderCustomState,
+			renderThumbnailOverlay,
 			dynamicSize,
-			customThumbnailImage,
+			renderThumbnailImage,
 			thumbImageResizeMode,
 			thumbImageResizeMethod,
-			showPreview,
-			hidePreview
+			showPreview
 		} = this.context;
-		if (displaySelectionButtons && stickyFooter) {
+		if (enableItemSelection) {
 			return (
 				<TouchableOpacity
 					onPress={() => onSelection(item, index)} key={"onSelection"}
@@ -61,8 +59,8 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 
 					{this.isChecked(item)}
 					{
-						customThumbnailImage ? customThumbnailImage(item, index) : (
-							<Image resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
+						renderThumbnailImage ? renderThumbnailImage(item, index) : (
+							<Image style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
 						)
 					}
 				</TouchableOpacity>
@@ -77,10 +75,10 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 				style={
 					{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }
 				}>
-				{renderCustomState && renderCustomState(item, index)}
+				{renderThumbnailOverlay && renderThumbnailOverlay(item, index)}
 				{
-					customThumbnailImage ? customThumbnailImage(item, index) : (
-						<Image style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumb }} />
+					renderThumbnailImage ? renderThumbnailImage(item, index) : (
+						<Image style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
 					)
 				}
 			</TouchableOpacity >
@@ -93,11 +91,11 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 	}
 
 	public isChecked(item: IMediaItem): JSX.Element {
-		const { customCheckedView } = this.context;
+		const { renderCheckedIcon } = this.context;
 		if (this.checkedCtrl(item)) {
 
-			if (customCheckedView) {
-				return customCheckedView()
+			if (renderCheckedIcon) {
+				return renderCheckedIcon()
 			}
 
 			return (

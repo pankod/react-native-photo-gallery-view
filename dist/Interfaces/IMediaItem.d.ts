@@ -1,8 +1,9 @@
 import { MediaStateEnum } from '../Enum';
 export interface IMediaItem {
-    caption: string;
+    caption?: string;
     id: string;
-    photo: string;
-    state: MediaStateEnum;
-    thumb: string;
+    original: string;
+    thumbnail: string;
+    state?: MediaStateEnum;
+    isSelected?: boolean;
 }
