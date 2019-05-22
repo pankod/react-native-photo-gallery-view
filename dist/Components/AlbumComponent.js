@@ -12,15 +12,19 @@ export class AlbumComponent extends PureComponent {
             React.createElement(FlatList, { style: AlbumStyle.container, data: context.items, numColumns: context.columns, renderItem: ({ item, index }) => this.renderItem(item, index), keyExtractor: (item, index) => index.toString(), extraData: [context.selected, context.dynamicSize] })))));
     }
     renderItem(item, index) {
-        const { onSelection, enableItemSelection, showImageModal, renderThumbnailOverlay, dynamicSize, renderThumbnailImage, thumbImageResizeMode, thumbImageResizeMethod, showPreview } = this.context;
+        const { onSelection, enableItemSelection, showImageModal, renderThumbnailOverlay, dynamicSize, renderThumbnailImage, showPreview } = this.context;
         if (enableItemSelection) {
             return (React.createElement(TouchableOpacity, { onPress: () => onSelection(item, index), key: "onSelection", style: [this.checkedCtrl(item) && AlbumStyle.checkedBorder, { position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }] },
                 this.isChecked(item),
-                renderThumbnailImage ? renderThumbnailImage(item, index) : (React.createElement(Image, { style: { flex: 1 }, resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumbnail } }))));
+                renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)));
         }
         return (React.createElement(TouchableOpacity, { onPress: () => showImageModal(item, index), key: "showImageModal", onLongPress: () => showPreview(item, index), style: { width: dynamicSize.width, height: dynamicSize.height, padding: 3 } },
             renderThumbnailOverlay && renderThumbnailOverlay(item, index),
-            renderThumbnailImage ? renderThumbnailImage(item, index) : (React.createElement(Image, { style: { flex: 1 }, resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumbnail } }))));
+            renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)));
+    }
+    renderImageView(item, index) {
+        const { thumbImageResizeMode, thumbImageResizeMethod } = this.context;
+        return (React.createElement(Image, { style: { flex: 1 }, resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumbnail } }));
     }
     checkedCtrl(item) {
         const { selected } = this.context;

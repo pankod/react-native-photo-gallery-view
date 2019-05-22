@@ -35,7 +35,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 	}
 
 	public renderItem(item: IMediaItem, index: number): JSX.Element {
-		const { onSelection, enableItemSelection, showImageModal, renderThumbnailOverlay, dynamicSize, renderThumbnailImage, thumbImageResizeMode, thumbImageResizeMethod, showPreview } = this.context;
+		const { onSelection, enableItemSelection, showImageModal, renderThumbnailOverlay, dynamicSize, renderThumbnailImage, showPreview } = this.context;
 		if (enableItemSelection) {
 			return (
 				<TouchableOpacity
@@ -45,9 +45,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 
 					{this.isChecked(item)}
 					{
-						renderThumbnailImage ? renderThumbnailImage(item, index) : (
-							<Image style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
-						)
+						renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)
 					}
 				</TouchableOpacity>
 			)
@@ -60,11 +58,16 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 				style={{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }}>
 				{renderThumbnailOverlay && renderThumbnailOverlay(item, index)}
 				{
-					renderThumbnailImage ? renderThumbnailImage(item, index) : (
-						<Image style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
-					)
+					renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)
 				}
 			</TouchableOpacity >
+		)
+	}
+
+	public renderImageView(item: IMediaItem, index: number): JSX.Element {
+		const { thumbImageResizeMode, thumbImageResizeMethod } = this.context;
+		return (
+			<Image style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
 		)
 	}
 

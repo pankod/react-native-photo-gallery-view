@@ -9,6 +9,7 @@ export declare class AlbumComponent extends PureComponent<IAlbumProps, {}> {
     animatedY: Animated.Value;
     render(): JSX.Element;
     renderItem(item: IMediaItem, index: number): JSX.Element;
+    renderImageView(item: IMediaItem, index: number): JSX.Element;
     checkedCtrl(item: IMediaItem): boolean;
     isChecked(item: IMediaItem): JSX.Element;
 }
