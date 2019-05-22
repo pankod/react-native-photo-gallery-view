@@ -5,4 +5,4 @@ exclude_patterns:
 - "__tests__/"
 - "ExampleApp/"
 - "dist/"
-- "coverage/"
+- "coverage/**"
