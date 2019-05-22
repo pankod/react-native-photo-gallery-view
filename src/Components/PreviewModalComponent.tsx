@@ -7,6 +7,7 @@ import Common from '@Provider';
 import { IGalleryProps, IGalleryState } from '@Interfaces';
 import { PreviewModalStyle } from '@Styles';
 import { Animate } from '@Helpers';
+import { Const } from '@Constants';
 
 export class PreviewModal extends PureComponent {
 
@@ -19,14 +20,14 @@ export class PreviewModal extends PureComponent {
 
 	public componentWillMount(): void {
 		Animate.parallel([
-			Animate.timing(this.opacity, { toValue: 1, duration: 150 }),
-			Animate.spring(this.scale, { toValue: 1, bounciness: 8 })
+			Animate.timing(this.opacity, Const.TIMING_ON),
+			Animate.spring(this.scale, Const.SPRING_ON)
 		]).start();
 	}
 	public hideThumb(): void {
 		Animate.parallel([
-			Animate.timing(this.thumbOpacity, { toValue: 0, duration: 100 }),
-			Animate.timing(this.containOpacity, { toValue: 1, duration: 200 })
+			Animate.timing(this.thumbOpacity, Const.TIMING_OFF),
+			Animate.timing(this.containOpacity, Const.TIMING_ON)
 		]).start();
 	}
 

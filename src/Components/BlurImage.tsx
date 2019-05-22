@@ -7,6 +7,7 @@ import { IBlurImageProps, IBlurImageState, IGalleryProps, IGalleryState } from '
 import { BlurImageStyle } from '@Styles';
 import Common from '@Provider';
 import { Animate } from '@Helpers';
+import { Const } from '@Constants';
 
 export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 
@@ -50,20 +51,16 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 			if (imageIndex !== 0) {
 				this.direction = "right";
 				if (vx <= 0.9 || dx <= 0.9 * screenWidth) {
-					return this.getImageByIndex(defaultValue, --imageIndex);
-				}
-				return this.getDefault();
-			}
-			return this.getDefault();
+					this.getImageByIndex(defaultValue, --imageIndex);
+				} else { this.getDefault(); }
+			} else { this.getDefault(); }
 		} else {
 			if (imageIndex >= 0 && imageIndex < items.length - 1) {
 				this.direction = "left";
 				if (vx >= 0.9 || dx >= 0.9 * -screenWidth) {
-					return this.getImageByIndex(defaultValue, ++imageIndex);
-				}
-				return this.getDefault();
-			}
-			return this.getDefault();
+					this.getImageByIndex(defaultValue, ++imageIndex);
+				} else { this.getDefault(); }
+			} else { this.getDefault(); }
 		}
 	}
 
@@ -95,14 +92,8 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 				this.translateX.setValue(-this.locationX);
 			}
 			Animate.parallel([
-				Animate.timing(this.translateX, {
-					toValue: 0,
-					duration: 100
-				}),
-				Animate.timing(this.imageAnimated, {
-					toValue: 1,
-					duration: 250
-				})
+				Animate.timing(this.translateX, Const.TIMING_OFF),
+				Animate.timing(this.imageAnimated, Const.TIMING_ON)
 			]).start();
 		});
 
@@ -110,10 +101,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 
 	public onImageLoadStart(): void {
 		this.setState({ loading: true }, () => {
-			Animate.timing(this.imageAnimated, {
-				toValue: 0,
-				duration: 250,
-			}).start();
+			Animate.timing(this.imageAnimated, Const.TIMING_OFF).start();
 		});
 	}
 

@@ -32,10 +32,7 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 	}
 
 	public componentDidMount(): void {
-		Animate.timing(this.animatedY, {
-			toValue: 0,
-			duration: 500
-		}).start();
+		Animate.timing(this.animatedY, Const.TIMING_OFF).start();
 	}
 
 	public titleRender(): JSX.Element {

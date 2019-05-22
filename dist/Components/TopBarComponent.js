@@ -15,10 +15,7 @@ export class TopBarComponent extends Component {
             React.createElement(Animated.View, { style: { transform: [{ translateX: this.animatedY }] } }, this.titleRender())))));
     }
     componentDidMount() {
-        Animate.timing(this.animatedY, {
-            toValue: 0,
-            duration: 500
-        }).start();
+        Animate.timing(this.animatedY, Const.TIMING_OFF).start();
     }
     titleRender() {
         const { selected, customSelectedTitle } = this.context;
