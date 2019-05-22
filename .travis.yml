@@ -1,19 +1,27 @@
 sudo: false
 language: node_js
+dist: trusty
+addons:
+  chrome: stable
 scripts:
   - npm install codecov -g
+  - nyc --reporter=lcov yarn run unit
 cache:
   directories:
     - ~/.npm
-notifications:
-  email: true
 node_js:
-  - 8
-  - 10
+  - "8"
+  - "10"
+before_script:
+  - npm install nyc -g
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 after_success:
   - npm run build
   - codecov
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 branches:
   only:
     - master
-	- develop
+    - develop
