@@ -39,7 +39,6 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 	public onPanResponderRelease(e, { vx, dx, vy, dy }): void {
 		let { imageIndex, items } = this.context;
 		const screenWidth = Dimensions.get("window").width;
-		const screenHeight = Dimensions.get("window").height;
 		const defaultValue = {
 			toValue: dx > 0 ? screenWidth : -screenWidth,
 			duration: 250
@@ -47,17 +46,8 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 
 		if (dx === 0 && vx === 0) {
 			return
-		}
-		// else if (dy > 0) {
-		// 	console.log("down")
-		// 	this.direction = "down";
-		// } else if (dy < 0) {
-		// 	console.log("top")
-		// 	this.direction = "top";
-		// }
-		else if (dx > 0) {
+		} else if (dx > 0) {
 			if (imageIndex !== 0) {
-				console.log("right")
 				this.direction = "right";
 				if (vx <= 0.9 || dx <= 0.9 * screenWidth) {
 					this.getImageByIndex(defaultValue, --imageIndex);
@@ -69,7 +59,6 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 			}
 		} else {
 			if (imageIndex >= 0 && imageIndex < items.length - 1) {
-				console.log("left")
 				this.direction = "left";
 				if (vx >= 0.9 || dx >= 0.9 * -screenWidth) {
 					this.getImageByIndex(defaultValue, ++imageIndex);
