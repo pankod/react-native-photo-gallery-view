@@ -17,7 +17,14 @@ export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImage
         loading: boolean;
     };
     componentWillMount(): void;
+    onPanResponderRelease(e: any, { vx, dx, vy, dy }: {
+        vx: any;
+        dx: any;
+        vy: any;
+        dy: any;
+    }): void;
     getDefault(): void;
+    getImageByIndex(defaultValue: any, imageIndex: any): void;
     onImageLoadEnd(): void;
     onImageLoadStart(): void;
     customImage(): JSX.Element;

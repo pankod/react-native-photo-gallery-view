@@ -28,83 +28,76 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 		this.panResponder = PanResponder.create({
 			onMoveShouldSetPanResponderCapture: () => true,
 			onPanResponderMove: Animated.event([null, { dx: this.translateX }]),
-			onPanResponderRelease: (e, { vx, dx, vy, dy }) => {
-				let { imageIndex, items } = this.context;
-				const screenWidth = Dimensions.get("window").width;
-				const screenHeight = Dimensions.get("window").height;
-
-				if (dx === 0 && vx === 0) {
-					return
-				}
-				// else if (dy > 0) {
-				// 	console.log("down")
-				// 	this.direction = "down";
-				// } else if (dy < 0) {
-				// 	console.log("top")
-				// 	this.direction = "top";
-				// }
-				else if (dx > 0) {
-					if (imageIndex !== 0) {
-						console.log("right")
-						this.direction = "right";
-						if (vx <= 0.9 || dx <= 0.9 * screenWidth) {
-							Animate.timing(this.translateX, {
-								toValue: dx > 0 ? screenWidth : -screenWidth,
-								duration: 250
-							}).start(() => {
-								this.context.changeImage(--imageIndex)
-								if (this.context.renderDetailImage) {
-									setTimeout(() => {
-										this.translateX.setValue(0);
-									}, 1000);
-								}
-							});
-						} else {
-							this.getDefault();
-						}
-					} else {
-						this.getDefault();
-					}
-				} else {
-					if (imageIndex >= 0 && imageIndex < items.length - 1) {
-						console.log("left")
-						this.direction = "left";
-						if (vx >= 0.9 || dx >= 0.9 * -screenWidth) {
-							Animate.timing(this.translateX, {
-								toValue: dx > 0 ? screenWidth : -screenWidth,
-								duration: 250,
-							}).start(() => {
-								this.context.changeImage(++imageIndex)
-								if (this.context.renderDetailImage) {
-									setTimeout(() => {
-										this.translateX.setValue(0);
-									}, 1000);
-								}
-							});
-						} else {
-							this.getDefault();
-						}
-					} else {
-						this.getDefault();
-					}
-				}
-			},
+			onPanResponderRelease: this.onPanResponderRelease.bind(this),
 			onPanResponderEnd: (e, { vx, dx }) => {
 				this.locationX = e.nativeEvent.locationX;
 				this.locationY = e.nativeEvent.locationY;
-			},
-			onPanResponderTerminate: (e, { vx, dx }) => {
-
 			}
 		});
 	}
 
+	public onPanResponderRelease(e, { vx, dx, vy, dy }): void {
+		let { imageIndex, items } = this.context;
+		const screenWidth = Dimensions.get("window").width;
+		const screenHeight = Dimensions.get("window").height;
+		const defaultValue = {
+			toValue: dx > 0 ? screenWidth : -screenWidth,
+			duration: 250
+		};
+
+		if (dx === 0 && vx === 0) {
+			return
+		}
+		// else if (dy > 0) {
+		// 	console.log("down")
+		// 	this.direction = "down";
+		// } else if (dy < 0) {
+		// 	console.log("top")
+		// 	this.direction = "top";
+		// }
+		else if (dx > 0) {
+			if (imageIndex !== 0) {
+				console.log("right")
+				this.direction = "right";
+				if (vx <= 0.9 || dx <= 0.9 * screenWidth) {
+					this.getImageByIndex(defaultValue, --imageIndex);
+				} else {
+					this.getDefault();
+				}
+			} else {
+				this.getDefault();
+			}
+		} else {
+			if (imageIndex >= 0 && imageIndex < items.length - 1) {
+				console.log("left")
+				this.direction = "left";
+				if (vx >= 0.9 || dx >= 0.9 * -screenWidth) {
+					this.getImageByIndex(defaultValue, ++imageIndex);
+				} else {
+					this.getDefault();
+				}
+			} else {
+				this.getDefault();
+			}
+		}
+	}
 
 	public getDefault(): void {
 		Animate.spring(this.translateX, {
 			toValue: 0,
 			bounciness: 5,
 		}).start();
+	}
+
+	public getImageByIndex(defaultValue, imageIndex): void {
+		Animate.timing(this.translateX, defaultValue).start(() => {
+			this.context.changeImage(imageIndex)
+			if (this.context.renderDetailImage) {
+				setTimeout(() => {
+					this.translateX.setValue(0);
+				}, 1000);
+			}
+		});
 	}
 
 	public onImageLoadEnd(): void {
