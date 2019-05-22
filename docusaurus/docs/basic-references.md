@@ -20,7 +20,6 @@ const list = [];
 	}}
 	columns={3}
 	enableItemSelection={false}
-	stickyFooter={true}
 />
 ```
 
@@ -41,6 +40,3 @@ Grid kolon sayısını buradan belirtebilirsiniz, varsayılan 3
 
 ## enableItemSelection
 Viewing modedan çıkar ve çoklu seçim ekranı çalışır.
-
-## stickyFooter
-Footer alanında butonları on/off 

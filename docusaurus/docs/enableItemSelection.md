@@ -20,12 +20,11 @@ Listeme ekranında çoklu seçim modunu aktifleştirir.
 	items={list}
 	onClose={this.onClose.bind(this)}
 	columns={3}
-	onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
-	stickyFooter={true}
+	onSelectItem={(item, index) => this.onSelectItem(item, index)}
 	enableItemSelection={true}
 />
 
-onSelectionChanged(media, index) {
-	console.log(media, index);
+onSelectItem(item, index) {
+	console.log(item, index);
 }
 ```

@@ -5,7 +5,7 @@ sidebar_label: renderDetailFooter
 ---
 
 # Usage
-bu alanda verilen component, detay ekranı footer alanında gösterilir, footer alanının açık olması için stickyFooter propsu true olmalı, 
+bu alanda verilen component, detay ekranı footer alanında gösterilir, 
 geri dönüş parametreleri, görüntülenen içerik bilgisi ve back tuşu eventidir.
 
 <br/>
@@ -22,7 +22,6 @@ geri dönüş parametreleri, görüntülenen içerik bilgisi ve back tuşu event
 	onClose={this.onClose.bind(this)}
 	columns={3}
 	renderDetailFooter={(media, backFn) => this.renderDetailFooter(media, backFn)}
-	stickyFooter={true}
 />
 
 renderDetailFooter(media, backFn) {

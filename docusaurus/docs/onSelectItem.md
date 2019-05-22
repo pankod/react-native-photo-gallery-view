@@ -1,7 +1,7 @@
 ---
-id: onSelectionChanged
-title: onSelectionChanged
-sidebar_label: onSelectionChanged
+id: onSelectItem
+title: onSelectItem
+sidebar_label: onSelectItem
 ---
 
 # Usage
@@ -14,12 +14,11 @@ Listeme ekranında çoklu seçim aktifken seçilen nesnelerin bilgilerini ve ind
 	items={list}
 	onClose={this.onClose.bind(this)}
 	columns={3}
-	onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
-	stickyFooter={true}
+	onSelectItem={(media, index) => this.onSelectItem(media, index)}
 	enableItemSelection={true}
 />
 
-onSelectionChanged(media, index) {
+onSelectItem(media, index) {
 	console.log(media, index);
 }
 ```

@@ -86,9 +86,8 @@ export default class example extends Component {
 				columns={3}
 				renderGalleryFooter={(height: number) => this.renderGalleryFooter(height)}
 				renderDetailFooter={(media: object) => this.renderDetailFooter(media)}
-				onSelectionChanged={(media, index) => this.onSelectionChanged(media, index)}
+				onSelectItem={(media, index) => this.onSelectItem(media, index)}
 				enableItemSelection={false}
-				stickyFooter={true}
 				renderThumbnailOverlay={(media, index) => this.renderThumbnailOverlay(media)}
 			/>
 	);
@@ -122,7 +121,7 @@ export default class example extends Component {
 	return null;
 	}
 
-	public onSelectionChanged(media: object, index: number): void {
+	public onSelectItem(media: object, index: number): void {
 		console.log(media, index);
 	}
 
@@ -167,7 +166,6 @@ const styles = StyleSheet.create({
 |------------|-------------------------------------|-------------|----------------------------------------------------------------|		
 | **items** <br> **required* | `array`  | Array of media items | `"[{caption, id, photo, state, thumb]"` | 
 | **enableItemSelection** | `boolean`  | Enable/Disable selection mode | `"false"` | 
-| **stickyFooter** | `boolean`  | Enable/Disable for renderGalleryFooter custom component | `"true"` | 
 | **topBarStyle**   | `style` | Custom style for top bar |  | 
 | **footerStyle**   | `style` | Custom style for footer bar |  | 
 | **columns**   | `number` | How many media items showing side by side | `"3"` | 
@@ -183,7 +181,7 @@ const styles = StyleSheet.create({
 | **customSelectedTitle**   | `Function` | Custom component for main scene title when selected mode in top bar  | `"(totalSelected) => <Text>{totalSelected} selected photos...</Text>"` |
 | **renderPreview**   | `Function` | Custom component for preview modal when long press a item  | `"(item) => <Image source={item.original}/>"` |
 | **renderDetailTitleBar**   | `Function` | Custom component for detail scene title in top bar  | `"(totalImages, photoIndex) => <Text>{photoIndex} of {totalImages}</Text>"` |
-| **onSelectionChanged** <br> **required* | `Function`  | Returns selected item object | `"{caption, id, photo, state, thumb}"` | 
+| **onSelectItem** <br> **required* | `Function`  | Returns selected item object | `"{caption, id, photo, state, thumb}"` | 
 
 
 #### Releases

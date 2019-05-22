@@ -7,10 +7,9 @@
     "API References": [
       "basic-references",
       "columns",
-      "stickyFooter",
       "renderGalleryFooter",
       "renderDetailFooter",
-      "onSelectionChanged",
+      "onSelectItem",
       "enableItemSelection",
       "renderPreview",
       "renderBackButton",
