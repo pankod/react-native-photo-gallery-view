@@ -13,7 +13,10 @@ export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImage
         items: any[];
         columns: number;
     }>;
-    constructor(props: any);
+    state: {
+        loading: boolean;
+    };
+    componentWillMount(): void;
     getDefault(): void;
     onImageLoadEnd(): void;
     onImageLoadStart(): void;

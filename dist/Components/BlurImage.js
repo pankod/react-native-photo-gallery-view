@@ -3,8 +3,8 @@ import { Animated, ActivityIndicator, PanResponder, Dimensions } from 'react-nat
 import { BlurImageStyle } from '../Assets/Styles';
 import Common from '../Provider';
 export class BlurImage extends PureComponent {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super(...arguments);
         this.imageAnimated = new Animated.Value(0);
         this.translateX = new Animated.Value(0);
         this.translateY = new Animated.Value(0);
@@ -14,6 +14,8 @@ export class BlurImage extends PureComponent {
         this.state = {
             loading: true
         };
+    }
+    componentWillMount() {
         this.panResponder = PanResponder.create({
             onMoveShouldSetPanResponderCapture: () => true,
             onPanResponderMove: Animated.event([null, { dx: this.translateX }]),
