@@ -39,15 +39,20 @@ export class TopBarComponent extends Component<ITopBarProps, {}> {
 	}
 
 	public titleRender(): JSX.Element {
-		const { imageIndex, items, isModalOpen, title, detailTitle, renderGalleryTitleBar, renderDetailTitleBar, selected, customSelectedTitle } = this.context;
-
+		const { selected, customSelectedTitle } = this.context;
 		if (selected && selected.length > 0) {
 			return customSelectedTitle ? customSelectedTitle(selected.length) : <Text>{selected.length} selected</Text>
 		}
+		return this.getTitle()
+	}
 
-		return isModalOpen ?
-			renderDetailTitleBar ? renderDetailTitleBar(items.length, imageIndex + 1) : <Text>{detailTitle}</Text> :
-			renderGalleryTitleBar ? renderGalleryTitleBar(items.length) : <Text>{title}</Text>
+	public getTitle(): JSX.Element {
+		const { imageIndex, items, isModalOpen, title, detailTitle, renderGalleryTitleBar, renderDetailTitleBar } = this.context;
+
+		if (isModalOpen) {
+			return renderDetailTitleBar ? renderDetailTitleBar(items.length, imageIndex + 1) : <Text>{detailTitle}</Text>
+		}
+		return renderGalleryTitleBar ? renderGalleryTitleBar(items.length) : <Text>{title}</Text>
 	}
 
 	public backButtonRender(): JSX.Element {

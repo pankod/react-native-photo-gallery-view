@@ -40,13 +40,9 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 			return (
 				<TouchableOpacity
 					onPress={() => onSelection(item, index)} key={"onSelection"}
-					style={[this.checkedCtrl(item) && AlbumStyle.checkedBorder, { position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }]
-					}>
-
+					style={[this.checkedCtrl(item) && AlbumStyle.checkedBorder, { position: "relative", width: dynamicSize.width, height: dynamicSize.height, padding: 3 }]}>
 					{this.isChecked(item)}
-					{
-						renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)
-					}
+					{renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)}
 				</TouchableOpacity>
 			)
 		}
@@ -57,9 +53,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 				onLongPress={() => showPreview(item, index)}
 				style={{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }}>
 				{renderThumbnailOverlay && renderThumbnailOverlay(item, index)}
-				{
-					renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)
-				}
+				{renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)}
 			</TouchableOpacity >
 		)
 	}
@@ -93,7 +87,6 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 				</View>
 			)
 		}
-
 		return null;
 	}
 }

@@ -50,24 +50,20 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 			if (imageIndex !== 0) {
 				this.direction = "right";
 				if (vx <= 0.9 || dx <= 0.9 * screenWidth) {
-					this.getImageByIndex(defaultValue, --imageIndex);
-				} else {
-					this.getDefault();
+					return this.getImageByIndex(defaultValue, --imageIndex);
 				}
-			} else {
-				this.getDefault();
+				return this.getDefault();
 			}
+			return this.getDefault();
 		} else {
 			if (imageIndex >= 0 && imageIndex < items.length - 1) {
 				this.direction = "left";
 				if (vx >= 0.9 || dx >= 0.9 * -screenWidth) {
-					this.getImageByIndex(defaultValue, ++imageIndex);
-				} else {
-					this.getDefault();
+					return this.getImageByIndex(defaultValue, ++imageIndex);
 				}
-			} else {
-				this.getDefault();
+				return this.getDefault();
 			}
+			return this.getDefault();
 		}
 	}
 

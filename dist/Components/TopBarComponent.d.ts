@@ -10,5 +10,6 @@ export declare class TopBarComponent extends Component<ITopBarProps, {}> {
     render(): JSX.Element;
     componentDidMount(): void;
     titleRender(): JSX.Element;
+    getTitle(): JSX.Element;
     backButtonRender(): JSX.Element;
 }

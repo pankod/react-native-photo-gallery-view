@@ -21,15 +21,20 @@ export class TopBarComponent extends Component {
         }).start();
     }
     titleRender() {
-        const { imageIndex, items, isModalOpen, title, detailTitle, renderGalleryTitleBar, renderDetailTitleBar, selected, customSelectedTitle } = this.context;
+        const { selected, customSelectedTitle } = this.context;
         if (selected && selected.length > 0) {
             return customSelectedTitle ? customSelectedTitle(selected.length) : React.createElement(Text, null,
                 selected.length,
                 " selected");
         }
-        return isModalOpen ?
-            renderDetailTitleBar ? renderDetailTitleBar(items.length, imageIndex + 1) : React.createElement(Text, null, detailTitle) :
-            renderGalleryTitleBar ? renderGalleryTitleBar(items.length) : React.createElement(Text, null, title);
+        return this.getTitle();
+    }
+    getTitle() {
+        const { imageIndex, items, isModalOpen, title, detailTitle, renderGalleryTitleBar, renderDetailTitleBar } = this.context;
+        if (isModalOpen) {
+            return renderDetailTitleBar ? renderDetailTitleBar(items.length, imageIndex + 1) : React.createElement(Text, null, detailTitle);
+        }
+        return renderGalleryTitleBar ? renderGalleryTitleBar(items.length) : React.createElement(Text, null, title);
     }
     backButtonRender() {
         const { renderBackButton } = this.context;

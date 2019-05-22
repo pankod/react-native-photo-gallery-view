@@ -13,3 +13,5 @@ yarn-error.log
 coverage/
 
 test.txt
+
+codeclimate.html
