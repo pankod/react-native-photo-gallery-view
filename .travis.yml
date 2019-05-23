@@ -1,9 +1,6 @@
 sudo: false
 language: node_js
 dist: trusty
-env:
-  global:
-    - CC_TEST_REPORTER_ID=a4c43d8fe091efae34cfb3e8dfed32f5ba15bbeb3e4d2cafae13d98561720d37
 addons:
   chrome: stable
 install:

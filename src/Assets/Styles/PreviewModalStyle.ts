@@ -3,6 +3,7 @@ import { StyleSheet, ImageStyle, ViewStyle, Dimensions } from "react-native";
 
 const { width, height } = Dimensions.get("screen");
 const outer = 8;
+const borderRadius = 10;
 
 export const PreviewModalStyle = StyleSheet.create({
 	container: {
@@ -10,11 +11,11 @@ export const PreviewModalStyle = StyleSheet.create({
 		backgroundColor: "transparent",
 		justifyContent: "center",
 		alignItems: "center",
-		zIndex: 3,
+		zIndex: 3
 	} as ViewStyle,
 	imagePreview: {
 		backgroundColor: '#fff',
-		borderRadius: 10,
+		borderRadius,
 		shadowColor: "rgba(0,0,0,.5)",
 		shadowOffset: {
 			width: 5,
@@ -26,7 +27,9 @@ export const PreviewModalStyle = StyleSheet.create({
 		height: width - outer * 2,
 		justifyContent: "center",
 		alignItems: "center",
-		position: "relative"
+		position: "relative",
+		overflow: 'hidden',
+		padding: 2
 	} as ViewStyle,
 	thumbPreview: {
 		width: "100%",
@@ -35,10 +38,12 @@ export const PreviewModalStyle = StyleSheet.create({
 		left: 0,
 		right: 0,
 		top: 0,
-		bottom: 0
+		bottom: 0,
+		borderRadius
 	} as ImageStyle,
 	containPreview: {
 		width: "100%",
-		flex: 1
+		flex: 1,
+		borderRadius
 	} as ImageStyle
 });
