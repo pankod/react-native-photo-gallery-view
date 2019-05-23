@@ -44,7 +44,7 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		enableItemSelection: false,
 		detailImageResizeMode: "contain",
 		detailImageResizeMethod: "auto",
-		thumbImageResizeMode: "contain",
+		thumbImageResizeMode: "cover",
 		thumbImageResizeMethod: "auto"
 	}
 

@@ -130,7 +130,7 @@ GalleryComponent.defaultProps = {
     enableItemSelection: false,
     detailImageResizeMode: "contain",
     detailImageResizeMethod: "auto",
-    thumbImageResizeMode: "contain",
+    thumbImageResizeMode: "cover",
     thumbImageResizeMethod: "auto"
 };
 //# sourceMappingURL=GalleryComponent.js.map
