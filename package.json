@@ -4,7 +4,6 @@
 	"description": "React Native Photo Gallery View",
 	"scripts": {
 		"build": "rm -rf ./dist/** && tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist && npm run copy-assets && npm run copy",
-		"copy": "rm -rf /Users/selcuk/Documents/projects/react-native-photo-gallery-view/ExampleApp/node_modules/react-native-photo-gallery-view/dist** && cp -R /Users/selcuk/Documents/projects/react-native-photo-gallery-view/dist /Users/selcuk/Documents/projects/react-native-photo-gallery-view/ExampleApp/node_modules/react-native-photo-gallery-view",
 		"copy-assets": "cp -R src/Assets/Images dist/Assets",
 		"travis-deploy-once": "travis-deploy-once",
 		"semantic-release": "semantic-release",
@@ -32,7 +31,11 @@
 		"gallery",
 		"photo",
 		"gallery image",
-		"gallery view"
+		"gallery view",
+		"instagram modal",
+		"gallery modal",
+		"preview",
+		"slide"
 	],
 	"author": "Pankod Inc.",
 	"contributors": [
