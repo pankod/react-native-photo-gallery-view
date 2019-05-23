@@ -43,9 +43,9 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		columns: 3,
 		enableItemSelection: false,
 		detailImageResizeMode: "contain",
-		detailImageResizeMethod: "resize",
-		thumbImageResizeMode: "cover",
-		thumbImageResizeMethod: "resize"
+		detailImageResizeMethod: "auto",
+		thumbImageResizeMode: "contain",
+		thumbImageResizeMethod: "auto"
 	}
 
 	public render(): JSX.Element {

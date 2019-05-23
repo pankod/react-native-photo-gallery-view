@@ -129,8 +129,8 @@ GalleryComponent.defaultProps = {
     columns: 3,
     enableItemSelection: false,
     detailImageResizeMode: "contain",
-    detailImageResizeMethod: "resize",
-    thumbImageResizeMode: "cover",
-    thumbImageResizeMethod: "resize"
+    detailImageResizeMethod: "auto",
+    thumbImageResizeMode: "contain",
+    thumbImageResizeMethod: "auto"
 };
 //# sourceMappingURL=GalleryComponent.js.map

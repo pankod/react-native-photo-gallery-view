@@ -1,6 +1,6 @@
 // Global Imports
 import React, { PureComponent } from 'react'
-import { Animated, ActivityIndicator, PanResponder, Dimensions, View, InteractionManager } from 'react-native'
+import { Animated, ActivityIndicator, PanResponder, Dimensions } from 'react-native'
 
 // Local Imports
 import { IBlurImageProps, IBlurImageState, IGalleryProps, IGalleryState } from '@Interfaces';
@@ -137,6 +137,7 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 				{...this.panResponder.panHandlers}
 			>
 				<Animated.Image
+					progressiveRenderingEnabled={true}
 					{...this.props}
 					style={[BlurImageStyle.container, {
 						opacity: this.imageAnimated,

@@ -1,6 +1,6 @@
 // Global Imports
 import React, { PureComponent } from 'react';
-import { Text, View, Image, TouchableOpacity, Dimensions, FlatList, Animated } from 'react-native';
+import { View, Image, TouchableOpacity, FlatList, Animated } from 'react-native';
 
 // Local Imports
 import { BlurImage } from '@Components';
@@ -52,7 +52,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 			<TouchableOpacity
 				onPress={() => showImageModal(item, index)} key={"showImageModal"}
 				onLongPress={() => showPreview(item, index)}
-				style={{ width: dynamicSize.width, height: dynamicSize.height, padding: 3 }}>
+				style={{ position: "relative", padding: 3, width: dynamicSize.width, height: dynamicSize.height }}>
 				{renderThumbnailOverlay && renderThumbnailOverlay(item, index)}
 				{renderThumbnailImage ? renderThumbnailImage(item, index) : this.renderImageView(item, index)}
 			</TouchableOpacity >
@@ -60,9 +60,9 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 	}
 
 	public renderImageView(item: IMediaItem, index: number): JSX.Element {
-		const { thumbImageResizeMode, thumbImageResizeMethod } = this.context;
+		const { dynamicSize, thumbImageResizeMode, thumbImageResizeMethod } = this.context;
 		return (
-			<Image style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
+			<BlurImage style={{ width: dynamicSize.width, height: dynamicSize.height }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
 		)
 	}
 
@@ -81,7 +81,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 
 			return (
 				<View style={AlbumStyle.checkedContainer}>
-					<Image
+					<BlurImage
 						style={AlbumStyle.checkedImage}
 						source={require("../Assets/Images/checked.png")}
 					/>

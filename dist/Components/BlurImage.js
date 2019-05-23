@@ -119,7 +119,7 @@ export class BlurImage extends PureComponent {
                     transform: [{ translateX: this.translateX }]
                 }
             ] }, this.panResponder.panHandlers),
-            React.createElement(Animated.Image, Object.assign({}, this.props, { style: [BlurImageStyle.container, {
+            React.createElement(Animated.Image, Object.assign({ progressiveRenderingEnabled: true }, this.props, { style: [BlurImageStyle.container, {
                         opacity: this.imageAnimated,
                     }], onLoadEnd: this.onImageLoadEnd.bind(this), onLoadStart: this.onImageLoadStart.bind(this) }))));
     }
