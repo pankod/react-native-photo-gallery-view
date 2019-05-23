@@ -62,7 +62,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 	public renderImageView(item: IMediaItem, index: number): JSX.Element {
 		const { dynamicSize, thumbImageResizeMode, thumbImageResizeMethod } = this.context;
 		return (
-			<BlurImage style={{ width: dynamicSize.width, height: dynamicSize.height }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
+			<BlurImage style={{ flex: 1 }} resizeMode={thumbImageResizeMode} resizeMethod={thumbImageResizeMethod} key={index} source={{ uri: item.thumbnail }} />
 		)
 	}
 
@@ -81,7 +81,7 @@ export class AlbumComponent extends PureComponent<IAlbumProps, {}> {
 
 			return (
 				<View style={AlbumStyle.checkedContainer}>
-					<BlurImage
+					<Image
 						style={AlbumStyle.checkedImage}
 						source={require("../Assets/Images/checked.png")}
 					/>

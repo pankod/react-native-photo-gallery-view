@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, TouchableOpacity, FlatList, Animated } from 'react-native';
+import { View, Image, TouchableOpacity, FlatList, Animated } from 'react-native';
 import { BlurImage } from './';
 import { AlbumStyle } from "../Assets/Styles";
 import Common from '../Provider';
@@ -25,7 +25,7 @@ export class AlbumComponent extends PureComponent {
     }
     renderImageView(item, index) {
         const { dynamicSize, thumbImageResizeMode, thumbImageResizeMethod } = this.context;
-        return (React.createElement(BlurImage, { style: { width: dynamicSize.width, height: dynamicSize.height }, resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumbnail } }));
+        return (React.createElement(BlurImage, { style: { flex: 1 }, resizeMode: thumbImageResizeMode, resizeMethod: thumbImageResizeMethod, key: index, source: { uri: item.thumbnail } }));
     }
     checkedCtrl(item) {
         const { selected } = this.context;
@@ -38,7 +38,7 @@ export class AlbumComponent extends PureComponent {
                 return renderCheckedIcon();
             }
             return (React.createElement(View, { style: AlbumStyle.checkedContainer },
-                React.createElement(BlurImage, { style: AlbumStyle.checkedImage, source: require("../Assets/Images/checked.png") })));
+                React.createElement(Image, { style: AlbumStyle.checkedImage, source: require("../Assets/Images/checked.png") })));
         }
         return null;
     }
