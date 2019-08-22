@@ -7,6 +7,9 @@ yarn-error.log
 # visual studio code
 .vscode
 .history
+coverage
+
+
 
 # jest
 .jest/
@@ -14,3 +17,4 @@ yarn-error.log
 test.txt
 
 codeclimate.html
+
