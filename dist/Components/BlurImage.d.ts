@@ -5,7 +5,7 @@ export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImage
     imageAnimated: Animated.Value;
     translateX: Animated.Value;
     translateY: Animated.Value;
-    panResponder: any;
+    panResponder: import("react-native").PanResponderInstance;
     locationY: number;
     locationX: number;
     direction: string;
@@ -16,7 +16,6 @@ export declare class BlurImage extends PureComponent<IBlurImageProps, IBlurImage
     state: {
         loading: boolean;
     };
-    componentWillMount(): void;
     onPanResponderRelease(e: any, { vx, dx, vy, dy }: {
         vx: any;
         dx: any;
