@@ -12,7 +12,7 @@ export class PreviewModal extends PureComponent {
         this.thumbOpacity = new Animated.Value(1);
         this.containOpacity = new Animated.Value(0);
     }
-    componentWillMount() {
+    componentDidMount() {
         Animate.parallel([
             Animate.timing(this.opacity, Const.TIMING_ON),
             Animate.spring(this.scale, Const.SPRING_ON)
