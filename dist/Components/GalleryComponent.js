@@ -59,6 +59,7 @@ export class GalleryComponent extends Component {
         });
     }
     componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps', nextProps, this.props.enableItemSelection);
         if (nextProps.enableItemSelection !== this.props.enableItemSelection) {
             this.setState({
                 selected: []
@@ -66,6 +67,7 @@ export class GalleryComponent extends Component {
         }
     }
     componentDidMount() {
+        console.log('did mount', this.props.enableItemSelection);
         BackHandler.addEventListener("hardwareBackPress", this.backKeyHandler);
     }
     componentWillUnmount() {
