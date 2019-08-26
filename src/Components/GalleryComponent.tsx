@@ -91,8 +91,6 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 	}
 
 	public componentDidMount(): void {
-		console.log('did mount', this.props.enableItemSelection)
-
 		BackHandler.addEventListener("hardwareBackPress", this.backKeyHandler);
 	}
 
