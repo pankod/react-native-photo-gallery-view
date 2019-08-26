@@ -20,7 +20,7 @@ module.exports = {
 	"roots": [
 		"<rootDir>"
 	],
-	"modulePathIgnorePatterns": ["<rootDir>/ExampleApp"],
+	"modulePathIgnorePatterns": ["<rootDir>/ExampleApp", "<rootDir>/.history"],
 	"globals": {
 		"ts-jest": {
 			"tsConfig": "./tsconfig.json"
