@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-boilerplate",
-    "slug": "expo-boilerplate",
+    "name": "React Native Photo Gallery View",
+    "slug": "react-native-photo-gallery-view",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -23,6 +23,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "React Native Expo boilerplate with Typescript support"
+    "description": "React Native Module to select and view gallery for photos",
+    "githubUrl": "https://github.com/pankod/react-native-photo-gallery-view"
   }
 }
