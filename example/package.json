@@ -31,7 +31,8 @@
 		"@types/jest": "^24.0.13",
 		"expo": "^35.0.0",
 		"react": "16.8.3",
-		"react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz"
+		"react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+		"react-native-photo-gallery-view": "git+https://github.com/pankod/react-native-photo-gallery-view.git#develop"
 	},
 	"devDependencies": {
 		"@types/expo": "^32.0.13",

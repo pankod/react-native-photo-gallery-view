@@ -4,7 +4,7 @@ import { shallow, ShallowWrapper } from 'enzyme';
 jest.mock('@pankod/project-splash', () => 'true');
 
 import Main from './index';
-import { Text } from 'react-native';
+import RNGallery from 'react-native-photo-gallery-view';
 
 describe('Main Component', () => {
 	let wrapper: ShallowWrapper;
@@ -30,6 +30,6 @@ describe('Main Component', () => {
 	it('render component view after splash timeout', () => {
 		jest.runAllTimers();
 		wrapper.update();
-		expect(wrapper.find(Text)).toHaveLength(1);
+		expect(wrapper.find(RNGallery)).toHaveLength(1);
 	});
 });
