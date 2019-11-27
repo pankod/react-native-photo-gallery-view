@@ -51,3 +51,6 @@ typings/
 
 # next.js build output
 .next
+
+# nyc output
+.nyc_output
