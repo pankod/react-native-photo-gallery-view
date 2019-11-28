@@ -131,4 +131,15 @@ describe("Album Component", () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
+
+	test("should render renderItem", () => {
+		const spy = spyOn(AlbumComponent.prototype, "renderItem").and.callThrough();
+		const instance = mounting.instance() as any;
+		instance.renderItem()
+		expect(typeof instance.renderItem(data[0])).toBe("object")
+
+
+		expect(instance.renderItem).toHaveBeenCalled();
+	});
+
 });

@@ -1,7 +1,5 @@
 # React Native Photo Gallery View
 
-** yazılacak
-
 <div align="center">
 
 [![npm version](https://img.shields.io/npm/v/react-native-photo-gallery-view.svg)](https://www.npmjs.com/package/react-native-photo-gallery-view)

@@ -43,4 +43,13 @@ describe("PreviewModal Component", () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
+	test('should render defaultView', () => {
+		const spy = spyOn(PreviewModal.prototype, "defaultView").and.callThrough();
+		const instance = mounting.instance() as any;
+		instance.context.renderPreview = false;
+
+		instance.defaultView()
+		expect(spy).toHaveBeenCalled();
+	});
+
 });

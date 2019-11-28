@@ -9,8 +9,6 @@ yarn-error.log
 .history
 coverage
 
-
-
 # jest
 .jest/
 
