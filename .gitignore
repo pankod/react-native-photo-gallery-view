@@ -9,10 +9,10 @@ yarn-error.log
 .history
 coverage
 
-
 # jest
 .jest/
 
 test.txt
 
 codeclimate.html
+

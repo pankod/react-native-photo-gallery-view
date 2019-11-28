@@ -14,7 +14,15 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 	public imageAnimated = new Animated.Value(0);
 	public translateX = new Animated.Value(0);
 	public translateY = new Animated.Value(0);
-	public panResponder;
+	public panResponder = PanResponder.create({
+		onMoveShouldSetPanResponderCapture: () => true,
+		onPanResponderMove: Animated.event([null, { dx: this.translateX }]),
+		onPanResponderRelease: this.onPanResponderRelease.bind(this),
+		onPanResponderEnd: (e, { vx, dx }) => {
+			this.locationX = e.nativeEvent.locationX;
+			this.locationY = e.nativeEvent.locationY;
+		}
+	});
 	public locationY: number = 0;
 	public locationX: number = 0;
 	public direction: string = "left";
@@ -23,18 +31,6 @@ export class BlurImage extends PureComponent<IBlurImageProps, IBlurImageState> {
 
 	state = {
 		loading: true
-	}
-
-	public componentWillMount(): void {
-		this.panResponder = PanResponder.create({
-			onMoveShouldSetPanResponderCapture: () => true,
-			onPanResponderMove: Animated.event([null, { dx: this.translateX }]),
-			onPanResponderRelease: this.onPanResponderRelease.bind(this),
-			onPanResponderEnd: (e, { vx, dx }) => {
-				this.locationX = e.nativeEvent.locationX;
-				this.locationY = e.nativeEvent.locationY;
-			}
-		});
 	}
 
 	public onPanResponderRelease(e, { vx, dx, vy, dy }): void {

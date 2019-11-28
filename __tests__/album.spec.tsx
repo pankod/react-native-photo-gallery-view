@@ -3,14 +3,13 @@ import * as React from 'react';
 
 import renderer from "react-test-renderer";
 import { ShallowWrapper, shallow, mount } from "enzyme";
-import PropTypes from "prop-types";
 
 import Common from "../src/Provider";
 import { AlbumComponent } from "../src/Components/AlbumComponent";
 
 
-const data = [{ "caption": "Quaresma", "id": "db1aa2ad-48a2-4882-b6e9-824c0224315f", "photo": "https://xx.jpg", "state": "Deleted", "thumb": "https://xx.jpg" },
-{ "caption": "Quaresma 1", "id": "db1aa2ad-48a2-4882-b6e9-824c0224315d", "photo": "https://xx.jpg", "state": "Deleted", "thumb": "https://xx.jpg" }];
+const data = [{ "caption": "Pankod", "id": "db1aa2ad-48a2-4882-b6e9-824c0224315f", "photo": "https://xx.jpg", "state": "Deleted", "thumb": "https://xx.jpg" },
+{ "caption": "Pankod 1", "id": "db1aa2ad-48a2-4882-b6e9-824c0224315d", "photo": "https://xx.jpg", "state": "Deleted", "thumb": "https://xx.jpg" }];
 
 describe("Album Component", () => {
 	let wrapper: ShallowWrapper;
@@ -131,6 +130,7 @@ describe("Album Component", () => {
 
 		expect(spy).toHaveBeenCalled();
 	});
+
 
 	test("should render renderItem", () => {
 		const spy = spyOn(AlbumComponent.prototype, "renderItem").and.callThrough();

@@ -90,14 +90,6 @@ export class GalleryComponent extends Component<IGalleryProps, IGalleryState> {
 		});
 	}
 
-	public componentWillReceiveProps(nextProps): void {
-		if (nextProps.enableItemSelection !== this.props.enableItemSelection) {
-			this.setState({
-				selected: []
-			})
-		}
-	}
-
 	public componentDidMount(): void {
 		BackHandler.addEventListener("hardwareBackPress", this.backKeyHandler);
 	}

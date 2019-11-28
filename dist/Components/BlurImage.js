@@ -10,14 +10,6 @@ export class BlurImage extends PureComponent {
         this.imageAnimated = new Animated.Value(0);
         this.translateX = new Animated.Value(0);
         this.translateY = new Animated.Value(0);
-        this.locationY = 0;
-        this.locationX = 0;
-        this.direction = "left";
-        this.state = {
-            loading: true
-        };
-    }
-    componentWillMount() {
         this.panResponder = PanResponder.create({
             onMoveShouldSetPanResponderCapture: () => true,
             onPanResponderMove: Animated.event([null, { dx: this.translateX }]),
@@ -27,6 +19,12 @@ export class BlurImage extends PureComponent {
                 this.locationY = e.nativeEvent.locationY;
             }
         });
+        this.locationY = 0;
+        this.locationX = 0;
+        this.direction = "left";
+        this.state = {
+            loading: true
+        };
     }
     onPanResponderRelease(e, { vx, dx, vy, dy }) {
         let { imageIndex, items } = this.context;
